@@ -1,0 +1,32 @@
+@import "./variables.scss";
+
+.button {
+  padding: 15px 28px;
+  border-radius: 8px;
+  border: 1px solid #ff004d;
+  background: #ff004d;
+  color: $color-text-black;
+  font-family: "inter";
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    background: #ab0234;
+    border: 1px solid #ab0234;
+    transform: translateY(-5px);
+  }
+}
+.button_stroke {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  margin-right: 16px;
+  color: $color-text-white-secondary;
+  transition: all 0.2s;
+  &:hover {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: #ab0234;
+  }
+}

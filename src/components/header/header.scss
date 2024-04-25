@@ -1,0 +1,92 @@
+@import "../../style/variables.scss";
+.header-nav {
+  width: 100%;
+  position: absolute;
+  color: $color-text-white-secondary;
+  padding: 40px 187px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient($color-background-transparent);
+  &__logo {
+    display: flex;
+    align-items: start;
+    gap: 15px;
+    text-decoration: none;
+  }
+  &__title {
+    font-family: "Just Another Hand";
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 64px;
+    color: $color-text-white;
+    &:last-child {
+      color: #ff004d;
+    }
+  }
+  &__nav-list {
+    display: flex;
+    gap: 53px;
+  }
+  &__nav-link {
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 23px;
+    color: $color-text-white-secondary;
+    position: relative;
+    &.active {
+      color: $color-text-white;
+    }
+    & a {
+      text-decoration: none;
+      color: inherit;
+    }
+    &::after {
+      content: "";
+      display: block;
+      height: 2px;
+      width: 0;
+      background-color: #ff004d;
+      margin-top: 2px;
+      transition: 0.2s;
+    }
+    &:hover::after {
+      content: "";
+      display: block;
+      height: 2px;
+      width: 100%;
+      background-color: #ff004d;
+      margin-top: 2px;
+    }
+  }
+  &__nav-link + &__nav-link:before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 1px;
+    background-color: $color-text-white-secondary;
+    display: block;
+    left: -25px;
+    top: 3px;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 24px;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      height: 18px;
+      width: 1px;
+      background-color: $color-text-white-secondary;
+      display: block;
+      left: 0;
+      top: 3px;
+    }
+  }
+}
