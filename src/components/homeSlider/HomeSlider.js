@@ -6,6 +6,7 @@ import AnimeService from "../services/AnimeService";
 import { memo, useEffect, useMemo } from "react";
 import { useState } from "react";
 import spinner from "../../resources/gif/Ellipsis-loader.gif";
+import imgStub from "../../resources/img/130906936alAOy7.png";
 
 const HomeSlider = () => {
   const [anime, setAnime] = useState([]);
@@ -15,6 +16,7 @@ const HomeSlider = () => {
   }, []);
 
   const setAllAnime = () => {
+    console.log("render");
     getAllAnime(16, 0).then((data) => setAnime(data));
   };
 
@@ -97,41 +99,42 @@ const HomeSlider = () => {
   };
   // -----------render slider------
   const animeRender = (arr) => {
-    return (
-      <Slider {...settings}>
-        {arr.map((data, i) => (
-          <Wiev data={data} key={i} />
-        ))}
-      </Slider>
-    );
+    return arr.map((data, i) => <Wiev data={data} key={i} />);
   };
 
   const AnimeSlides = animeRender(anime);
   const Load = loader ? (
-    <img
-      src={spinner}
-      alt="spin"
-      style={{
-        position: "absolute",
-        left: "50%",
-        top: "40%",
-        display: "block",
-        width: "100px",
-        height: "100px",
-      }}
-    />
+    <div className="main-slider__element">
+      <div className="main-slider__card">
+        <img
+          className="slider"
+          src={spinner}
+          alt="spin"
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "40%",
+            display: "block",
+            width: "100px",
+            height: "100px",
+          }}
+        />
+      </div>
+    </div>
   ) : null;
-  // console.log("render");
+
   return (
     <div className="slider-container  main-slider">
-      {AnimeSlides}
-      {Load}
+      <Slider {...settings}>
+        {Load}
+        {AnimeSlides}
+      </Slider>
     </div>
   );
 };
 
 const Wiev = ({ data }) => {
-  console.log("render");
+  // console.log("render");
   return (
     <div className="main-slider__element">
       <div className="main-slider__card">
@@ -140,5 +143,70 @@ const Wiev = ({ data }) => {
     </div>
   );
 };
+
+// const settings = {
+//   dots: true,
+//   infinite: true,
+//   speed: 500,
+//   slidesToShow: 2,
+//   slidesToScroll: 1,
+// };
+// const HomeSlider = () => {
+//   console.log("Render HomeSlider");
+//   const { getAllAnime, loader } = AnimeService();
+//   const [slide, setSlide] = useState([]);
+
+//   const Load = loader ? (
+//     <img
+//       className="slider"
+//       src={spinner}
+//       alt="spin"
+//       style={{
+//         // position: "absolute",
+//         // left: "50%",
+//         // top: "40%",
+//         display: "block",
+//         width: "100px",
+//         height: "100px",
+//       }}
+//     />
+//   ) : null;
+
+//   useEffect(() => {
+//     getAllAnime().then((data) => setSlide(data));
+//   }, []);
+
+//   // render slick
+//   const renderSlicl = () => {
+//     return slide.map((elem) => (
+//       <div>
+//         <div className="main-slider__element">
+//           <div className="main-slider__card">
+//             {/* {loader ? <img src={spinner}></img> : null} */}
+//             {<Wiev elem={elem} />}
+//           </div>
+//         </div>
+//       </div>
+//     ));
+//   };
+
+//   const Wiev = ({ elem }) => {
+//     return (
+//       <img className="main-slider__img" src={elem.poster} alt={elem.title} />
+//     );
+//   };
+//   return (
+//     <div className="slider-container ">
+//       <Slider {...settings}>
+//         {slide.map((elem) => (
+//           <div className="main-slider__card">
+//             {Load}
+//             {/* {<Wiev elem={elem} />} */}
+//           </div>
+//         ))}
+//       </Slider>
+//     </div>
+//   );
+// };
 
 export default HomeSlider;
