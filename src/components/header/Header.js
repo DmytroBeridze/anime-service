@@ -8,7 +8,7 @@ const Header = () => {
         <div className="header-nav__icon">
           <img src={whiteFilmLogo} alt="logo" />
         </div>
-        <div className="test">
+        <div>
           <span className="header-nav__title">Comics</span>
           <span className="header-nav__title ">.</span>
         </div>

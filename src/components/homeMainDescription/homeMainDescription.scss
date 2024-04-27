@@ -2,7 +2,7 @@
 .home-description {
   color: aliceblue;
   max-width: 470px;
-  height: 350px;
+  //   height: 350px;
   position: absolute;
   top: 200px;
   left: 160px;
@@ -10,16 +10,17 @@
     font-family: "Bebas Neue";
     font-weight: 600;
     font-size: 72px;
-    line-height: 76px;
-
-    font-weight: 600;
-    font-size: 72px;
-    line-height: 86px;
+    line-height: 72px;
   }
+
+  // font-weight: 600;
+  // font-size: 72px;
+  // line-height: 86px;
+
   &__info {
   }
   &__info-list {
-    margin: 24px 0 24px;
+    margin: 10px 0 10px;
     display: flex;
     gap: 16px;
     & li {
@@ -53,9 +54,9 @@
   &__text {
     font-family: "Inter";
     font-weight: 400;
-    font-size: 22px;
-    line-height: 27px;
-    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 35px;
   }
   // --------------buttons
   //   &__button {
