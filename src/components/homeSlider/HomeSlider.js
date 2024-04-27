@@ -8,8 +8,23 @@ import { useState } from "react";
 import spinner from "../../resources/gif/Ellipsis-loader.gif";
 
 const HomeSlider = () => {
+  console.log("render");
   const [anime, setAnime] = useState([]);
   const { getAllAnime, loader } = AnimeService();
+  const Load = loader ? (
+    <img
+      src={spinner}
+      alt="spin"
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "40%",
+        display: "block",
+        width: "100px",
+        height: "100px",
+      }}
+    />
+  ) : null;
   useEffect(() => {
     setAllAnime();
   }, []);
@@ -99,29 +114,14 @@ const HomeSlider = () => {
   const animeRender = (arr) => {
     return (
       <Slider {...settings}>
-        {arr.map((data, i) => (
-          <Wiev data={data} key={i} />
+        {arr.map((data) => (
+          <Wiev data={data} key={data.id} />
         ))}
       </Slider>
     );
   };
-
   const AnimeSlides = animeRender(anime);
-  const Load = loader ? (
-    <img
-      src={spinner}
-      alt="spin"
-      style={{
-        position: "absolute",
-        left: "50%",
-        top: "40%",
-        display: "block",
-        width: "100px",
-        height: "100px",
-      }}
-    />
-  ) : null;
-  // console.log("render");
+
   return (
     <div className="slider-container  main-slider">
       {AnimeSlides}
@@ -129,9 +129,8 @@ const HomeSlider = () => {
     </div>
   );
 };
-
+// -----------component
 const Wiev = ({ data }) => {
-  console.log("render");
   return (
     <div className="main-slider__element">
       <div className="main-slider__card">

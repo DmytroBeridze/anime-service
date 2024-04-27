@@ -20,7 +20,6 @@ const AnimeService = () => {
 
   // ------------transforn All anime
   const transformAllAnime = (elem) => {
-    console.log("render");
     const { id, attributes } = elem;
     const { canonicalTitle, coverImage, posterImage, description } = attributes;
 
