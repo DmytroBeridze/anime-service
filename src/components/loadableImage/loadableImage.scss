@@ -1,0 +1,15 @@
+.load-container {
+  background: rgb(163, 157, 157);
+  border: 1px solid red;
+  overflow: hidden;
+}
+.load-image {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+.load-image__loaded {
+  opacity: 1;
+}
