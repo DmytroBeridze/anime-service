@@ -5,8 +5,10 @@ import "slick-carousel/slick/slick-theme.css";
 import AnimeService from "../services/AnimeService";
 import { useEffect } from "react";
 import { useState } from "react";
-import spinner from "../../resources/gif/Ellipsis-loader.gif";
-import errorIcon from "../../resources/gif/Error.gif";
+import Spinner from "../spinner/Spinner";
+import Error from "../error/Error";
+// import spinner from "../../resources/gif/Ellipsis-loader.gif";
+// import errorIcon from "../../resources/png/Fail2.png";
 import sliderArrows from "../sliderArrows/SliderArrows";
 import LoadableImage from "../loadableImage/LoadableImage";
 
@@ -15,6 +17,7 @@ const HomeSlider = () => {
   const { getAllAnime, error, loading, clearError } = AnimeService();
 
   useEffect(() => {
+    clearError();
     setAllAnime();
   }, []);
 
@@ -23,6 +26,7 @@ const HomeSlider = () => {
   };
   // ------------slider arrow--------
   const { NextArrow, PrewArrow } = sliderArrows();
+
   // ----------setings slider------
   const settings = {
     centerMode: true,
@@ -104,85 +108,38 @@ const HomeSlider = () => {
   };
 
   // --------spinner
-  const Load = loading ? (
-    <div className="main-slider__element">
-      <div className="main-slider__card">
-        <img
-          className="slider"
-          src={spinner}
-          alt="spin"
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "40%",
-            display: "block",
-            width: "100px",
-            height: "100px",
-          }}
-        />
-      </div>
-    </div>
-  ) : null;
+  const Load = loading ? <Spinner /> : null;
   // ----------error
-  const Err = error ? (
-    <div className="main-slider__element">
-      <div className="main-slider__card">
-        <img
-          className="slider"
-          src={errorIcon}
-          alt="spin"
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "40%",
-            display: "block",
-            width: "100px",
-            height: "100px",
-          }}
-        />
-      </div>
-    </div>
-  ) : null;
+  const Err = error ? <Error /> : null;
+
   // -----------render slider------
-
   const animeRender = (arr) => {
-    return arr.map((data) => (
-      <div className="main-slider__element" key={data.id}>
-        <div className="main-slider__card">
-          {/* {Load} */}
-          {<Wiev data={data} />}
-        </div>
-      </div>
-    ));
+    return (
+      <Slider {...settings}>
+        {arr.map((data) => (
+          <Wiev data={data} key={data.id} />
+        ))}
+      </Slider>
+    );
   };
-
   const AnimeSlides = animeRender(anime);
 
   return (
     <div className="slider-container  main-slider">
-      <Slider {...settings}>
-        {anime.map((data) => (
-          <div className="main-slider__element" key={data.id}>
-            <div className="main-slider__card">
-              {/* <LoadableImage src={data.poster} alt={data.title} /> */}
-              <Wiev data={data} />
-            </div>
-          </div>
-        ))}
-        {Load}
-        {Err}
-        {AnimeSlides}
-      </Slider>
+      {AnimeSlides}
+      {Load}
+      {Err}
     </div>
   );
 };
-// ---------content--------
+// -----------component
 const Wiev = ({ data }) => {
   return (
-    <>
-      {/* <LoadableImage src={data.poster} alt={data.title} /> */}
-      <img className="main-slider__img" src={data.poster} alt={data.title} />
-    </>
+    <div className="main-slider__element">
+      <div className="main-slider__card">
+        <img className="main-slider__img" src={data.poster} alt={data.title} />
+      </div>
+    </div>
   );
 };
 

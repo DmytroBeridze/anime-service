@@ -4,7 +4,6 @@ import HttpHook from "../../hooks/http.hook";
 
 const AnimeService = () => {
   const _host = "https://kitsu.io/api/edge";
-  const [loader, setLoader] = useState(null);
   const { allElementsResponse, error, loading, clearError } = HttpHook();
 
   //   ---------get All anime
