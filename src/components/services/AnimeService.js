@@ -10,17 +10,21 @@ const AnimeService = () => {
   const getAllAnime = (limit = 16, offset = 0) => {
     const request = allElementsResponse(
       `${_host}/anime?page[limit]=${limit}&page[offset]=${offset}`
-    ).then((resp) => resp.data.map((elem) => transformAllAnime(elem)));
+    ).then((resp) => resp.data.map((elem) => transformAnime(elem)));
 
     return request;
   };
-
-  // ------------transforn All anime
-  const transformAllAnime = (elem) => {
-    // console.log("render");
+  // -----------get by name
+  const getByname = (name) => {
+    const request = allElementsResponse(
+      `${_host}/anime?filter[text]=${name}`
+    ).then((elem) => elem.data.map((elem) => transformAnime(elem)));
+    return request;
+  };
+  // ------------transforn All anime and transform Single anime
+  const transformAnime = (elem) => {
     const { id, attributes } = elem;
     const { canonicalTitle, coverImage, posterImage, description } = attributes;
-
     return {
       id,
       description,
@@ -30,7 +34,7 @@ const AnimeService = () => {
     };
   };
 
-  return { getAllAnime, error, loading, clearError };
+  return { getAllAnime, getByname, error, loading, clearError };
 };
 
 export default AnimeService;
