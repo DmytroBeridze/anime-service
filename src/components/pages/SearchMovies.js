@@ -14,10 +14,10 @@ const SearchMovies = () => {
   const { anime } = useContext(AnimeContext);
   const [data, setData] = useState([]);
   const [value, setValue] = useSessionStorage("animeArr", "Not Found");
+  const [relatedData, setRelatedData] = useState([]);
 
   const searchAnime = (name) => {
     return getByname(name).then((res) => {
-      // console.log(res);
       setData(res);
       setValue(res);
     });
@@ -25,6 +25,7 @@ const SearchMovies = () => {
 
   useEffect(() => {
     setData(value);
+    clearError();
   }, []);
 
   useEffect(() => {
@@ -33,20 +34,22 @@ const SearchMovies = () => {
     }
   }, [anime]);
 
-  // --------spinner
+  useEffect(() => {
+    transformRelatedData();
+  }, [data]);
+
+  const transformRelatedData = () => {
+    setRelatedData(data.slice(1));
+  };
+  console.log();
   const Load = loading ? <Spinner /> : null;
-  // ----------error
   const Err = error ? <Error /> : null;
-  // -----------no element
   const NoElement =
     data.length <= 0 && !(error || loading) ? <NoSuchElement /> : null;
-
-  // -----------content
   const Content = !(error || loading || NoElement) ? (
     <FoundAnime data={data} />
   ) : null;
 
-  // if (data.length > 0) {
   return (
     <div className="search-movies">
       <div className="search-movies__container container">
@@ -55,120 +58,56 @@ const SearchMovies = () => {
         {Content}
         {NoElement}
 
-        {/* <section className="search-movies__main">
-            <div className="search-movies__info">
-              <h1 className="search-movies__title">{data[0].title}</h1> */}
-
-        {/*----------  info list */}
-        {/* <ul className="home-description__info-list">
-                <li className="home-description__rating">
-                  <span className="">imdb</span>
-                  <span className="">8.2</span>
-                </li>
-                <li className="home-description__year">2021</li>
-                <li className="home-description__time">1hour 55minutes</li>
-                <li className="home-description__genre">Sci-fi</li>
-              </ul> */}
-
-        {/* ---------movies__description */}
-        {/* <div className="search-movies__description">
-                {data[0].description}
-              </div>
-              <button className=" button button_stroke">Watch Trailer</button>
-              <button className="button">Episodes</button>
-            </div> */}
-
-        {/* ---------poster */}
-        {/* <div className="search-movies__poster">
-              <img src={data[0].poster} alt="semple img" />
-
-              <img src={stroke} alt="stroke" />
-            </div>
-          </section> */}
-
         {/* -----------related anime */}
         <section className="search-movies__related-container">
           <div className="search-movies__related">
             <h3 className="search-movies__related-title">related</h3>
             <div className="search-movies__related-stroke"></div>
           </div>
-          <ul className="search-movies__galery">
-            <li className="search-movies__galery-element">
-              <div className="search-movies__galery-img_wrapper">
-                <img src={sempleImg} alt="" />
-              </div>
-              <div className="search-movies__galery-description">
-                <div className="search-movies__galery-name">Cowboy Bebop</div>
-                <span className="search-movies__galery-year">2024</span>
-                <span className="search-movies__galery-time">104m</span>
-              </div>
-            </li>
-            <li className="search-movies__galery-element">
-              <div className="search-movies__galery-img_wrapper">
-                <img src={sempleImg} alt="" />
-              </div>
-              <div className="search-movies__galery-description">
-                <div className="search-movies__galery-name">Cowboy Bebop</div>
-                <span className="search-movies__galery-year">2024</span>
-                <span className="search-movies__galery-time">104m</span>
-              </div>
-            </li>
-            <li className="search-movies__galery-element">
-              <div className="search-movies__galery-img_wrapper">
-                <img src={sempleImg} alt="" />
-              </div>
-              <div className="search-movies__galery-description">
-                <div className="search-movies__galery-name">Cowboy Bebop</div>
-                <span className="search-movies__galery-year">2024</span>
-                <span className="search-movies__galery-time">104m</span>
-              </div>
-            </li>
-            <li className="search-movies__galery-element">
-              <div className="search-movies__galery-img_wrapper">
-                <img src={sempleImg} alt="" />
-              </div>
-              <div className="search-movies__galery-description">
-                <div className="search-movies__galery-name">Cowboy Bebop</div>
-                <span className="search-movies__galery-year">2024</span>
-                <span className="search-movies__galery-time">104m</span>
-              </div>
-            </li>
-            <li className="search-movies__galery-element">
-              <div className="search-movies__galery-img_wrapper">
-                <img src={sempleImg} alt="" />
-              </div>
-              <div className="search-movies__galery-description">
-                <div className="search-movies__galery-name">Cowboy Bebop</div>
-                <span className="search-movies__galery-year">2024</span>
-                <span className="search-movies__galery-time">104m</span>
-              </div>
-            </li>
-            <li className="search-movies__galery-element">
-              <div className="search-movies__galery-img_wrapper">
-                <img src={sempleImg} alt="" />
-              </div>
-              <div className="search-movies__galery-description">
-                <div className="search-movies__galery-name">Cowboy Bebop</div>
-                <span className="search-movies__galery-year">2024</span>
-                <span className="search-movies__galery-time">4m</span>
-              </div>
-            </li>
-            <li className="search-movies__galery-element">
-              <div className="search-movies__galery-img_wrapper">
-                <img src={sempleImg} alt="" />
-              </div>
-              <div className="search-movies__galery-description">
-                <div className="search-movies__galery-name">Cowboy Bebop</div>
-                <span className="search-movies__galery-year">2024</span>
-                <span className="search-movies__galery-time">104m</span>
-              </div>
-            </li>
-          </ul>
+          <RelatedAnime
+            data={relatedData}
+            Load={Load}
+            Err={Err}
+            NoElement={NoElement}
+          />
         </section>
       </div>
     </div>
   );
-  // }
+};
+
+const RelatedAnime = ({ data, Load, Err, NoElement }) => {
+  const Wiev = ({ data }) => {
+    return (
+      <li className="search-movies__galery-element">
+        <div className="search-movies__galery-img_wrapper">
+          <img src={data.poster} alt="" />
+        </div>
+        <div className="search-movies__galery-description">
+          <div className="search-movies__galery-name">{data.title}</div>
+          <span className="search-movies__galery-year">2024</span>
+          <span className="search-movies__galery-time">104m</span>
+        </div>
+      </li>
+    );
+  };
+  const renderRelated = data.map((data) => {
+    // const wiew = !(Load || Err) ? <Wiev data={data} /> : null;
+    const wiew = !(Load || Err || NoElement) ? <Wiev data={data} /> : null;
+    return (
+      <>
+        {Load}
+        {Err}
+        {wiew}
+        {/* {NoElement} */}
+      </>
+    );
+  });
+  return (
+    <ul className="search-movies__galery" key={data.name}>
+      {renderRelated}
+    </ul>
+  );
 };
 
 const FoundAnime = ({ data }) => {
@@ -205,3 +144,6 @@ const FoundAnime = ({ data }) => {
 };
 
 export default SearchMovies;
+
+{
+}
