@@ -4,27 +4,25 @@ import { useContext, useEffect, useState } from "react";
 import stroke from "../../resources/png/stroke.png";
 import sempleImg from "../../resources/img/large.jpg";
 import AnimeService from "../services/AnimeService";
-import useLocalStorage from "use-local-storage";
+import useSessionStorage from "../../hooks/sessionStorage.hook";
 
 const SearchMovies = () => {
   const { getByname, error, loading, clearError } = AnimeService();
   const { anime } = useContext(AnimeContext);
   const [data, setData] = useState([]);
-  const [animeName, setAnimeName] = useLocalStorage("animeArr", "");
+  const [item, setValue] = useSessionStorage("animeArr", "Not Found");
 
   const searchAnime = (name) => {
     console.log(name);
     return getByname(name).then((res) => {
       setData(res);
-      setAnimeName(res);
-      // localStorage.setItem("animeArr", JSON.stringify(res));
+      setValue(res);
     });
   };
   useEffect(() => {
     console.log(anime.length);
 
-    setData(animeName);
-    // setData(JSON.parse(localStorage.getItem("animeArr")));
+    setData(item);
   }, []);
 
   useEffect(() => {
