@@ -6,13 +6,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { object, string } from "yup";
 
 const HeaderSearch = ({ open, setAnimeData }) => {
-  const { getByname, error, loading, clearError } = AnimeService();
+  // const { getByname, error, loading, clearError } = AnimeService();
   // для перенаправлення на потрібну сторінку після вводу даних  в строку пошуку
   const history = useNavigate();
 
-  const searchAnime = (values) => {
+  const getAnimeName = (values) => {
     const name = values.name.replaceAll(" ", "%20");
-    getByname(name).then((data) => setAnimeData(data));
+    setAnimeData(name);
+    // getByname(name).then((data) => setAnimeData(data));
     history("/movies/searchMovie");
   };
   return (
@@ -31,7 +32,7 @@ const HeaderSearch = ({ open, setAnimeData }) => {
         //   return errors;
         // }}
         onSubmit={(values, { resetForm }) => {
-          searchAnime(values);
+          getAnimeName(values);
           resetForm();
         }}
       >

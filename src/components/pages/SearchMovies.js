@@ -3,15 +3,33 @@ import "./searchMovies.scss";
 import { useContext, useEffect, useState } from "react";
 import stroke from "../../resources/png/stroke.png";
 import sempleImg from "../../resources/img/large.jpg";
+import AnimeService from "../services/AnimeService";
+
 const SearchMovies = () => {
+  const { getByname, error, loading, clearError } = AnimeService();
   const { anime } = useContext(AnimeContext);
   const [data, setData] = useState([]);
 
-  // ! Робити тут запрос по ID
-  console.log(anime);
+  const searchAnime = (name) => {
+    console.log(name);
+    return getByname(name).then((res) => {
+      setData(res);
+      localStorage.setItem("animeArr", JSON.stringify(res));
+    });
+  };
+
   useEffect(() => {
-    setData(anime);
+    console.log(anime.length);
+
+    setData(JSON.parse(localStorage.getItem("animeArr")));
   }, []);
+
+  useEffect(() => {
+    if (anime.length > 0) {
+      searchAnime(anime);
+    }
+  }, [anime]);
+
   if (data.length > 0) {
     return (
       <div className="search-movies">
