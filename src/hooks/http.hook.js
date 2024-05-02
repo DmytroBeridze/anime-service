@@ -17,7 +17,7 @@ const HttpHook = () => {
         const response = await request.json();
         setLoading(false);
         return response;
-      } else throw new Error("Filed request");
+      } else throw new Error("Failed request");
     } catch (error) {
       setLoading(false);
       setError(error.message);

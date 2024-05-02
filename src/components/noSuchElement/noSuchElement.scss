@@ -1,0 +1,45 @@
+.noSuchElement {
+  width: 500px;
+  color: #ff004d;
+  font-size: 20px;
+  display: flex;
+  margin: 20px auto;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+.te {
+  width: 10px;
+}
+.exclam {
+  animation: blink 3s infinite;
+  animation-timing-function: linear;
+  transition-timing-function: linear;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+// @keyframes blink {
+//   from {
+//     opacity: 1;
+//   }
+//   33% {
+//     opacity: 0;
+//   }
+//   33% {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 0;
+//   }
+// }

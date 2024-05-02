@@ -15,6 +15,7 @@ const AnimeService = () => {
     return request;
   };
   // -----------get by name
+
   const getByname = (name) => {
     const request = allElementsResponse(
       `${_host}/anime?filter[text]=${name}`
