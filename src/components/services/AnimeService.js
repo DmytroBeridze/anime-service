@@ -1,6 +1,6 @@
 import imgStub from "../../resources/img/130906936alAOy7.png";
-import { useState } from "react";
 import HttpHook from "../../hooks/http.hook";
+import { useState } from "react";
 
 const AnimeService = () => {
   const _host = "https://kitsu.io/api/edge";
@@ -23,14 +23,17 @@ const AnimeService = () => {
   };
   // ------------transforn All anime and transform Single anime
   const transformAnime = (elem) => {
-    const { id, attributes } = elem;
+    const { id, attributes, relationships } = elem;
     const { canonicalTitle, coverImage, posterImage, description } = attributes;
+    const { episodes } = relationships;
+    // console.log(episodes);
     return {
       id,
       description,
       title: canonicalTitle,
+      episodes: episodes.links.related,
       cover: coverImage === null ? imgStub : coverImage.large,
-      poster: coverImage === null ? imgStub : posterImage.large,
+      poster: posterImage.large,
     };
   };
 
