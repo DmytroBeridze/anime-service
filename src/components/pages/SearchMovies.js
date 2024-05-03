@@ -13,7 +13,7 @@ const SearchMovies = () => {
   const { getByname, error, loading, clearError } = AnimeService();
   const { anime } = useContext(AnimeContext);
   const [data, setData] = useState([]);
-  const [value, setValue] = useSessionStorage("animeArr", "Not Found");
+  const [value, setValue] = useSessionStorage("animeArr", anime);
   const [relatedData, setRelatedData] = useState([]);
 
   const searchAnime = (name) => {
@@ -22,7 +22,7 @@ const SearchMovies = () => {
       setValue(res);
     });
   };
-
+  console.log(data);
   useEffect(() => {
     setData(value);
     clearError();
@@ -36,12 +36,12 @@ const SearchMovies = () => {
 
   useEffect(() => {
     transformRelatedData();
-  }, [data]);
+  }, [value]);
 
   const transformRelatedData = () => {
     setRelatedData(data.slice(1));
   };
-  console.log();
+  console.log(relatedData);
   const Load = loading ? <Spinner /> : null;
   const Err = error ? <Error /> : null;
   const NoElement =
@@ -103,11 +103,7 @@ const RelatedAnime = ({ data, Load, Err, NoElement }) => {
       </>
     );
   });
-  return (
-    <ul className="search-movies__galery" key={data.name}>
-      {renderRelated}
-    </ul>
-  );
+  return <ul className="search-movies__galery">{renderRelated}</ul>;
 };
 
 const FoundAnime = ({ data }) => {
