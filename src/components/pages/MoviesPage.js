@@ -9,7 +9,7 @@ import AnimeSlider from "../slider/AnimeSlider";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-const MoviesPage = () => {
+const MoviesPage = ({ setAnimeData }) => {
   const {
     getTrandingAnime,
     getAllAnime,
@@ -19,7 +19,7 @@ const MoviesPage = () => {
     clearError,
   } = AnimeService();
   const [ratingData, setRatingData] = useState([]);
-  const [animeData, setAnimeData] = useState([]);
+  const [allAnimeData, setAllAnimeData] = useState([]);
   const [offset, setOffset] = useState(0);
   const [year, setYear] = useState(0);
   const [category, setCategory] = useState(0);
@@ -42,14 +42,14 @@ const MoviesPage = () => {
 
   const allAnime = () => {
     getAllAnime(16, offset).then((data) => {
-      setAnimeData((animeData) => [...animeData, ...data]);
+      setAllAnimeData((animeData) => [...animeData, ...data]);
       setOffset((offset) => offset + 16);
     });
   };
 
   const getByYearAnime = (year, category, offset) => {
     getByYear(year, offset, category).then((data) =>
-      setAnimeData((animeData) => [...animeData, ...data])
+      setAllAnimeData((animeData) => [...animeData, ...data])
     );
     setOffset((offset) => offset + 18);
     setYear(year);
@@ -97,7 +97,7 @@ const MoviesPage = () => {
           initialValues={{ year: "2024", category: "adventures" }}
           onSubmit={(values, resetForm) => {
             getByYearAnime(values.year, values.category);
-            setAnimeData([]);
+            setAllAnimeData([]);
             setOffset(36);
             setDatatipe("yearSearch");
           }}
@@ -149,7 +149,13 @@ const MoviesPage = () => {
         {Load}
         {Err}
         {/* {NoElement} */}
-        <AnimeList relatedData={animeData} Load={Load} Err={Err} />
+        <AnimeList
+          relatedData={allAnimeData}
+          Load={Load}
+          Err={Err}
+          moviesPage={"moviesPage"}
+          setAnimeData={setAnimeData}
+        />
         <button
           className="button movies__button"
           onClick={() => loadAnime(year, offset, category)}

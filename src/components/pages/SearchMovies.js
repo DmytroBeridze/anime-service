@@ -28,6 +28,7 @@ const SearchMovies = () => {
   useEffect(() => {
     setData(value);
     clearError();
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {

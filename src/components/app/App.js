@@ -22,7 +22,10 @@ function App() {
           <Header setAnimeData={setAnimeData} />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/movies" element={<MoviesPage />} />
+            <Route
+              path="/movies"
+              element={<MoviesPage setAnimeData={setAnimeData} />}
+            />
             <Route path="/movies/searchMovie" element={<SearchMovies />} />
             <Route
               path="/movies/:animeId"

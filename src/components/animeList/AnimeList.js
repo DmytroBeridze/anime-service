@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./animeList.scss";
 
 // !------without spinner
@@ -30,12 +30,30 @@ import "./animeList.scss";
 //   return <ul className="search-movies__galery">{wiev}</ul>;
 // };
 // !------with spinner
-const AnimeList = ({ Load, Err, NoElement, relatedData }) => {
+const AnimeList = ({
+  Load,
+  Err,
+  NoElement,
+  relatedData,
+  moviesPage,
+  setAnimeData,
+}) => {
+  const history = useNavigate();
+  const getAnimeName = (title) => {
+    setAnimeData(title);
+    history("/movies/searchMovie");
+    console.log(title);
+  };
+
   const Elem = ({ data }) => {
     const { poster, title, startDate, ageRatingGuide, id } = data;
-    return (
-      <li className="search-movies__galery-element">
-        <NavLink to={`/movies/${id}`}>
+
+    if (moviesPage) {
+      return (
+        <li
+          className="search-movies__galery-element"
+          onClick={() => getAnimeName(title)}
+        >
           <div className="search-movies__galery-img_wrapper">
             <img src={poster} alt="poster" />
           </div>
@@ -46,9 +64,27 @@ const AnimeList = ({ Load, Err, NoElement, relatedData }) => {
             <span className="search-movies__galery-year">{startDate}</span>
             <span className="search-movies__galery-time">{ageRatingGuide}</span>
           </div>
-        </NavLink>
-      </li>
-    );
+        </li>
+      );
+    } else
+      return (
+        <li className="search-movies__galery-element">
+          <NavLink to={`/movies/${id}`}>
+            <div className="search-movies__galery-img_wrapper">
+              <img src={poster} alt="poster" />
+            </div>
+            <div className="search-movies__galery-description">
+              <div className="search-movies__galery-name">
+                {title.length > 35 ? title.slice(0, 35) + "..." : title}
+              </div>
+              <span className="search-movies__galery-year">{startDate}</span>
+              <span className="search-movies__galery-time">
+                {ageRatingGuide}
+              </span>
+            </div>
+          </NavLink>
+        </li>
+      );
   };
 
   const wiev = relatedData.map((data) => {
