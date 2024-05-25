@@ -1,6 +1,6 @@
 import "./header.scss";
 import whiteFilmLogo from "../../resources/png/White-film-logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import search from "../../resources/png/search-icon.png";
 import { useState } from "react";
 import HeaderSearch from "../headerSearch/HeaderSearch";
@@ -16,7 +16,7 @@ const Header = ({ setAnimeData }) => {
               <img src={whiteFilmLogo} alt="logo" />
             </div>
             <div>
-              <span className="header-nav__title">Comics</span>
+              <span className="header-nav__title">Anime</span>
               <span className="header-nav__title ">.</span>
             </div>
           </a>

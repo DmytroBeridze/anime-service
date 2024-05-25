@@ -11,6 +11,7 @@ import Error from "../error/Error";
 // import errorIcon from "../../resources/png/Fail2.png";
 import sliderArrows from "../sliderArrows/SliderArrows";
 import LoadableImage from "../loadableImage/LoadableImage";
+import { NavLink } from "react-router-dom";
 
 const HomeSlider = () => {
   const [anime, setAnime] = useState([]);
@@ -22,7 +23,8 @@ const HomeSlider = () => {
   }, []);
 
   const setAllAnime = () => {
-    getAllAnime(16, 0).then((data) => setAnime(data));
+    const random = Math.floor(Math.random() * (5000 - 1) + 1);
+    getAllAnime(16, random).then((data) => setAnime(data));
   };
   // ------------slider arrow--------
   const { NextArrow, PrewArrow } = sliderArrows();
@@ -34,7 +36,7 @@ const HomeSlider = () => {
     centerPadding: "100px",
     slidesToShow: 8,
     slidesToScroll: 1,
-    // autoplay: true,
+    autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
     nextArrow: <NextArrow />,
@@ -113,6 +115,22 @@ const HomeSlider = () => {
   const Err = error ? <Error /> : null;
 
   // -----------render slider------
+  // const animeRender = (arr) => {
+  //   const wiev = arr.map((data) => {
+  //     const content = !(Err || Load) ? (
+  //       <Wiev data={data} key={data.id} />
+  //     ) : null;
+  //     return (
+  //       <>
+  //         {content}
+  //         {Load}
+  //       </>
+  //     );
+  //   });
+
+  //   return <Slider {...settings}> {wiev} </Slider>;
+  // };
+
   const animeRender = (arr) => {
     return (
       <Slider {...settings}>
@@ -122,8 +140,8 @@ const HomeSlider = () => {
       </Slider>
     );
   };
-  const AnimeSlides = animeRender(anime);
 
+  const AnimeSlides = animeRender(anime);
   return (
     <div className="slider-container  main-slider">
       {AnimeSlides}
@@ -135,12 +153,20 @@ const HomeSlider = () => {
 // -----------component
 const Wiev = ({ data }) => {
   return (
-    <div className="main-slider__element">
+    <NavLink to={`/movies/${data.id}`} className="main-slider__element">
       <div className="main-slider__card">
         <img className="main-slider__img" src={data.poster} alt={data.title} />
       </div>
-    </div>
+    </NavLink>
   );
+  // return (
+  //   <AnimeSlider
+  //     anime={anime}
+  //     error={error}
+  //     loading={loading}
+  //     clearError={clearError}
+  //   />
+  // );
 };
 
 export default HomeSlider;

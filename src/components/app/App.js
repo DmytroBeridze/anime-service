@@ -2,11 +2,12 @@ import Header from "../header/Header";
 import HomePage from "../pages/HomePage";
 import MoviesPage from "../pages/MoviesPage";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import SingeMovie from "../pages/SingeMovie";
+import SingleMovie from "../pages/SingleMovie";
 import { useState } from "react";
 import { AnimeContext } from "../context";
 import SearchMovies from "../pages/SearchMovies";
-
+import SingleFoundAnime from "../singleFoundAnime/SingleFoundAnime";
+import Episodes from "../../components/episodes/Episodes.js";
 function App() {
   const [anime, setAnime] = useState([]);
   const setAnimeData = (data) => {
@@ -23,7 +24,16 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/movies" element={<MoviesPage />} />
             <Route path="/movies/searchMovie" element={<SearchMovies />} />
-            {/* <Route path="/movies/searchMovie" element={<SingeMovie />} /> */}
+            <Route
+              path="/movies/:animeId"
+              element={
+                <SingleMovie Component={SingleFoundAnime} dataType="anime" />
+              }
+            />
+            <Route
+              path="/movies/searchMovie/:episodesId"
+              element={<SingleMovie Component={Episodes} dataType="episodes" />}
+            />
           </Routes>
         </div>
       </BrowserRouter>

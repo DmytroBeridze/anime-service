@@ -1,0 +1,129 @@
+@import "../../style/variables.scss";
+.episodes {
+  width: 100%;
+  min-height: 1080px;
+  padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
+  background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
+  &__container {
+    margin: auto;
+  }
+  &__title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  &__title {
+    font-family: "Inter";
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    word-break: break-all;
+  }
+  &__stroke {
+    width: 100%;
+    height: 0px;
+    border: 1px solid rgba(80, 74, 121, 0.5);
+  }
+  &__galery {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    row-gap: 30px;
+    column-gap: 50px;
+    margin-top: 20px;
+    @media (max-width: 1400px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+      row-gap: 50px;
+    }
+  }
+  &__galery-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    @media (max-width: 900px) {
+      justify-content: center;
+    }
+    @media (max-width: 600px) {
+      justify-content: center;
+      flex-direction: column;
+      // align-items: center;
+    }
+  }
+  &__img-container {
+    width: 100%;
+    max-width: 500px;
+    // max-width: 250px;
+    min-height: 100px;
+    position: relative;
+  }
+  &__img {
+    // width: 100%;
+    // min-width: 100px;
+    // height: 100%;
+    // max-height: 160px;
+    box-shadow: 2px 2px 30px -12px rgb(6, 6, 9);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 5px;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+  &__description {
+    display: block;
+    width: 100%;
+    height: 86px;
+    padding: 10px;
+    overflow: hidden;
+    background-color: #111827;
+    margin-bottom: 5px;
+    font-size: 16px;
+    & span {
+      color: $color-text-gray;
+      margin-right: 5px;
+    }
+    &.active {
+      transition: height 0.3s;
+      // max-width: 500px;
+      max-width: 100%;
+      height: 130%;
+      z-index: 999;
+      position: absolute;
+      overflow: auto;
+      top: 0;
+      cursor: pointer;
+      @media (max-width: 900px) {
+        height: 101%;
+      }
+    }
+  }
+  &__more {
+    border: 1px solid $color-text-gray;
+    padding: 2px 5px;
+    cursor: pointer;
+    color: $color-text-gray;
+    border-radius: 3px;
+    transition: 0.2s;
+    &:hover {
+      color: #b7b6b6;
+      border: 1px solid #b7b6b6;
+    }
+  }
+  &__data {
+    width: 130px;
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+    & span {
+      color: $color-text-gray;
+    }
+  }
+}
