@@ -42,7 +42,14 @@ const Header = ({ setAnimeData }) => {
               </NavLink>
             </li>
             <li className="header-nav__nav-link">
-              <a href="#">Genre</a>
+              <NavLink
+                to="favorites"
+                style={({ isActive }) => ({
+                  color: isActive ? "#ff004d" : "inherit",
+                })}
+              >
+                Favorites
+              </NavLink>
             </li>
             <li className="header-nav__nav-link">
               <a href="#">News</a>

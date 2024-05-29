@@ -13,8 +13,8 @@ const HeaderSearch = ({ open, setAnimeData }) => {
   const getAnimeName = (values) => {
     const name = values.name.replaceAll(" ", "%20");
     setAnimeData(name);
-    // getByname(name).then((data) => setAnimeData(data));
     history("/movies/searchMovie");
+    // getByname(name).then((data) => setAnimeData(data));
   };
   return (
     <>

@@ -10,8 +10,9 @@ import NoSuchElement from "../noSuchElement/NoSuchElement";
 import { NavLink } from "react-router-dom";
 import TrailerModal from "../trailerModal/TrailerModal";
 import AnimeList from "../animeList/AnimeList";
+import Favorites from "../favorites/Favorites";
 
-const SearchMovies = () => {
+const SearchMovies = ({ setFavoritesData }) => {
   const { getByname, error, loading, clearError } = AnimeService();
   const { anime } = useContext(AnimeContext);
   const [data, setData] = useState([]);
@@ -44,22 +45,24 @@ const SearchMovies = () => {
   // const transformRelatedData = () => {
   //   setRelatedData(data.slice(1));
   // };
-
-  const relatedData = value.slice(1);
+  const relatedData = value.length > 1 ? value.slice(1) : null;
   const Load = loading ? <Spinner /> : null;
   const Err = error ? <Error /> : null;
   const NoElement =
     data.length <= 0 && !(error || loading) ? <NoSuchElement /> : null;
 
   const Content = !(error || loading || NoElement) ? (
-    <FoundAnime data={data} setOpen={setOpen} open={open} />
+    <FoundAnime
+      data={data}
+      setOpen={setOpen}
+      open={open}
+      setFavoritesData={setFavoritesData}
+    />
   ) : null;
 
   return (
     <>
       <div className="search-movies">
-        {/* ------------!!! */}
-
         <div className="search-movies__container container">
           {Load}
           {Err}
@@ -154,7 +157,7 @@ const SearchMovies = () => {
 //   return <ul className="search-movies__galery">{wiev}</ul>;
 // };
 
-const FoundAnime = ({ data, setOpen, open }) => {
+const FoundAnime = ({ data, setOpen, open, setFavoritesData }) => {
   const {
     id,
     description,
@@ -199,6 +202,8 @@ const FoundAnime = ({ data, setOpen, open }) => {
 
         {/* ---------poster */}
         <div className="search-movies__poster">
+          {/* ---------add to favorites */}
+          <Favorites data={data[0]} setFavoritesData={setFavoritesData} />
           <img src={poster} alt="semple img" />
           <img src={stroke} alt="stroke" />
         </div>

@@ -42,7 +42,6 @@ const AnimeList = ({
   const getAnimeName = (title) => {
     setAnimeData(title);
     history("/movies/searchMovie");
-    console.log(title);
   };
 
   const Elem = ({ data }) => {
@@ -87,17 +86,24 @@ const AnimeList = ({
       );
   };
 
-  const wiev = relatedData.map((data) => {
-    const content = !(Err || Load || NoElement) ? <Elem data={data} /> : null;
+  if (relatedData) {
+    const wiev = relatedData.map((data) => {
+      const Content = !(Err || Load || NoElement) ? <Elem data={data} /> : null;
+      return (
+        <>
+          {Content}
+          {Load}
+          {Err}
+        </>
+      );
+    });
+    return <ul className="search-movies__galery">{wiev}</ul>;
+  } else
     return (
-      <>
-        {content}
-        {Load}
-      </>
+      <ul className="search-movies__galery">
+        <div style={{ color: "#ff004d" }}>no related movies</div>
+      </ul>
     );
-  });
-
-  return <ul className="search-movies__galery">{wiev}</ul>;
 };
 
 export default AnimeList;

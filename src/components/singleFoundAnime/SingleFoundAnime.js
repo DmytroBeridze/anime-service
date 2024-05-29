@@ -7,8 +7,9 @@ import TrailerModal from "../trailerModal/TrailerModal";
 import Spinner from "../spinner/Spinner";
 import Error from "../error/Error";
 import NoSuchElement from "../noSuchElement/NoSuchElement";
+import Favorites from "../favorites/Favorites";
 
-const SingleFoundAnime = () => {
+const SingleFoundAnime = ({ setFavoritesData }) => {
   const { getById, error, loading, clearError } = AnimeService();
   const { animeId } = useParams();
   const [data, setData] = useState({});
@@ -50,6 +51,8 @@ const SingleFoundAnime = () => {
         <div className="single-found__container">
           <div className="single-found__content">
             <div className="single-found__prewiev">
+              {/* ---------add to favorites */}
+              <Favorites data={data} setFavoritesData={setFavoritesData} />
               <div className="single-found__poster">
                 {Load}
                 {Err}

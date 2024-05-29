@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import "./singleMovie.scss";
-const SingleMovie = ({ Component }) => {
+const SingleMovie = ({ Component, setFavoritesData, favorites }) => {
   return (
     <div className="single-movie">
-      <Component />
+      <Component setFavoritesData={setFavoritesData} favorites={favorites} />
     </div>
   );
 };

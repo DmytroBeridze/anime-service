@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
 import "./moviesPage.scss";
+import { useEffect, useState } from "react";
 import AnimeList from "../animeList/AnimeList";
 import Spinner from "../spinner/Spinner";
 import Error from "../error/Error";
 import AnimeService from "../services/AnimeService";
-import NoSuchElement from "../noSuchElement/NoSuchElement";
 import AnimeSlider from "../slider/AnimeSlider";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import BtnScrollUp from "../btnScrollUp/BtnScrollUp";
+import NoSuchElement from "../noSuchElement/NoSuchElement";
 
 const MoviesPage = ({ setAnimeData }) => {
   const {
@@ -79,7 +80,7 @@ const MoviesPage = ({ setAnimeData }) => {
   return (
     <div className="movies">
       <div className="movies__container">
-        <div className="movies__search"></div>
+        {/* <div className="movies__search"></div> */}
         <div className="movies__title-wrapper">
           <h3 className="movies__header">trending</h3>
           <div className="movies__stroke"></div>
@@ -145,7 +146,6 @@ const MoviesPage = ({ setAnimeData }) => {
             </form>
           )}
         </Formik>
-
         {Load}
         {Err}
         {/* {NoElement} */}
@@ -164,6 +164,7 @@ const MoviesPage = ({ setAnimeData }) => {
           Next
         </button>
       </div>
+      <BtnScrollUp />
     </div>
   );
 };

@@ -73,7 +73,7 @@ const AnimeService = () => {
       id,
       description,
       ratingRank: ratingRank || "----",
-      startDate: startDate.slice(0, 4) || "----",
+      startDate: startDate ? startDate.slice(0, 4) : "----",
       youtubeVideoId,
       ageRatingGuide: ageRatingGuide || "----",
       showType: showType || "----",
