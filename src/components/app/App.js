@@ -36,7 +36,6 @@ function App() {
     () => setCookie("nameAnime", JSON.stringify(favorites)),
     [favorites]
   );
-  console.log(favorites);
 
   return (
     // для передачі даних в дочірній елемент без пропсів, напряму

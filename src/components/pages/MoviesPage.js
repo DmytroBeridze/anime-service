@@ -19,6 +19,7 @@ const MoviesPage = ({ setAnimeData }) => {
     loading,
     clearError,
   } = AnimeService();
+
   const [ratingData, setRatingData] = useState([]);
   const [allAnimeData, setAllAnimeData] = useState([]);
   const [offset, setOffset] = useState(0);

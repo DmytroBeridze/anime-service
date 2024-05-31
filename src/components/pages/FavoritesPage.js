@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
 import "./favoritesPage.scss";
+import { useContext, useEffect, useState } from "react";
 import { AnimeContext } from "../context";
 import AnimeService from "../services/AnimeService";
 import AnimeList from "../animeList/AnimeList";
@@ -8,10 +8,9 @@ import Error from "../error/Error";
 import useCookieHook from "../../hooks/cookie.hook";
 
 const FavoritesPage = ({ setAnimeData }) => {
-  const favor = useContext(AnimeContext);
+  // const favor = useContext(AnimeContext);
   const { getCookie, setCookie } = useCookieHook();
   const data = JSON.parse(getCookie("nameAnime"));
-  // const data = favor.favorites;
   const { getById, error, loading, clearError } = AnimeService();
   const [favorites, setFavorites] = useState([]);
 
@@ -23,7 +22,6 @@ const FavoritesPage = ({ setAnimeData }) => {
     );
   };
 
-  console.log(data);
   // console.log(favorites);
   useEffect(() => getFavorites(), []);
   const Load = loading ? <Spinner /> : null;
@@ -36,9 +34,9 @@ const FavoritesPage = ({ setAnimeData }) => {
           <div className="favorites__stroke"></div>
         </div>
         <AnimeList
-          relatedData={favorites}
           Load={Load}
           Err={Err}
+          relatedData={favorites}
           moviesPage={"moviesPage"}
           setAnimeData={setAnimeData}
         />

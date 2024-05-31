@@ -29,6 +29,7 @@ import "./animeList.scss";
 
 //   return <ul className="search-movies__galery">{wiev}</ul>;
 // };
+
 // !------with spinner
 const AnimeList = ({
   Load,
@@ -86,7 +87,7 @@ const AnimeList = ({
       );
   };
 
-  if (relatedData) {
+  if (relatedData && relatedData.length >= 1) {
     const wiev = relatedData.map((data) => {
       const Content = !(Err || Load || NoElement) ? <Elem data={data} /> : null;
       return (
@@ -98,12 +99,13 @@ const AnimeList = ({
       );
     });
     return <ul className="search-movies__galery">{wiev}</ul>;
-  } else
+  } else {
     return (
       <ul className="search-movies__galery">
         <div style={{ color: "#ff004d" }}>no related movies</div>
       </ul>
     );
+  }
 };
 
 export default AnimeList;

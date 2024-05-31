@@ -1,5 +1,6 @@
 import "./btnScrollUp.scss";
 import { useEffect, useRef, useState } from "react";
+import arrowDown from "../../resources/png/arrow-up.png";
 
 const BtnScrollUp = () => {
   const buttonRef = useRef(null);
@@ -29,7 +30,7 @@ const BtnScrollUp = () => {
   return (
     <div className="scrollUp__container">
       <button className="scrollUp" onClick={pageUp} ref={buttonRef}>
-        Up
+        <img src={arrowDown} alt="arrow up" />
       </button>
     </div>
   );
