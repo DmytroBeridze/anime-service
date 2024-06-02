@@ -15,6 +15,15 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
   const [data, setData] = useState({});
   const [open, setOpen] = useState(false);
 
+  const getSingleAnime = (id) => {
+    getById(id).then((data) => setData(data));
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    getSingleAnime(animeId);
+  }, []);
+  console.log(animeId);
   const {
     id,
     title,
@@ -27,19 +36,12 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
     youtubeVideoId,
   } = data;
 
-  const getSingleAnime = (id) => {
-    getById(id).then((data) => setData(data));
-  };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    getSingleAnime(animeId);
-  }, []);
-
   const Load = loading ? <Spinner /> : null;
   const Err = error ? <Error /> : null;
   const NoElement =
-    data.length <= 0 && !(error || loading) ? <NoSuchElement /> : null;
+    Object.keys(data).length <= 0 && !(error || loading) ? (
+      <NoSuchElement />
+    ) : null;
 
   const posterAnime = !(error || loading || NoElement) ? (
     <img src={poster} alt="a" />
@@ -52,7 +54,9 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
           <div className="single-found__content">
             <div className="single-found__prewiev">
               {/* ---------add to favorites */}
-              <Favorites data={data} setFavoritesData={setFavoritesData} />
+
+              <Favorites data={animeId} setFavoritesData={setFavoritesData} />
+
               <div className="single-found__poster">
                 {Load}
                 {Err}

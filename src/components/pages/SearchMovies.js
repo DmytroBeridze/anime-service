@@ -169,6 +169,7 @@ const FoundAnime = ({ data, setOpen, open, setFavoritesData }) => {
     showType,
     youtubeVideoId,
   } = data[0];
+  console.log(data[0].id);
   return (
     <>
       <section className="search-movies__main">
@@ -203,7 +204,7 @@ const FoundAnime = ({ data, setOpen, open, setFavoritesData }) => {
         {/* ---------poster */}
         <div className="search-movies__poster">
           {/* ---------add to favorites */}
-          <Favorites data={data[0]} setFavoritesData={setFavoritesData} />
+          <Favorites data={data[0].id} setFavoritesData={setFavoritesData} />
           <img src={poster} alt="semple img" />
           <img src={stroke} alt="stroke" />
         </div>

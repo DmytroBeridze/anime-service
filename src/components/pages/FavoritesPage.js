@@ -8,7 +8,6 @@ import Error from "../error/Error";
 import useCookieHook from "../../hooks/cookie.hook";
 
 const FavoritesPage = ({ setAnimeData }) => {
-  // const favor = useContext(AnimeContext);
   const { getCookie, setCookie } = useCookieHook();
   const data = JSON.parse(getCookie("nameAnime"));
   const { getById, error, loading, clearError } = AnimeService();
@@ -22,7 +21,6 @@ const FavoritesPage = ({ setAnimeData }) => {
     );
   };
 
-  // console.log(favorites);
   useEffect(() => getFavorites(), []);
   const Load = loading ? <Spinner /> : null;
   const Err = error ? <Error /> : null;
