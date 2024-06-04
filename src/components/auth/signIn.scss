@@ -1,0 +1,9 @@
+.signin {
+  width: 100%;
+  min-height: 1080px;
+  padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
+  background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
+  &__container {
+    margin: auto;
+  }
+}

@@ -97,7 +97,7 @@ const MoviesPage = ({ setAnimeData }) => {
 
         <Formik
           initialValues={{ year: "2024", category: "adventures" }}
-          onSubmit={(values, resetForm) => {
+          onSubmit={(values, { resetForm }) => {
             getByYearAnime(values.year, values.category);
             setAllAnimeData([]);
             setOffset(36);

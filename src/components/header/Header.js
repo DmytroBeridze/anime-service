@@ -1,12 +1,25 @@
 import "./header.scss";
 import whiteFilmLogo from "../../resources/png/White-film-logo.png";
-import { NavLink } from "react-router-dom";
+import userIcon from "../../resources/png/user.png";
 import search from "../../resources/png/search-icon.png";
-import { useState } from "react";
 import HeaderSearch from "../headerSearch/HeaderSearch";
-const Header = ({ setAnimeData }) => {
+import { NavLink, useHref } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useCookieHook from "../../hooks/cookie.hook";
+const Header = ({ setAnimeData, userLogin }) => {
+  const { getCookie } = useCookieHook();
   const [open, setOpen] = useState(false);
+  const [login, setLigin] = useState("");
 
+  // const useref = useHref();
+  // if (useref === "/signin") {
+  //   console.log("signin");
+  // }
+
+  useEffect(() => {
+    setLigin(getCookie("userLogin"));
+  }, []);
+  console.log(login);
   return (
     <div className="header">
       <div className="header-container container">
@@ -68,6 +81,14 @@ const Header = ({ setAnimeData }) => {
               setOpen(!open);
             }}
           />
+        </div>
+
+        <div className="header-nav__user">
+          <div className="header-nav__user-mail">{login}</div>
+          {/* <div className="header-nav__user-mail">{userLogin.email}</div> */}
+          <div className="header-nav__user-icon">
+            <img src={userIcon} alt="user" />
+          </div>
         </div>
       </div>
     </div>

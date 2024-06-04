@@ -10,22 +10,30 @@ import SingleFoundAnime from "../singleFoundAnime/SingleFoundAnime";
 import Episodes from "../../components/episodes/Episodes.js";
 import useCookieHook from "../../hooks/cookie.hook.js";
 import FavoritesPage from "../pages/FavoritesPage.js";
+import SignIn from "../auth/SignIn.js";
+import SignUp from "../auth/SignUp.js";
+
 function App() {
   const { getCookie, setCookie } = useCookieHook();
   const [anime, setAnime] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [userLogin, setUserLogin] = useState(null);
 
+  // ---------name of one anime for searchMovie
   const setAnimeData = (data) => {
     setAnime(data);
   };
-
+  // ---------add favorites
   const setFavoritesData = (data) => {
     if (favorites.find((elem) => elem === data)) {
       const res = favorites.filter((elem) => elem !== data);
       setFavorites(res);
     } else setFavorites((favorites) => [...favorites, data]);
   };
-
+  // ---------login
+  const userLoginData = (user) => {
+    setUserLogin(user);
+  };
   useEffect(() => {
     getCookie("nameAnime")
       ? setFavorites(JSON.parse(getCookie("nameAnime")))
@@ -37,14 +45,21 @@ function App() {
     [favorites]
   );
 
+  const hederComponent = getCookie("userLogin") ? (
+    <Header userLogin={userLogin} setAnimeData={setAnimeData} />
+  ) : null;
+  // const hederComponent = userLogin ? (
+  //   <Header userLogin={userLogin} setAnimeData={setAnimeData} />
+  // ) : null;
   return (
     // для передачі даних в дочірній елемент без пропсів, напряму
     <AnimeContext.Provider value={{ anime, favorites }}>
       <BrowserRouter>
         <div className="app">
-          <Header setAnimeData={setAnimeData} />
+          {hederComponent}
+          {/* <Header setAnimeData={setAnimeData} /> */}
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage userLogin={userLogin} />} />
             <Route
               path="/movies"
               element={<MoviesPage setAnimeData={setAnimeData} />}
@@ -71,6 +86,11 @@ function App() {
               path="/favorites"
               element={<FavoritesPage setAnimeData={setAnimeData} />}
             />
+            <Route
+              path="/signin"
+              element={<SignIn userLoginData={userLoginData} />}
+            />
+            <Route path="/signup" element={<SignUp />} />
           </Routes>
         </div>
       </BrowserRouter>
