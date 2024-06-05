@@ -34,6 +34,7 @@ function App() {
   const userLoginData = (user) => {
     setUserLogin(user);
   };
+
   useEffect(() => {
     getCookie("nameAnime")
       ? setFavorites(JSON.parse(getCookie("nameAnime")))
@@ -46,7 +47,11 @@ function App() {
   );
 
   const hederComponent = getCookie("userLogin") ? (
-    <Header userLogin={userLogin} setAnimeData={setAnimeData} />
+    <Header
+      userLogin={userLogin}
+      setAnimeData={setAnimeData}
+      userLoginData={userLoginData}
+    />
   ) : null;
   // const hederComponent = userLogin ? (
   //   <Header userLogin={userLogin} setAnimeData={setAnimeData} />

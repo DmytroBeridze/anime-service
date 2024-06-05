@@ -6,20 +6,15 @@ import HeaderSearch from "../headerSearch/HeaderSearch";
 import { NavLink, useHref } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useCookieHook from "../../hooks/cookie.hook";
-const Header = ({ setAnimeData, userLogin }) => {
+import AuthDetales from "../auth/AuthDetails";
+const Header = ({ setAnimeData, userLogin, userLoginData }) => {
   const { getCookie } = useCookieHook();
   const [open, setOpen] = useState(false);
-  const [login, setLigin] = useState("");
+  // const [login, setLigin] = useState("");
 
-  // const useref = useHref();
-  // if (useref === "/signin") {
-  //   console.log("signin");
-  // }
-
-  useEffect(() => {
-    setLigin(getCookie("userLogin"));
-  }, []);
-  console.log(login);
+  // useEffect(() => {
+  //   setLigin(getCookie("userLogin"));
+  // }, []);
   return (
     <div className="header">
       <div className="header-container container">
@@ -82,14 +77,14 @@ const Header = ({ setAnimeData, userLogin }) => {
             }}
           />
         </div>
-
-        <div className="header-nav__user">
-          <div className="header-nav__user-mail">{login}</div>
-          {/* <div className="header-nav__user-mail">{userLogin.email}</div> */}
-          <div className="header-nav__user-icon">
+        <AuthDetales userLoginData={userLoginData} />
+        {/* <div className="header-nav__user"> */}
+        {/* <div className="header-nav__user-mail">{login}</div> */}
+        {/* <div className="header-nav__user-mail">{userLogin.email}</div> */}
+        {/* <div className="header-nav__user-icon">
             <img src={userIcon} alt="user" />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

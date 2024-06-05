@@ -9,18 +9,13 @@ import useCookieHook from "../../hooks/cookie.hook";
 const HomePage = ({ userLogin }) => {
   const { getCookie } = useCookieHook();
   const navigate = useNavigate();
-
+  console.log(userLogin);
   useEffect(() => {
+    console.log(getCookie("userLogin"));
     if (!getCookie("userLogin")) {
       navigate("/signin");
     } else navigate("/");
   }, []);
-
-  // useEffect(() => {
-  //   if (!userLogin) {
-  //     navigate("/signin");
-  //   } else navigate("/");
-  // }, []);
 
   return (
     <>
