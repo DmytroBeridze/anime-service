@@ -12,13 +12,15 @@ import useCookieHook from "../../hooks/cookie.hook.js";
 import FavoritesPage from "../pages/FavoritesPage.js";
 import SignIn from "../auth/SignIn.js";
 import SignUp from "../auth/SignUp.js";
-// import { useLocation } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase.js";
 
 function App() {
   const { getCookie, setCookie } = useCookieHook();
   const [anime, setAnime] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [userLogin, setUserLogin] = useState(null);
+  const [user, loading, error] = useAuthState(auth);
 
   // ---------name of one anime for searchMovie
   const setAnimeData = (data) => {
@@ -40,7 +42,7 @@ function App() {
     getCookie("nameAnime")
       ? setFavorites(JSON.parse(getCookie("nameAnime")))
       : setFavorites([]);
-    console.log("!!!!!");
+    // console.log("!!!!!");
   }, []);
 
   useEffect(
@@ -56,20 +58,21 @@ function App() {
   //   />
   // ) : null;
 
-  // const hederComponent = userLogin ? (
-  //   <Header
-  //     userLogin={userLogin}
-  //     setAnimeData={setAnimeData}
-  //     userLoginData={userLoginData}
-  //   />
-  // ) : null;
+  const hederComponent = user ? (
+    <Header
+      userLogin={userLogin}
+      setAnimeData={setAnimeData}
+      userLoginData={userLoginData}
+    />
+  ) : null;
+
   return (
     // для передачі даних в дочірній елемент без пропсів, напряму
     <AnimeContext.Provider value={{ anime, favorites }}>
       <BrowserRouter>
         <div className="app">
-          {/* {hederComponent} */}
-          <Header setAnimeData={setAnimeData} />
+          {hederComponent}
+          {/* <Header setAnimeData={setAnimeData} /> */}
           <Routes>
             <Route path="/" element={<HomePage userLogin={userLogin} />} />
             <Route

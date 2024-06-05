@@ -5,12 +5,20 @@ import HomeSlider from "../homeSlider/HomeSlider";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import useCookieHook from "../../hooks/cookie.hook";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase.js";
 
 const HomePage = ({ userLogin }) => {
   const { getCookie } = useCookieHook();
   const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+  // useEffect(() => {
+  //   console.log(user);
+  //   if (!user) {
+  //     navigate("/signin");
+  //   } else navigate("/");
+  // }, []);
   useEffect(() => {
-    console.log(getCookie("userLogin"));
     if (!getCookie("userLogin")) {
       navigate("/signin");
     } else navigate("/");
