@@ -15,10 +15,6 @@ const SignIn = ({ userLoginData }) => {
 
   // --------registration
   const register = async (values) => {
-    // if (values.password !== values.confirmPassword) {
-    //   setErrorComparison("passwords do not match");
-    //   throw new Error(errorComparison);
-    // }
     await signInWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
         const user = userCredential.user;

@@ -1,0 +1,27 @@
+.auth {
+  // width: 100px;
+  height: 26px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  &__user-mail {
+    color: #c9c9c9;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  &__user-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+    & img {
+      display: block;
+      width: 100%;
+    }
+  }
+}
