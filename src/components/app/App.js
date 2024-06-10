@@ -14,6 +14,7 @@ import SignIn from "../auth/SignIn.js";
 import SignUp from "../auth/SignUp.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
+import Chat from "../pages/Chat.js";
 
 function App() {
   const { getCookie, setCookie } = useCookieHook();
@@ -21,7 +22,6 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [userLogin, setUserLogin] = useState(null);
   const [user, loading, error] = useAuthState(auth);
-
   // ---------name of one anime for searchMovie
   const setAnimeData = (data) => {
     setAnime(data);
@@ -58,7 +58,7 @@ function App() {
   //   />
   // ) : null;
 
-  const hederComponent = user ? (
+  const header = user ? (
     <Header
       userLogin={userLogin}
       setAnimeData={setAnimeData}
@@ -71,7 +71,7 @@ function App() {
     <AnimeContext.Provider value={{ anime, favorites }}>
       <BrowserRouter>
         <div className="app">
-          {hederComponent}
+          {header}
           {/* <Header setAnimeData={setAnimeData} /> */}
           <Routes>
             <Route path="/" element={<HomePage userLogin={userLogin} />} />
@@ -106,6 +106,7 @@ function App() {
               element={<SignIn userLoginData={userLoginData} />}
             />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/chat" element={<Chat />} />
           </Routes>
         </div>
       </BrowserRouter>

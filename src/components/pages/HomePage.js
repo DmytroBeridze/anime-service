@@ -12,6 +12,7 @@ const HomePage = ({ userLogin }) => {
   const { getCookie } = useCookieHook();
   const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
+  // console.log(user);
   // useEffect(() => {
   //   console.log(user);
   //   if (!user) {

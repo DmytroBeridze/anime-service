@@ -56,8 +56,16 @@ const Header = ({ setAnimeData, userLogin, userLoginData }) => {
                   Favorites
                 </NavLink>
               </li>
+
               <li className="header-nav__nav-link">
-                <a href="#">News</a>
+                <NavLink
+                  to={"chat"}
+                  style={({ isActive }) => ({
+                    color: isActive ? "#ff004d" : "inherit",
+                  })}
+                >
+                  Chat
+                </NavLink>
               </li>
             </ul>
           </nav>

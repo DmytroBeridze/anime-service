@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "../../firebase";
 import { useState } from "react";
 
@@ -17,10 +21,21 @@ const SignUp = () => {
     //   setErrorComparison("passwords do not match");
     //   throw new Error(errorComparison);
     // }
-    createUserWithEmailAndPassword(auth, values.email, values.password)
+    createUserWithEmailAndPassword(
+      auth,
+      values.email,
+      values.password,
+      values.name
+    )
       .then((userCredential) => {
         const user = userCredential.user;
         setSuccess(` user ${user.email} is registered`);
+        // -----додавання імені користувача
+        updateProfile(user, {
+          displayName: values.name,
+          photoURL: "https://example.com/jane-q-user/profile.jpg",
+        });
+        console.log(userCredential);
       })
       .catch((error) =>
         error.message.includes("auth/email-already-in-use")
@@ -44,7 +59,12 @@ const SignUp = () => {
       <h2 style={{ color: "red" }}>Signup</h2>
 
       <Formik
-        initialValues={{ email: "", password: "", confirmPassword: "" }}
+        initialValues={{
+          email: "",
+          name: "",
+          password: "",
+          confirmPassword: "",
+        }}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
           register(values);
@@ -54,6 +74,14 @@ const SignUp = () => {
       >
         {(props) => (
           <form onSubmit={props.handleSubmit}>
+            <input
+              type="text"
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.text}
+              name="name"
+              placeholder="name"
+            />
             <input
               type="email"
               onChange={props.handleChange}
