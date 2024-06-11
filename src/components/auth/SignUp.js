@@ -21,11 +21,13 @@ const SignUp = () => {
     //   setErrorComparison("passwords do not match");
     //   throw new Error(errorComparison);
     // }
+    console.log(values);
     createUserWithEmailAndPassword(
       auth,
       values.email,
       values.password,
-      values.name
+      values.name,
+      values.photo
     )
       .then((userCredential) => {
         const user = userCredential.user;
@@ -33,7 +35,7 @@ const SignUp = () => {
         // -----додавання імені користувача
         updateProfile(user, {
           displayName: values.name,
-          photoURL: "https://example.com/jane-q-user/profile.jpg",
+          photoURL: values.photo,
         });
         console.log(userCredential);
       })
@@ -64,9 +66,11 @@ const SignUp = () => {
           name: "",
           password: "",
           confirmPassword: "",
+          photo: "",
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
+          console.log(values);
           register(values);
           resetForm();
           setErrorComparison("");
@@ -105,6 +109,16 @@ const SignUp = () => {
               value={props.values.confirmPassword}
               name="confirmPassword"
               placeholder="confirmPassword"
+            />
+            <input
+              type="file"
+              onBlur={props.handleBlur}
+              name="photo"
+              placeholder="add photo"
+              // formik не підтримує завантаження файлів за замовчанням, тому робимо так:
+              onChange={(event) => {
+                props.setFieldValue("photo", event.currentTarget.files[0]);
+              }}
             />
             {props.errors.password && (
               <div id="feedback">{props.errors.password}</div>

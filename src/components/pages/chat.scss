@@ -27,9 +27,13 @@
     background: #8a9eca;
     border-radius: 30px;
     padding: 20px;
-    &.active {
-      background: #8dca8a;
-      align-self: flex-end;
+    position: relative;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      height: 25px;
     }
   }
 
@@ -47,5 +51,43 @@
   &__send {
     width: 150px;
     align-self: flex-end;
+  }
+}
+// ---------------------------
+.sended {
+  // color: var(--send-color);
+  background: #8a9eca;
+  align-self: flex-end;
+
+  &:before {
+    right: -6px;
+    width: 20px;
+    background-color: #8a9eca;
+    border-bottom-left-radius: 16px 14px;
+  }
+
+  &:after {
+    right: -26px;
+    width: 26px;
+    background-color: #f7f7f7;
+    border-bottom-left-radius: 10px;
+  }
+}
+.received {
+  background: #8dca8a;
+  align-self: flex-start;
+
+  &:before {
+    left: -7px;
+    width: 20px;
+    background-color: #8dca8a;
+    border-bottom-right-radius: 16px 14px;
+  }
+
+  &:after {
+    left: -26px;
+    width: 26px;
+    background-color: #f7f7f7;
+    border-bottom-right-radius: 10px;
   }
 }

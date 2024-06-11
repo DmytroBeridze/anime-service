@@ -15,7 +15,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 const Chat = () => {
   const [value, setValue] = useState("");
   const [user] = useAuthState(auth);
-
+  console.log(user);
   // const [messages, loading, error] = useCollectionData(
   //   collection(db, "messages"),
   //   orderBy("createdAt")
@@ -107,6 +107,7 @@ const Chat = () => {
   //     ));
   //   }
   // };
+
   const Element = messages?.map((mess) => (
     <Wiev mess={mess} key={mess.userMessage} user={user} />
   ));
@@ -134,11 +135,12 @@ const Chat = () => {
 };
 
 const Wiev = ({ mess, user }) => {
-  const activeClass = mess.userId === user.uid ? "active" : null;
+  const activeClass = mess.userId === user.uid ? "sended" : "received";
   return (
     <div className={`chat__message  ${activeClass}`}>
       <div style={{ color: "black" }}>{mess.userMessage}</div>
       <div style={{ color: "black" }}>{mess.userName}</div>
+      <img src={mess.userPhoto} alt="user photo" />
     </div>
   );
 };
