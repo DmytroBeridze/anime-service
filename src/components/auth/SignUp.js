@@ -8,7 +8,8 @@ import {
   getAuth,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth, storage } from "../../firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useState } from "react";
 
 const SignUp = () => {
@@ -21,7 +22,13 @@ const SignUp = () => {
     //   setErrorComparison("passwords do not match");
     //   throw new Error(errorComparison);
     // }
-    console.log(values);
+
+    // -----------додавання фото аватарок
+    const storageRef = ref(storage, `avatars/${values.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, values.photo);
+    // const storageRef = ref(storage, values.name);
+    // const uploadTask = uploadBytesResumable(storageRef, values.photo);
+
     createUserWithEmailAndPassword(
       auth,
       values.email,
@@ -30,20 +37,57 @@ const SignUp = () => {
       values.photo
     )
       .then((userCredential) => {
+        console.log(userCredential);
         const user = userCredential.user;
+        getDownloadURL(ref(storage, `avatars/${values.name}`)).then(
+          (downloadURL) =>
+            // getDownloadURL(ref(storage, values.name)).then((downloadURL) =>
+            updateProfile(user, {
+              displayName: values.name,
+              photoURL: downloadURL,
+            })
+        );
         setSuccess(` user ${user.email} is registered`);
         // -----додавання імені користувача
-        updateProfile(user, {
-          displayName: values.name,
-          photoURL: values.photo,
-        });
-        console.log(userCredential);
+        // updateProfile(user, {
+        //   displayName: values.name,
+        //   // photoURL: values.photo,
+        // });
+        // console.log(userCredential);
       })
       .catch((error) =>
         error.message.includes("auth/email-already-in-use")
           ? setErrorComparison("such a user exist")
           : setErrorComparison(error.message)
       );
+    // !-------------------------------
+    // const storageRef = ref(storage, values.name);
+    // const uploadTask = uploadBytesResumable(storageRef, values.photo);
+    // uploadTask.on(
+    //   (error) => {
+    //     console.log(error);
+    //   },
+    //   () => {
+    //     getDownloadURL(ref(storage, values.name)).then((downloadURL) =>
+    //       console.log(downloadURL)
+    //     );
+    //   }
+    // );
+
+    // await uploadTask.on(
+    //   (error) => {
+    //     console.log(error);
+    //   },
+    //   () => {
+    // getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+    //   console.log("File available at", downloadURL);
+    //   console.log(downloadURL);
+    //   updateProfile(res.user, {
+    //     photoURL: downloadURL,
+    //   });
+    // });
+    //   }
+    // );
   };
 
   // -------validation schema
@@ -70,7 +114,7 @@ const SignUp = () => {
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
-          console.log(values);
+          // console.log(values);
           register(values);
           resetForm();
           setErrorComparison("");
