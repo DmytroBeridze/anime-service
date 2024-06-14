@@ -28,17 +28,18 @@ const Chat = () => {
   const messageRef = useRef();
 
   // ---------get all avatars
-  const storage = getStorage();
-  const avatarsRef = ref(storage, "avatars");
-
   const loadingAllAvatars = useCallback(() => {
+    const storage = getStorage();
+    const avatarsRef = ref(storage, "avatars");
     // getMetadata(avatarsRef).then((data) => console.log(data));
     listAll(avatarsRef)
       .then((res) => {
-        console.log(res);
         res.items.forEach((itemRef) => {
           getDownloadURL(itemRef).then((av) =>
-            setAvatars((avatars) => [...avatars, av])
+            setAvatars((avatars) => [
+              ...avatars,
+              { name: itemRef.name, img: av },
+            ])
           );
         });
       })
@@ -50,7 +51,6 @@ const Chat = () => {
   useEffect(() => {
     loadingAllAvatars();
   }, []);
-  console.log(avatars);
 
   // ---------отримання всіх повідомлень і сортування за датою створення
   const messagesColection = collection(db, "messages");
@@ -219,7 +219,14 @@ const Chat = () => {
       <div className="chat__container">
         <div className="test">
           {avatars.map((elem) => (
-            <img src={elem} alt="" style={{ width: "60px", height: "60px" }} />
+            <>
+              <img
+                src={elem.img}
+                alt=""
+                style={{ width: "60px", height: "60px" }}
+              />
+              <div>{elem.name}</div>
+            </>
           ))}
         </div>
         <div className="favorites__title-wrapper">
