@@ -10,9 +10,11 @@ import AuthDetails from "../auth/AuthDetails";
 
 const Header = ({ setAnimeData, userLogin, userLoginData }) => {
   const [open, setOpen] = useState(false);
+  const href = useHref();
 
   return (
-    <>
+    href !== "/signin" &&
+    href !== "/signup" && (
       <div className="header">
         <div className="header-container container">
           <nav className="header-nav">
@@ -92,7 +94,7 @@ const Header = ({ setAnimeData, userLogin, userLoginData }) => {
       </div> */}
         </div>
       </div>
-    </>
+    )
   );
 };
 

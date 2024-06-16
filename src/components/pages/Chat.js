@@ -12,6 +12,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
+// import "overlayscrollbars/overlayscrollbars.css";
+import "overlayscrollbars/styles/overlayscrollbars.css";
+
 // ----------firebase get all avatars import
 import {
   getDownloadURL,
@@ -21,26 +24,48 @@ import {
   ref,
 } from "firebase/storage";
 
+import useScrollHook from "../../hooks/scroll.hook.js";
+
 const Chat = () => {
   const [value, setValue] = useState("");
   const [avatars, setAvatars] = useState([]);
   const [user] = useAuthState(auth);
   const messageRef = useRef();
+  const scrollRef = useRef();
+  const usersScrollRef = useRef();
 
+  // ------------custom
+  useScrollHook(scrollRef);
+  useScrollHook(usersScrollRef);
   // ---------get all avatars
   const loadingAllAvatars = useCallback(() => {
     const storage = getStorage();
     const avatarsRef = ref(storage, "avatars");
-    // getMetadata(avatarsRef).then((data) => console.log(data));
     listAll(avatarsRef)
       .then((res) => {
         res.items.forEach((itemRef) => {
-          getDownloadURL(itemRef).then((av) =>
-            setAvatars((avatars) => [
-              ...avatars,
-              { name: itemRef.name, img: av },
-            ])
-          );
+          getDownloadURL(itemRef).then((av) => {
+            const forestRef = ref(storage, `avatars/${itemRef.name}`);
+
+            // ----отримання метаданих для визначення типу посилання на аватарку
+            getMetadata(forestRef).then((metadata) => {
+              setAvatars((avatars) => [
+                ...avatars,
+                { name: itemRef.name, img: av, dataType: metadata.contentType },
+              ]);
+            });
+          });
+          // getDownloadURL(itemRef).then((av) => {
+          //   const forestRef = ref(storage, `avatars/${itemRef.name}`);
+
+          //   // ----отримання метаданих для визначення типу посилання на аватарку
+          //   getMetadata(forestRef).then((metadata) => {
+          //     setAvatars((avatars) => [
+          //       ...avatars,
+          //       { name: itemRef.name, img: av, dataType: metadata.contentType },
+          //     ]);
+          //   });
+          // });
         });
       })
       .catch((error) => {
@@ -67,8 +92,7 @@ const Chat = () => {
         block: "start",
       });
     }
-  }, [messages]);
-
+  }, [messages, avatars]);
   // const getRef = (ref) => {
   //   setHeightField(ref);
 
@@ -200,47 +224,88 @@ const Chat = () => {
 
   const element = messages?.map((mess) => {
     const activeClass = mess.userId === user.uid ? "sended" : "received";
-
     return (
       <div className={`chat__message-container  ${activeClass}`}>
         <div className={`chat__message  ${activeClass}`}>
           {activeClass === "received" && <div>{mess.userName}</div>}
           <div className="chat__text">{mess.userMessage} </div>
         </div>
-        <div className={`chat__user-photo ${activeClass}`}>
-          <img src={mess.userPhoto} alt="user photo" ref={messageRef} />
-        </div>
+
+        {mess.userPhoto ? (
+          <div className={`chat__user-photo ${activeClass}`}>
+            <img src={mess.userPhoto} alt="user photo" ref={messageRef} />
+          </div>
+        ) : (
+          <div className="chat__user-photo without-av">
+            <p>{mess.userName[0]}</p>
+          </div>
+        )}
       </div>
     );
   });
-
   return (
     <div className="chat">
       <div className="chat__container">
-        <div className="test">
-          {avatars.map((elem) => (
-            <>
-              <img
-                src={elem.img}
-                alt=""
-                style={{ width: "60px", height: "60px" }}
-              />
-              <div>{elem.name}</div>
-            </>
-          ))}
-        </div>
         <div className="favorites__title-wrapper">
           <h3 className="favorites__header">anime chat</h3>
           <div className="favorites__stroke"></div>
         </div>
-        <div className="chat__messages">{element}</div>
-        <textarea
-          type="text"
-          className="chat__write-message"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
+        <div className="chat__messages-wrapper">
+          {/* --------------------------------------------------------- */}
+          <div
+            className="chat__scroll-wrapper"
+            ref={usersScrollRef}
+            style={{ overflowY: "auto" }}
+          >
+            <div className="chat__avatars-wrapper">
+              {avatars.map((elem) => {
+                return (
+                  <div className="chat__avatar">
+                    {elem.dataType === "image/jpeg" ? (
+                      <div className="chat__avatar-img">
+                        <img src={elem.img} alt="user" />
+                      </div>
+                    ) : (
+                      <div className="chat__no-avatar">
+                        <p>{elem.name[0]}</p>
+                      </div>
+                    )}
+                    {/* --- */}
+                    <div className="chat__avatar-name">{elem.name}</div>
+                  </div>
+                );
+                // return (
+                //   <div className="chat__avatar">
+                //     {elem.dataType === "image/jpeg" ? (
+                //       <div className="chat__avatar-img">
+                //         <img src={elem.img} alt="user" />
+                //       </div>
+                //     ) : (
+                //       <div className="chat__no-avatar">
+                //         <p>{elem.name[0]}</p>
+                //       </div>
+                //     )}
 
+                //     <div className="chat__avatar-name">{elem.name}</div>
+                //   </div>
+                // );
+              })}
+            </div>
+          </div>
+          <div>
+            <div className="chat__scroll-wrapper" ref={scrollRef}>
+              <div className="chat__messages">{element}</div>
+            </div>
+
+            <textarea
+              type="text"
+              className="chat__write-message"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              placeholder="message"
+            />
+          </div>
+        </div>
         <button
           className="chat__send button"
           disabled={disabledBtn}

@@ -1,7 +1,14 @@
 import Header from "../header/Header";
 import HomePage from "../pages/HomePage";
 import MoviesPage from "../pages/MoviesPage";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useHref,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import SingleMovie from "../pages/SingleMovie";
 import { useEffect, useState } from "react";
 import { AnimeContext } from "../context";
@@ -22,6 +29,7 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [userLogin, setUserLogin] = useState(null);
   const [user, loading, error] = useAuthState(auth);
+
   // ---------name of one anime for searchMovie
   const setAnimeData = (data) => {
     setAnime(data);
@@ -42,7 +50,6 @@ function App() {
     getCookie("nameAnime")
       ? setFavorites(JSON.parse(getCookie("nameAnime")))
       : setFavorites([]);
-    // console.log("!!!!!");
   }, []);
 
   useEffect(
@@ -58,21 +65,24 @@ function App() {
   //   />
   // ) : null;
 
-  const header = user ? (
-    <Header
-      userLogin={userLogin}
-      setAnimeData={setAnimeData}
-      userLoginData={userLoginData}
-    />
-  ) : null;
-
+  // const header = user ? (
+  //   <Header
+  //     userLogin={userLogin}
+  //     setAnimeData={setAnimeData}
+  //     userLoginData={userLoginData}
+  //   />
+  // ) : null;
   return (
     // для передачі даних в дочірній елемент без пропсів, напряму
     <AnimeContext.Provider value={{ anime, favorites }}>
       <BrowserRouter>
         <div className="app">
-          {header}
-          {/* <Header setAnimeData={setAnimeData} /> */}
+          {/* {header} */}
+          <Header
+            setAnimeData={setAnimeData}
+            userLogin={userLogin}
+            userLoginData={userLoginData}
+          />
           <Routes>
             <Route path="/" element={<HomePage userLogin={userLogin} />} />
             <Route

@@ -1,8 +1,7 @@
 import "./signUp.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
-
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -10,9 +9,10 @@ import {
 } from "firebase/auth";
 import { auth, storage } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [errorComparison, setErrorComparison] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -22,10 +22,13 @@ const SignUp = () => {
     //   setErrorComparison("passwords do not match");
     //   throw new Error(errorComparison);
     // }
-
     // -----------додавання фото аватарок
+    // if (values.photo) {
     const storageRef = ref(storage, `avatars/${values.name}`);
     const uploadTask = uploadBytesResumable(storageRef, values.photo);
+    // }
+    // const uploadTask = uploadBytesResumable(storageRef, values.photo);
+
     // const storageRef = ref(storage, values.name);
     // const uploadTask = uploadBytesResumable(storageRef, values.photo);
 
@@ -39,22 +42,29 @@ const SignUp = () => {
       .then((userCredential) => {
         console.log(userCredential);
         const user = userCredential.user;
-        getDownloadURL(ref(storage, `avatars/${values.name}`)).then(
-          (downloadURL) =>
-            // getDownloadURL(ref(storage, values.name)).then((downloadURL) =>
-            updateProfile(user, {
-              displayName: values.name,
-              photoURL: downloadURL,
-            })
-        );
+
+        if (values.photo) {
+          getDownloadURL(ref(storage, `avatars/${values.name}`)).then(
+            (downloadURL) =>
+              // getDownloadURL(ref(storage, values.name)).then((downloadURL) =>
+              {
+                console.log(downloadURL);
+                updateProfile(user, {
+                  // displayName: values.name,
+                  photoURL: downloadURL,
+                });
+              }
+          );
+        }
         setSuccess(` user ${user.email} is registered`);
         // -----додавання імені користувача
-        // updateProfile(user, {
-        //   displayName: values.name,
-        //   // photoURL: values.photo,
-        // });
+        updateProfile(user, {
+          displayName: values.name,
+          // photoURL: values.photo,
+        });
         // console.log(userCredential);
       })
+      .then(() => navigate("/signin"))
       .catch((error) =>
         error.message.includes("auth/email-already-in-use")
           ? setErrorComparison("such a user exist")
@@ -110,7 +120,7 @@ const SignUp = () => {
           name: "",
           password: "",
           confirmPassword: "",
-          photo: "",
+          photo: null,
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
