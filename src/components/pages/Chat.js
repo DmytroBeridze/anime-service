@@ -34,9 +34,11 @@ const Chat = () => {
   const scrollRef = useRef();
   const usersScrollRef = useRef();
 
-  // ------------custom
+  // ------------custom scroll
+  // useScrollHook([scrollRef.current, usersScrollRef.current]);
   useScrollHook(scrollRef);
   useScrollHook(usersScrollRef);
+  //
   // ---------get all avatars
   const loadingAllAvatars = useCallback(() => {
     const storage = getStorage();
@@ -55,17 +57,6 @@ const Chat = () => {
               ]);
             });
           });
-          // getDownloadURL(itemRef).then((av) => {
-          //   const forestRef = ref(storage, `avatars/${itemRef.name}`);
-
-          //   // ----отримання метаданих для визначення типу посилання на аватарку
-          //   getMetadata(forestRef).then((metadata) => {
-          //     setAvatars((avatars) => [
-          //       ...avatars,
-          //       { name: itemRef.name, img: av, dataType: metadata.contentType },
-          //     ]);
-          //   });
-          // });
         });
       })
       .catch((error) => {
@@ -85,7 +76,9 @@ const Chat = () => {
     orderBy("createdAt")
   );
   // ---------прокрутка до останнього повідомлення
+  // console.log(messages);
   useEffect(() => {
+    // console.log(messageRef.current);
     if (messageRef.current) {
       messageRef.current.scrollIntoView({
         behavior: "smooth",
@@ -226,14 +219,14 @@ const Chat = () => {
     const activeClass = mess.userId === user.uid ? "sended" : "received";
     return (
       <div className={`chat__message-container  ${activeClass}`}>
-        <div className={`chat__message  ${activeClass}`}>
+        <div className={`chat__message  ${activeClass}`} ref={messageRef}>
           {activeClass === "received" && <div>{mess.userName}</div>}
           <div className="chat__text">{mess.userMessage} </div>
         </div>
 
         {mess.userPhoto ? (
           <div className={`chat__user-photo ${activeClass}`}>
-            <img src={mess.userPhoto} alt="user photo" ref={messageRef} />
+            <img src={mess.userPhoto} alt="user photo" />
           </div>
         ) : (
           <div className="chat__user-photo without-av">
@@ -251,11 +244,11 @@ const Chat = () => {
           <div className="favorites__stroke"></div>
         </div>
         <div className="chat__messages-wrapper">
-          {/* --------------------------------------------------------- */}
+          {/* ----------------------Avatars scroll ----------------------------------- */}
           <div
             className="chat__scroll-wrapper"
             ref={usersScrollRef}
-            style={{ overflowY: "auto" }}
+            style={{ height: "690px", background: "transparent" }}
           >
             <div className="chat__avatars-wrapper">
               {avatars.map((elem) => {
@@ -270,29 +263,14 @@ const Chat = () => {
                         <p>{elem.name[0]}</p>
                       </div>
                     )}
-                    {/* --- */}
                     <div className="chat__avatar-name">{elem.name}</div>
                   </div>
                 );
-                // return (
-                //   <div className="chat__avatar">
-                //     {elem.dataType === "image/jpeg" ? (
-                //       <div className="chat__avatar-img">
-                //         <img src={elem.img} alt="user" />
-                //       </div>
-                //     ) : (
-                //       <div className="chat__no-avatar">
-                //         <p>{elem.name[0]}</p>
-                //       </div>
-                //     )}
-
-                //     <div className="chat__avatar-name">{elem.name}</div>
-                //   </div>
-                // );
               })}
             </div>
           </div>
           <div>
+            {/* ----------------------Chat scroll wrapper----------------------------------- */}
             <div className="chat__scroll-wrapper" ref={scrollRef}>
               <div className="chat__messages">{element}</div>
             </div>

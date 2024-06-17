@@ -1,5 +1,5 @@
 import "./favorites.scss";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import useLocalStorage from "use-local-storage";
 
 const Favorites = ({ data, setFavoritesData, favorites }) => {
@@ -8,13 +8,14 @@ const Favorites = ({ data, setFavoritesData, favorites }) => {
   const setData = (id) => {
     setFavoritesData(id);
     setActive(!active);
-    window.localStorage.setItem(id, !active);
+    !active
+      ? window.localStorage.setItem(id, !active)
+      : window.localStorage.removeItem(id);
+    // window.localStorage.setItem(id, !active);
   };
+
   useEffect(() => {
     setActive(JSON.parse(window.localStorage.getItem(data)));
-
-    // console.log(JSON.parse(window.localStorage.getItem(data.id)));
-    // console.log(data);
   }, []);
 
   let activeClass = active ? "active" : "";

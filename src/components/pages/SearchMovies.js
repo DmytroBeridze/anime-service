@@ -169,7 +169,6 @@ const FoundAnime = ({ data, setOpen, open, setFavoritesData }) => {
     showType,
     youtubeVideoId,
   } = data[0];
-  console.log(data[0].id);
   return (
     <>
       <section className="search-movies__main">
