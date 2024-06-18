@@ -25,6 +25,14 @@ const Chat = () => {
   const usersScrollRef = useRef([]);
   const { loadingAllAvatars, avatars } = useFirebaseHook();
 
+  // ---------отримання всіх повідомлень і сортування за датою створення
+  const messagesColection = collection(db, "messages");
+  const queryMessages = query(messagesColection, orderBy("createdAt"));
+  const [messages, load] = useCollectionData(
+    queryMessages,
+    orderBy("createdAt")
+  );
+
   // ------------custom scroll
   useScrollHook(scrollRef);
   useScrollHook(usersScrollRef);
@@ -33,14 +41,6 @@ const Chat = () => {
   useEffect(() => {
     loadingAllAvatars();
   }, []);
-
-  // ---------отримання всіх повідомлень і сортування за датою створення
-  const messagesColection = collection(db, "messages");
-  const queryMessages = query(messagesColection, orderBy("createdAt"));
-  const [messages, load] = useCollectionData(
-    queryMessages,
-    orderBy("createdAt")
-  );
 
   // ---------прокрутка до останнього повідомлення
   useEffect(() => {

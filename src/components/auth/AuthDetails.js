@@ -16,8 +16,6 @@ const AuthDetails = ({ userLoginData }) => {
     signOut(auth)
       .then(() => removeCookie("userLogin"))
       .then(() => navigate("/signin"))
-
-      // .then(() => window.location.reload())
       .catch((e) => console.log(e));
   };
 

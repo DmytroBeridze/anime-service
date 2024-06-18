@@ -17,17 +17,24 @@ const useFirebaseHook = () => {
     listAll(avatarsRef)
       .then((res) => {
         res.items.forEach((itemRef) => {
-          getDownloadURL(itemRef).then((av) => {
-            const forestRef = ref(storage, `avatars/${itemRef.name}`);
-
+          getDownloadURL(itemRef)
+            .then((av) => {
+              const forestRef = ref(storage, `avatars/${itemRef.name}`);
+              return { forestRef, av };
+            })
             // ----отримання метаданих для визначення типу посилання на аватарку
-            getMetadata(forestRef).then((metadata) => {
-              setAvatars((avatars) => [
-                ...avatars,
-                { name: itemRef.name, img: av, dataType: metadata.contentType },
-              ]);
+            .then(({ forestRef, av }) => {
+              getMetadata(forestRef).then((metadata) => {
+                setAvatars((avatars) => [
+                  ...avatars,
+                  {
+                    name: itemRef.name,
+                    img: av,
+                    dataType: metadata.contentType,
+                  },
+                ]);
+              });
             });
-          });
         });
       })
       .catch((error) => {
@@ -36,5 +43,31 @@ const useFirebaseHook = () => {
   }, []);
   return { loadingAllAvatars, avatars };
 };
+
+//   const loadingAllAvatars = useCallback(() => {
+//     const storage = getStorage();
+//     const avatarsRef = ref(storage, "avatars");
+//     listAll(avatarsRef)
+//       .then((res) => {
+//         res.items.forEach((itemRef) => {
+//           getDownloadURL(itemRef).then((av) => {
+//             const forestRef = ref(storage, `avatars/${itemRef.name}`);
+
+//             // ----отримання метаданих для визначення типу посилання на аватарку
+//             getMetadata(forestRef).then((metadata) => {
+//               setAvatars((avatars) => [
+//                 ...avatars,
+//                 { name: itemRef.name, img: av, dataType: metadata.contentType },
+//               ]);
+//             });
+//           });
+//         });
+//       })
+//       .catch((error) => {
+//         console.log(error.message);
+//       });
+//   }, []);
+//   return { loadingAllAvatars, avatars };
+// };
 
 export default useFirebaseHook;

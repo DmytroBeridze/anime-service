@@ -1,14 +1,7 @@
 import Header from "../header/Header";
 import HomePage from "../pages/HomePage";
 import MoviesPage from "../pages/MoviesPage";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  useHref,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SingleMovie from "../pages/SingleMovie";
 import { useEffect, useState } from "react";
 import { AnimeContext } from "../context";
