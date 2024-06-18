@@ -23,7 +23,6 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
     window.scrollTo(0, 0);
     getSingleAnime(animeId);
   }, []);
-  console.log(animeId);
   const {
     id,
     title,

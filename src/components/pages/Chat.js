@@ -31,14 +31,14 @@ const Chat = () => {
   const [avatars, setAvatars] = useState([]);
   const [user] = useAuthState(auth);
   const messageRef = useRef();
-  const scrollRef = useRef();
-  const usersScrollRef = useRef();
+  const scrollRef = useRef([]);
+  const usersScrollRef = useRef([]);
 
   // ------------custom scroll
   // useScrollHook([scrollRef.current, usersScrollRef.current]);
   useScrollHook(scrollRef);
   useScrollHook(usersScrollRef);
-  //
+
   // ---------get all avatars
   const loadingAllAvatars = useCallback(() => {
     const storage = getStorage();
@@ -75,6 +75,7 @@ const Chat = () => {
     queryMessages,
     orderBy("createdAt")
   );
+
   // ---------прокрутка до останнього повідомлення
   // console.log(messages);
   useEffect(() => {
