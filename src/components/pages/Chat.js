@@ -22,8 +22,8 @@ const Chat = () => {
   const [value, setValue] = useState("");
   const [user] = useAuthState(auth);
   const messageRef = useRef();
-  const scrollRef = useRef([]);
-  const usersScrollRef = useRef([]);
+  const scrollRef = useRef();
+  const usersScrollRef = useRef();
   const { loadingAllAvatars, avatars } = useFirebaseHook();
 
   // ---------отримання всіх повідомлень і сортування за датою створення
@@ -35,24 +35,26 @@ const Chat = () => {
   );
 
   // ------------custom scroll
-  // useScrollHook(scrollRef);
+  useScrollHook([scrollRef.current, usersScrollRef.current]);
   // useScrollHook(usersScrollRef);
+  // useScrollHook(scrollRef);
 
   // ---------get all avatars
   useEffect(() => {
-    loadingAllAvatars();
+    loadingAllAvatars().then(() => console.log(messageRef.current));
   }, []);
 
   // ---------прокрутка до останнього повідомлення
   useEffect(() => {
     if (messageRef.current) {
-      console.log(messageRef);
+      // console.log(messageRef);
       messageRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
-  }, [messages]);
+  }, [messages, avatars]);
+  // console.log(messages);
 
   const sendMessage = async () => {
     try {

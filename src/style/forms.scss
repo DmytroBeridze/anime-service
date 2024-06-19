@@ -19,12 +19,17 @@
     border-radius: 8px;
     padding: 10px;
     outline: none;
-    &[name="photo"] {
-      cursor: pointer;
-      & + label {
-        // background-color: aliceblue;
-      }
-    }
+    box-shadow: 2px 2px 30px -12px rgb(6, 6, 9);
+
+    // &[name="photo"] {
+    //   cursor: pointer;
+    //   & + label {
+    //     // background-color: aliceblue;
+    //   }
+    // }
+  }
+  & button {
+    box-shadow: 2px 2px 30px -12px rgb(6, 6, 9);
   }
 }
 #feedback {

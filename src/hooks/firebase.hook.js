@@ -7,13 +7,15 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { useCallback, useState } from "react";
-import { auth, storage } from "../firebase";
+import { auth, db, storage } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
 import useCookieHook from "./cookie.hook";
+import { collection, orderBy, query } from "firebase/firestore";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const useFirebaseHook = () => {
   const [avatars, setAvatars] = useState([]);
@@ -21,12 +23,19 @@ const useFirebaseHook = () => {
   const [errorComparison, setErrorComparison] = useState("");
   const { setCookie } = useCookieHook();
 
+  const messagesColection = collection(db, "messages");
+  const queryMessages = query(messagesColection, orderBy("createdAt"));
+  const [messages, load] = useCollectionData(
+    queryMessages,
+    orderBy("createdAt")
+  );
+
   // ---------get all avatars
-  const loadingAllAvatars = useCallback(() => {
+  const loadingAllAvatars = useCallback(async () => {
     const storage = getStorage();
     const avatarsRef = ref(storage, "avatars");
 
-    listAll(avatarsRef)
+    await listAll(avatarsRef)
       .then((res) => {
         res.items.forEach((itemRef) => {
           getDownloadURL(itemRef)
@@ -53,6 +62,12 @@ const useFirebaseHook = () => {
         console.log(error.message);
       });
   }, []);
+
+  // -----------getting all messages and sorting by create data
+  // const getAllMessages = async () => {
+  //   const messagesColection = collection(db, "messages");
+  //   const queryMessages = query(messagesColection, orderBy("createdAt"));
+  // };
 
   // ----------------singn up
   const register = async (values) => {
@@ -108,6 +123,7 @@ const useFirebaseHook = () => {
   return {
     loadingAllAvatars,
     avatars,
+    messages,
     register,
     success,
     errorComparison,

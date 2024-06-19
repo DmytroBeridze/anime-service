@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import useFirebaseHook from "../../hooks/firebase.hook";
+import Uploader from "../uploader/Uploader";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const { register, success, errorComparison, setErrorComparison } =
     useFirebaseHook();
-
   // -------validation schema
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("required"),
@@ -99,19 +99,9 @@ const SignUp = () => {
                 <div id="feedback">{props.errors.confirmPassword}</div>
               )}
             </div>
-            <input
-              style={{ display: "none" }}
-              id="avatar-photo"
-              type="file"
-              onBlur={props.handleBlur}
-              name="photo"
-              placeholder="add photo"
-              // formik не підтримує завантаження файлів за замовчанням, тому робимо так:
-              onChange={(event) => {
-                props.setFieldValue("photo", event.currentTarget.files[0]);
-              }}
-            />
-            <label htmlFor="avatar-photo"> add photo</label>
+            {/* ------upload photo and show preview */}
+            <Uploader props={props} />
+
             {errorComparison && <div id="feedback">{errorComparison}</div>}
             {success && (
               <div id="feedback " className="reg-success">

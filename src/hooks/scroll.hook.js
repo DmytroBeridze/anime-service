@@ -9,22 +9,22 @@ const config = {
   //   },
 };
 
-const useScrollHook = (ref) => {
-  useEffect(() => {
-    OverlayScrollbars(ref.current, config);
-  }, [ref]);
-};
-
-// const useScrollHook = (props) => {
-//   console.log(props);
+// const useScrollHook = (ref) => {
 //   useEffect(() => {
-//     for (var i = 0; i < props.length; i++) {
-//       if (props[i] !== undefined) {
-//         OverlayScrollbars(props[i], config);
-//       }
-//     }
-//   }, [props]);
+//     OverlayScrollbars(ref.current, config);
+//   }, [ref]);
 // };
+
+const useScrollHook = (props) => {
+  // console.log(props);
+  useEffect(() => {
+    for (var i = 0; i < props.length; i++) {
+      if (props[i] !== undefined) {
+        OverlayScrollbars(props[i], config);
+      }
+    }
+  }, [props]);
+};
 
 // -----------------------------------------------
 // const useScrollHook = (props) => {
