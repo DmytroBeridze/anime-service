@@ -1,29 +1,14 @@
 import "./signIn.scss";
 import { useState } from "react";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
-import { auth } from "../../firebase";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import useCookieHook from "../../hooks/cookie.hook";
+import useFirebaseHook from "../../hooks/firebase.hook";
 
-const SignIn = ({ userLoginData }) => {
+const SignIn = () => {
   const [errorComparison, setErrorComparison] = useState("");
+  const { login } = useFirebaseHook();
   const navigate = useNavigate();
-  const { setCookie } = useCookieHook();
-
-  // --------registration
-  const register = async (values) => {
-    await signInWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        userLoginData(user);
-        setCookie("userLogin", user.email);
-      })
-      .then(() => navigate("/"))
-      .catch((error) => setErrorComparison("user does not exist"));
-  };
 
   // -------validation schema
   const validationSchema = Yup.object().shape({
@@ -34,13 +19,14 @@ const SignIn = ({ userLoginData }) => {
   return (
     <div className="signin">
       <div className="signin__container"></div>
-      <h2 style={{ color: "red" }}>Signin</h2>
+      <h2>Signin</h2>
 
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
-          register(values);
+          // --singn in
+          login(values).then(() => navigate("/"));
           resetForm();
           setErrorComparison("");
         }}

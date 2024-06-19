@@ -8,7 +8,7 @@ import useCookieHook from "../../hooks/cookie.hook";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
 
-const HomePage = ({ userLogin }) => {
+const HomePage = () => {
   const { getCookie } = useCookieHook();
   const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);

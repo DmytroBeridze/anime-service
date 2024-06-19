@@ -20,7 +20,7 @@ function App() {
   const { getCookie, setCookie } = useCookieHook();
   const [anime, setAnime] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [userLogin, setUserLogin] = useState(null);
+  // const [userLogin, setUserLogin] = useState(null);
   const [user, loading, error] = useAuthState(auth);
 
   // ---------name of one anime for searchMovie
@@ -35,9 +35,9 @@ function App() {
     } else setFavorites((favorites) => [...favorites, data]);
   };
   // ---------login
-  const userLoginData = (user) => {
-    setUserLogin(user);
-  };
+  // const userLoginData = (user) => {
+  //   setUserLogin(user);
+  // };
 
   useEffect(() => {
     getCookie("nameAnime")
@@ -71,13 +71,9 @@ function App() {
       <BrowserRouter>
         <div className="app">
           {/* {header} */}
-          <Header
-            setAnimeData={setAnimeData}
-            userLogin={userLogin}
-            userLoginData={userLoginData}
-          />
+          <Header setAnimeData={setAnimeData} />
           <Routes>
-            <Route path="/" element={<HomePage userLogin={userLogin} />} />
+            <Route path="/" element={<HomePage />} />
             <Route
               path="/movies"
               element={<MoviesPage setAnimeData={setAnimeData} />}
@@ -104,10 +100,7 @@ function App() {
               path="/favorites"
               element={<FavoritesPage setAnimeData={setAnimeData} />}
             />
-            <Route
-              path="/signin"
-              element={<SignIn userLoginData={userLoginData} />}
-            />
+            <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/chat" element={<Chat />} />
           </Routes>

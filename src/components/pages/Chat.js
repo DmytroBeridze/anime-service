@@ -9,6 +9,7 @@ import {
   query,
   serverTimestamp,
 } from "firebase/firestore";
+
 import { db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
@@ -34,8 +35,8 @@ const Chat = () => {
   );
 
   // ------------custom scroll
-  useScrollHook(scrollRef);
-  useScrollHook(usersScrollRef);
+  // useScrollHook(scrollRef);
+  // useScrollHook(usersScrollRef);
 
   // ---------get all avatars
   useEffect(() => {
@@ -45,12 +46,13 @@ const Chat = () => {
   // ---------прокрутка до останнього повідомлення
   useEffect(() => {
     if (messageRef.current) {
+      console.log(messageRef);
       messageRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
-  }, [messages, avatars]);
+  }, [messages]);
 
   const sendMessage = async () => {
     try {

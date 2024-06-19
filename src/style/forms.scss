@@ -28,10 +28,16 @@
   }
 }
 #feedback {
-  color: red;
+  color: $color-red;
 }
-.login-link a {
-  margin-left: 20px;
-  //   text-decoration: none;
-  color: $color-text-white-secondary;
+.reg-success {
+  color: rgb(14, 158, 14);
+}
+.login-link {
+  color: $color-red;
+
+  & a {
+    margin-left: 20px;
+    color: $color-text-white-secondary;
+  }
 }

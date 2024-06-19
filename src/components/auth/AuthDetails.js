@@ -7,7 +7,7 @@ import userIcon from "../../resources/png/user.png";
 import useCookieHook from "../../hooks/cookie.hook";
 import { useNavigate } from "react-router-dom";
 
-const AuthDetails = ({ userLoginData }) => {
+const AuthDetails = () => {
   const [authUser, setAuthUser] = useState(null);
   const { removeCookie } = useCookieHook();
   const navigate = useNavigate();

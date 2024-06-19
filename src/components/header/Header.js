@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import useCookieHook from "../../hooks/cookie.hook";
 import AuthDetails from "../auth/AuthDetails";
 
-const Header = ({ setAnimeData, userLogin, userLoginData }) => {
+const Header = ({ setAnimeData }) => {
   const [open, setOpen] = useState(false);
   const href = useHref();
 
@@ -84,7 +84,7 @@ const Header = ({ setAnimeData, userLogin, userLoginData }) => {
               }}
             />
           </div>
-          <AuthDetails userLoginData={userLoginData} />
+          <AuthDetails />
           {/* <div className="header-nav__user"> */}
           {/* <div className="header-nav__user-mail">{login}</div> */}
           {/* <div className="header-nav__user-mail">{userLogin.email}</div> */}
