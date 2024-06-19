@@ -140,6 +140,8 @@ const SignUp = () => {
               )}
             </div>
             <input
+              style={{ display: "none" }}
+              id="avatar-photo"
               type="file"
               onBlur={props.handleBlur}
               name="photo"
@@ -149,7 +151,7 @@ const SignUp = () => {
                 props.setFieldValue("photo", event.currentTarget.files[0]);
               }}
             />
-
+            <label htmlFor="avatar-photo"> add photo</label>
             {errorComparison && <div id="feedback">{errorComparison}</div>}
             {success && <div id="feedback">{success}</div>}
 

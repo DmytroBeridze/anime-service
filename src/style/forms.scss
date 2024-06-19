@@ -21,6 +21,9 @@
     outline: none;
     &[name="photo"] {
       cursor: pointer;
+      & + label {
+        // background-color: aliceblue;
+      }
     }
   }
 }
