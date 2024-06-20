@@ -1,6 +1,8 @@
 import "./chat.scss";
-// ------------custom scroll styles
+// --custom scroll
 import "overlayscrollbars/styles/overlayscrollbars.css";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   collection,
@@ -35,7 +37,7 @@ const Chat = () => {
   // );
 
   // ------------custom scroll
-  useScrollHook([scrollRef.current, usersScrollRef.current]);
+  // useScrollHook([scrollRef.current, usersScrollRef.current]);
   // useScrollHook(usersScrollRef);
   // useScrollHook(scrollRef);
 
@@ -107,9 +109,10 @@ const Chat = () => {
         </div>
         <div className="chat__messages-wrapper">
           {/* ----------------------Avatars scroll ----------------------------------- */}
-          <div
-            className="chat__scroll-wrapper"
-            ref={usersScrollRef}
+          <OverlayScrollbarsComponent
+            defer
+            element="span"
+            className=" chat__scroll-wrapper scroll-wrapper"
             style={{ height: "690px", background: "transparent" }}
           >
             <div className="chat__avatars-wrapper">
@@ -130,12 +133,16 @@ const Chat = () => {
                 );
               })}
             </div>
-          </div>
+          </OverlayScrollbarsComponent>
           <div>
             {/* ----------------------Chat scroll wrapper----------------------------------- */}
-            <div className="chat__scroll-wrapper" ref={scrollRef}>
+            <OverlayScrollbarsComponent
+              defer
+              element="span"
+              className="chat__scroll-wrapper scroll-wrapper"
+            >
               <div className="chat__messages">{element}</div>
-            </div>
+            </OverlayScrollbarsComponent>
 
             <textarea
               type="text"

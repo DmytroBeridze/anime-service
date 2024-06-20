@@ -16,8 +16,8 @@ const config = {
 // };
 
 const useScrollHook = (props) => {
-  // console.log(props);
   useEffect(() => {
+    console.log(props);
     for (var i = 0; i < props.length; i++) {
       if (props[i] !== undefined) {
         OverlayScrollbars(props[i], config);
@@ -28,15 +28,15 @@ const useScrollHook = (props) => {
 
 // -----------------------------------------------
 // const useScrollHook = (props) => {
-// var instances = OverlayScrollbars(props, {});
-// console.log(instances);
-// useEffect(() => {
-//   for (var i = 0; i < instances.length; i++) {
-//     if (instances[i] !== undefined) {
-//       OverlayScrollbars(instances[i], config);
+//   console.log(props);
+//   var instances = OverlayScrollbars(props, {});
+//   useEffect(() => {
+//     for (var i = 0; i < instances.length; i++) {
+//       if (instances[i] !== undefined) {
+//         OverlayScrollbars(instances[i], config);
+//       }
 //     }
-//   }
-// }, [props]);
+//   }, [props]);
 // };
 
 export default useScrollHook;
