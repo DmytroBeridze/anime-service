@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import userIcon from "../../resources/png/user.png";
 import useCookieHook from "../../hooks/cookie.hook";
 import { useNavigate } from "react-router-dom";
+import { Tooltip as ReactTooltip, Tooltip } from "react-tooltip";
 
 const AuthDetails = () => {
   const [authUser, setAuthUser] = useState(null);
@@ -36,9 +37,19 @@ const AuthDetails = () => {
       {authUser ? (
         <div className="auth">
           <div className="auth__user-mail">{authUser.email}</div>
-          <div className="auth__user-icon" onClick={userSignOut}>
+          <div
+            className="auth__user-icon"
+            onClick={userSignOut}
+            data-tooltip-id="logout-tooltip"
+          >
             <img src={userIcon} alt="user" />
           </div>
+          <Tooltip
+            className=""
+            id="logout-tooltip"
+            content="logout :("
+            place="bottom-end"
+          />
         </div>
       ) : (
         <div>logout</div>

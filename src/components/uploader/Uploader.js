@@ -7,7 +7,6 @@ const Uploader = ({ props }) => {
   const [avatar, setAvatar] = useState(null);
   const [fileName, setFileName] = useState("no selected file");
 
-  console.log(avatar);
   return (
     <div className="uoloader-container">
       <input

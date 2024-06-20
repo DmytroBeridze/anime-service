@@ -23,6 +23,7 @@ const useFirebaseHook = () => {
   const [errorComparison, setErrorComparison] = useState("");
   const { setCookie } = useCookieHook();
 
+  // -----------getting all messages and sorting by create data
   const messagesColection = collection(db, "messages");
   const queryMessages = query(messagesColection, orderBy("createdAt"));
   const [messages, load] = useCollectionData(
@@ -62,12 +63,6 @@ const useFirebaseHook = () => {
         console.log(error.message);
       });
   }, []);
-
-  // -----------getting all messages and sorting by create data
-  // const getAllMessages = async () => {
-  //   const messagesColection = collection(db, "messages");
-  //   const queryMessages = query(messagesColection, orderBy("createdAt"));
-  // };
 
   // ----------------singn up
   const register = async (values) => {
