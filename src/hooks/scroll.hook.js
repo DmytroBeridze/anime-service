@@ -8,23 +8,24 @@ const config = {
   //     autoHide: "leave",
   //   },
 };
+// !---------------
+// const useScrollHook = (props) => {
+//   useEffect(() => {
+//     console.log(props);
+//     for (var i = 0; i < props.length; i++) {
+//       if (props[i] !== undefined) {
+//         OverlayScrollbars(props[i], config);
+//       }
+//     }
+//   }, [props]);
+// };
 
+// --------------------------------------------
 // const useScrollHook = (ref) => {
 //   useEffect(() => {
 //     OverlayScrollbars(ref.current, config);
 //   }, [ref]);
 // };
-
-const useScrollHook = (props) => {
-  useEffect(() => {
-    console.log(props);
-    for (var i = 0; i < props.length; i++) {
-      if (props[i] !== undefined) {
-        OverlayScrollbars(props[i], config);
-      }
-    }
-  }, [props]);
-};
 
 // -----------------------------------------------
 // const useScrollHook = (props) => {

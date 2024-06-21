@@ -2,7 +2,7 @@ import "./chat.scss";
 
 import { useEffect, useRef, useState } from "react";
 // --custom scroll
-import "overlayscrollbars/styles/overlayscrollbars.css";
+// import "overlayscrollbars/styles/overlayscrollbars.css";
 // import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { useOverlayScrollbars } from "overlayscrollbars-react";
 
@@ -137,7 +137,6 @@ const Chat = () => {
           </div>
           <div className="">
             {/* ----------------------Chat scroll wrapper----------------------------------- */}
-
             <div
               className="chat__scroll-wrapper scroll-wrapper"
               ref={usersScrollRef}
