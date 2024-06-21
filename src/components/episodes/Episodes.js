@@ -125,7 +125,7 @@ const Wiev = ({
           defer
           element="span"
           // options={{ scrollbars: { autoHide: "scroll" } }}
-          className="scroll-wrapper"
+          className="scroll-wrapper scroll-wrapper__episodes  "
           ref={(element) => (targetRef.current[i] = element)}
         >
           <div

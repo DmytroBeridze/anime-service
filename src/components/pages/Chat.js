@@ -1,24 +1,16 @@
 import "./chat.scss";
+
+import { useEffect, useRef, useState } from "react";
 // --custom scroll
 import "overlayscrollbars/styles/overlayscrollbars.css";
-import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+// import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import { useOverlayScrollbars } from "overlayscrollbars-react";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import {
-  collection,
-  addDoc,
-  orderBy,
-  query,
-  serverTimestamp,
-} from "firebase/firestore";
-
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-
 import useFirebaseHook from "../../hooks/firebase.hook.js";
-import useScrollHook from "../../hooks/scroll.hook.js";
 
 const Chat = () => {
   const [value, setValue] = useState("");
@@ -27,19 +19,33 @@ const Chat = () => {
   const scrollRef = useRef();
   const usersScrollRef = useRef();
   const { loadingAllAvatars, avatars, messages } = useFirebaseHook();
+  const events = {
+    scroll: () => {
+      console.log("Scroll");
+    },
+  };
+  const defer = "defer";
+  // const options = { scrollbars: { autoHide: "scroll" } };
+  const [initialize, instance] = useOverlayScrollbars({
+    // options,
+    events,
+    defer,
+  });
 
-  // ---------отримання всіх повідомлень і сортування за датою створення
-  // const messagesColection = collection(db, "messages");
-  // const queryMessages = query(messagesColection, orderBy("createdAt"));
-  // const [messages, load] = useCollectionData(
-  //   queryMessages,
-  //   orderBy("createdAt")
-  // );
+  const [init, inst] = useOverlayScrollbars({
+    // options,
+    events,
+    defer,
+  });
 
-  // ------------custom scroll
-  // useScrollHook([scrollRef.current, usersScrollRef.current]);
-  // useScrollHook(usersScrollRef);
-  // useScrollHook(scrollRef);
+  // ---custom scroll
+  useEffect(() => {
+    initialize(scrollRef.current);
+  }, [initialize]);
+
+  useEffect(() => {
+    init(usersScrollRef.current);
+  }, [init]);
 
   // ---------get all avatars
   useEffect(() => {
@@ -49,14 +55,12 @@ const Chat = () => {
   // ---------прокрутка до останнього повідомлення
   useEffect(() => {
     if (messageRef.current) {
-      // console.log(messageRef);
       messageRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
   }, [messages, avatars]);
-  // console.log(messages);
 
   const sendMessage = async () => {
     try {
@@ -69,7 +73,6 @@ const Chat = () => {
         createdAt: serverTimestamp(),
       });
 
-      // messageField.current.scrollIntoView({ behavior: "smooth", block: "end" });
       setValue("");
       console.log("Document written with ID: ", docMess.id);
     } catch (e) {
@@ -109,16 +112,14 @@ const Chat = () => {
         </div>
         <div className="chat__messages-wrapper">
           {/* ----------------------Avatars scroll ----------------------------------- */}
-          <OverlayScrollbarsComponent
-            defer
-            element="span"
-            className=" chat__scroll-wrapper scroll-wrapper"
-            style={{ height: "690px", background: "transparent" }}
+          <div
+            className=" chat__avatars-wrapper scroll-wrapper"
+            ref={scrollRef}
           >
-            <div className="chat__avatars-wrapper">
+            <div className="chat__awatarts-container">
               {avatars.map((elem) => {
                 return (
-                  <div className="chat__avatar">
+                  <div className="chat__avatar ">
                     {elem.dataType === "image/jpeg" ? (
                       <div className="chat__avatar-img">
                         <img src={elem.img} alt="user" />
@@ -133,16 +134,16 @@ const Chat = () => {
                 );
               })}
             </div>
-          </OverlayScrollbarsComponent>
-          <div>
+          </div>
+          <div className="">
             {/* ----------------------Chat scroll wrapper----------------------------------- */}
-            <OverlayScrollbarsComponent
-              defer
-              element="span"
+
+            <div
               className="chat__scroll-wrapper scroll-wrapper"
+              ref={usersScrollRef}
             >
               <div className="chat__messages">{element}</div>
-            </OverlayScrollbarsComponent>
+            </div>
 
             <textarea
               type="text"

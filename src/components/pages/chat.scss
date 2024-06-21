@@ -1,4 +1,5 @@
 @import "../../style/variables.scss";
+
 .chat {
   width: 100%;
   min-height: 1080px;
@@ -17,12 +18,15 @@
   }
   &__avatars-wrapper {
     max-height: 690px;
-    // overflow-y: auto;
+  }
+
+  &__awatarts-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    // align-items: center;
+    align-items: center;
   }
+
   &__avatar {
     max-width: 60px;
     &::after {
