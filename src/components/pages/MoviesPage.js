@@ -1,5 +1,5 @@
 import "./moviesPage.scss";
-import { useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import AnimeList from "../animeList/AnimeList";
 import Spinner from "../spinner/Spinner";
 import Error from "../error/Error";
@@ -26,6 +26,8 @@ const MoviesPage = ({ setAnimeData }) => {
   const [year, setYear] = useState(0);
   const [category, setCategory] = useState(0);
   const [datatype, setDatatipe] = useState("random");
+  // ---toggle slider spinner
+  const [sliderLoadToggle, setsliderLoadToggle] = useState(true);
 
   const ratingAnime = () => {
     getTrandingAnime().then((data) => setRatingData(data));
@@ -67,16 +69,18 @@ const MoviesPage = ({ setAnimeData }) => {
   const validationSchema = Yup.object().shape({
     year: Yup.number().moreThan(1925, "since 1926").required("Required"),
   });
-
   const Load = loading ? <Spinner /> : null;
   const Err = error ? <Error /> : null;
-  const element = !(loading || error) ? (
-    <AnimeSlider anime={ratingData} />
-  ) : null;
+  // --- slider spinner
+  const sliderLoad = loading && sliderLoadToggle ? <Spinner /> : null;
+  useEffect(() => {
+    setsliderLoadToggle(true);
+  }, []);
 
-  // const disabled = loading ? "disabled" : "";
-  // const NoElement =
-  //   ratingData.length <= 0 && !(error || loading) ? <NoSuchElement /> : null;
+  const element = useMemo(
+    () => (!(loading || error) ? <AnimeSlider anime={ratingData} /> : null),
+    [ratingData, sliderLoad]
+  );
 
   return (
     <div className="movies">
@@ -86,7 +90,7 @@ const MoviesPage = ({ setAnimeData }) => {
           <h3 className="movies__header">trending</h3>
           <div className="movies__stroke"></div>
         </div>
-        {Load}
+        {sliderLoad}
         {Err}
         {element}
         {/* <AnimeList relatedData={ratingData} Load={Load} Err={Err} /> */}
@@ -102,6 +106,7 @@ const MoviesPage = ({ setAnimeData }) => {
             setAllAnimeData([]);
             setOffset(36);
             setDatatipe("yearSearch");
+            setsliderLoadToggle(false);
           }}
           validationSchema={validationSchema}
         >

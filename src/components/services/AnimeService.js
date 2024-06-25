@@ -54,6 +54,14 @@ const AnimeService = () => {
     return request;
   };
 
+  // -------------get single episode
+  const getEpisode = (id) => {
+    const request = allElementsResponse(
+      `https://kitsu.io/api/edge/episodes/${id}`
+    ).then((res) => transformEpisodes(res.data));
+    return request;
+  };
+
   // ------------transform anime
   const transformAnime = (elem) => {
     const { id, attributes, relationships } = elem;
@@ -86,7 +94,7 @@ const AnimeService = () => {
 
   // ------------transform episodes
   const transformEpisodes = (elem) => {
-    const { id, attributes } = elem;
+    const { id, attributes, relationships, type } = elem;
     const {
       canonicalTitle,
       description,
@@ -104,6 +112,8 @@ const AnimeService = () => {
       length: length || "---",
       airdate: airdate || "---",
       seasonNumber: seasonNumber || "---",
+      relationships,
+      type,
     };
   };
 
@@ -114,6 +124,7 @@ const AnimeService = () => {
     getEpisodesById,
     getTrandingAnime,
     getByYear,
+    getEpisode,
 
     error,
     loading,

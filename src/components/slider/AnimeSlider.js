@@ -2,10 +2,8 @@ import "./animeSlider.scss";
 import Slider from "react-slick";
 import sliderArrows from "../sliderArrows/SliderArrows";
 import { NavLink } from "react-router-dom";
-import Spinner from "../spinner/Spinner";
-import Error from "../error/Error";
 
-const AnimeSlider = ({ anime, error, loading }) => {
+const AnimeSlider = ({ anime }) => {
   // ------------slider arrow--------
   const { NextArrow, PrewArrow } = sliderArrows();
 
@@ -91,9 +89,6 @@ const AnimeSlider = ({ anime, error, loading }) => {
     ],
   };
 
-  const Load = loading ? <Spinner /> : null;
-  const Err = error ? <Error /> : null;
-
   const animeRender = (arr) => {
     return (
       <Slider {...settings}>
@@ -105,13 +100,7 @@ const AnimeSlider = ({ anime, error, loading }) => {
   };
 
   const AnimeSlides = animeRender(anime);
-  return (
-    <div className="slider-container  anime-slider">
-      {AnimeSlides}
-      {Load}
-      {Err}
-    </div>
-  );
+  return <div className="slider-container  anime-slider">{AnimeSlides}</div>;
 };
 
 // -----------component

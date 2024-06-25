@@ -15,6 +15,7 @@ import SignUp from "../auth/SignUp.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
 import Chat from "../pages/Chat.js";
+import Episode from "../episode/Episode.js";
 
 function App() {
   const { getCookie, setCookie } = useCookieHook();
@@ -95,6 +96,10 @@ function App() {
             <Route
               path="/movies/searchMovie/:episodesId"
               element={<SingleMovie Component={Episodes} dataType="episodes" />}
+            />
+            <Route
+              path="/movies/searchMovie/episode/:episodeId"
+              element={<SingleMovie Component={Episode} dataType="episodes" />}
             />
             <Route
               path="/favorites"

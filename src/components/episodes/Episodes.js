@@ -2,7 +2,7 @@ import "./episodes.scss";
 import "../pages/chat.scss";
 // ------------custom scroll styles
 import "overlayscrollbars/styles/overlayscrollbars.css";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import AnimeService from "../services/AnimeService";
 import noPicture from "../../resources/png/no-pictures.png";
@@ -18,7 +18,6 @@ const Episodes = () => {
   const { getEpisodesById } = AnimeService();
   const targetRef = useRef([]);
   const descriptionRef = useRef([]);
-
   // const scrollRef = useRef([]);
   // useScrollHook(scrollRef.current);
 
@@ -109,10 +108,16 @@ const Wiev = ({
 }) => {
   const { title, thumbnail, description, seasonNumber, length, airdate } = data;
   const thumb = thumbnail ? (
-    <div className="episodes__img">
-      <img src={thumbnail.original} alt="thumb" />
-    </div>
+    <NavLink to={`/movies/searchMovie/episode/${data.id}`}>
+      <div className="episodes__img">
+        {/* <div className="episodes__img" onClick={() => console.log(data)}> */}
+        <img src={thumbnail.original} alt="thumb" />
+      </div>
+    </NavLink>
   ) : (
+    // <div className="episodes__img" onClick={() => console.log(data)}>
+    //   <img src={thumbnail.original} alt="thumb" />
+    // </div>
     <div className="episodes__img">
       <img src={noPicture} style={{ objectFit: "cover" }}></img>
     </div>

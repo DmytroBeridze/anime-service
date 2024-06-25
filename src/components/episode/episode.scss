@@ -1,0 +1,112 @@
+@import "../../style/variables.scss";
+.episode {
+  width: 100%;
+  min-height: 1080px;
+  padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
+  background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
+  &__container {
+    padding: 0 30px;
+    max-width: 1546px;
+    margin: auto;
+    // border: 1px solid red;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__prewiev {
+    // width: 400px;
+    position: relative;
+  }
+
+  &__poster {
+    width: 100%;
+    // height: 400px;
+    height: clamp(6.25rem, 2.5rem + 18.75vw, 25rem);
+    // height: clamp(18.75rem, 15.161rem + 17.94vw, 32.5rem);
+    // width: clamp(12.5rem, 10.053rem + 12.23vw, 21.875rem);
+    // height: clamp(18.75rem, 15.161rem + 17.94vw, 32.5rem);
+
+    // flex-basis: 50%;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 2px 2px 30px -12px rgb(6, 6, 9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+      //   max-width: 350px;
+      //   min-width: 120px;
+    }
+  }
+  &__button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    &:hover {
+      .single-found__trailer path {
+        fill: #ab0234;
+        opacity: 0.7;
+      }
+    }
+  }
+  &__information {
+    // max-width: 800px;
+    flex-basis: 60%;
+  }
+  &__title {
+    font-family: "Bebas Neue";
+    font-weight: 600;
+    font-size: 72px;
+    line-height: 72px;
+  }
+  &__title-btn {
+    display: block;
+    text-align: center;
+    margin: 50px 0;
+    width: 272px;
+    text-decoration: none;
+  }
+  &__description {
+    // max-width: 800px;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    & h3 {
+      margin-bottom: 20px;
+    }
+    & p {
+      margin-bottom: 40px;
+    }
+  }
+  &__meta {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    text-align: left;
+    width: 300px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+
+    & tr {
+      margin-left: 30px;
+      border-bottom: 1px solid ($color-text-gray);
+    }
+    & td {
+      padding: 10px;
+      &:first-child {
+        color: ($color-text-gray);
+      }
+    }
+  }
+}

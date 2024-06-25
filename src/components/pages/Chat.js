@@ -1,9 +1,6 @@
 import "./chat.scss";
 
-import { useEffect, useRef, useState } from "react";
-// --custom scroll
-// import "overlayscrollbars/styles/overlayscrollbars.css";
-// import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { useOverlayScrollbars } from "overlayscrollbars-react";
 
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -11,6 +8,8 @@ import { db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
 import useFirebaseHook from "../../hooks/firebase.hook.js";
+import { OverlayScrollbars } from "overlayscrollbars";
+import Avat from "../avat.js";
 
 const Chat = () => {
   const [value, setValue] = useState("");
@@ -19,30 +18,33 @@ const Chat = () => {
   const scrollRef = useRef();
   const usersScrollRef = useRef();
   const { loadingAllAvatars, avatars, messages } = useFirebaseHook();
+
+  // ---------custom scroll init
+
   const events = {
-    scroll: () => {
-      console.log("Scroll");
+    scroll: (e) => {
+      // console.log(e);
     },
   };
   const defer = "defer";
-  // const options = { scrollbars: { autoHide: "scroll" } };
+  const options = {
+    // scrollbars: { autoHide: "scroll" },
+    className: "os-theme-dark",
+  };
+
   const [initialize, instance] = useOverlayScrollbars({
-    // options,
+    options,
     events,
     defer,
   });
 
   const [init, inst] = useOverlayScrollbars({
-    // options,
+    options,
     events,
     defer,
   });
 
   // ---custom scroll
-  useEffect(() => {
-    initialize(scrollRef.current);
-  }, [initialize]);
-
   useEffect(() => {
     init(usersScrollRef.current);
   }, [init]);
@@ -53,14 +55,21 @@ const Chat = () => {
   }, []);
 
   // ---------прокрутка до останнього повідомлення
-  useEffect(() => {
+  const scrollToLast = () => {
     if (messageRef.current) {
       messageRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
-  }, [messages, avatars]);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      scrollToLast();
+      initialize(scrollRef.current);
+    }, 500);
+  }, [messages]);
 
   const sendMessage = async () => {
     try {
@@ -81,28 +90,53 @@ const Chat = () => {
   };
 
   const disabledBtn = value.length > 0 ? false : true;
+  const messagesElement = useMemo(
+    () =>
+      messages?.map((mess, i) => {
+        const activeClass = mess.userId === user.uid ? "sended" : "received";
+        return (
+          <div className={`chat__message-container  ${activeClass}`} key={i}>
+            <div className={`chat__message  ${activeClass}`} ref={messageRef}>
+              {activeClass === "received" && <div>{mess.userName}</div>}
+              <div className="chat__text">{mess.userMessage} </div>
+            </div>
 
-  const element = messages?.map((mess) => {
-    const activeClass = mess.userId === user.uid ? "sended" : "received";
-    return (
-      <div className={`chat__message-container  ${activeClass}`}>
-        <div className={`chat__message  ${activeClass}`} ref={messageRef}>
-          {activeClass === "received" && <div>{mess.userName}</div>}
-          <div className="chat__text">{mess.userMessage} </div>
-        </div>
+            {mess.userPhoto ? (
+              <div className={`chat__user-photo ${activeClass}`}>
+                <img src={mess.userPhoto} alt="user photo" />
+              </div>
+            ) : (
+              <div className="chat__user-photo without-av">
+                <p>{mess.userName[0]}</p>
+              </div>
+            )}
+          </div>
+        );
+      }),
+    [messages]
+  );
 
-        {mess.userPhoto ? (
-          <div className={`chat__user-photo ${activeClass}`}>
-            <img src={mess.userPhoto} alt="user photo" />
+  const avatarsElement = useMemo(
+    () =>
+      avatars?.map((elem) => {
+        return (
+          <div className="chat__avatar " key={elem.name}>
+            {elem.dataType === "image/jpeg" ? (
+              <div className="chat__avatar-img">
+                <img src={elem.img} alt="user" />
+              </div>
+            ) : (
+              <div className="chat__no-avatar">
+                <p>{elem.name[0]}</p>
+              </div>
+            )}
+            <div className="chat__avatar-name">{elem.name}</div>
           </div>
-        ) : (
-          <div className="chat__user-photo without-av">
-            <p>{mess.userName[0]}</p>
-          </div>
-        )}
-      </div>
-    );
-  });
+        );
+      }),
+    [avatars]
+  );
+
   return (
     <div className="chat">
       <div className="chat__container">
@@ -110,38 +144,25 @@ const Chat = () => {
           <h3 className="favorites__header">anime chat</h3>
           <div className="favorites__stroke"></div>
         </div>
+
         <div className="chat__messages-wrapper">
           {/* ----------------------Avatars scroll ----------------------------------- */}
           <div
             className=" chat__avatars-wrapper scroll-wrapper"
             ref={scrollRef}
+            // key={}
           >
-            <div className="chat__awatarts-container">
-              {avatars.map((elem) => {
-                return (
-                  <div className="chat__avatar ">
-                    {elem.dataType === "image/jpeg" ? (
-                      <div className="chat__avatar-img">
-                        <img src={elem.img} alt="user" />
-                      </div>
-                    ) : (
-                      <div className="chat__no-avatar">
-                        <p>{elem.name[0]}</p>
-                      </div>
-                    )}
-                    <div className="chat__avatar-name">{elem.name}</div>
-                  </div>
-                );
-              })}
-            </div>
+            <div className="chat__awatarts-container">{avatarsElement}</div>
           </div>
-          <div className="">
+          <div>
             {/* ----------------------Chat scroll wrapper----------------------------------- */}
+
             <div
               className="chat__scroll-wrapper scroll-wrapper"
               ref={usersScrollRef}
+              id="chatId"
             >
-              <div className="chat__messages">{element}</div>
+              <div className="chat__messages">{messagesElement}</div>
             </div>
 
             <textarea
@@ -150,6 +171,7 @@ const Chat = () => {
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder="message"
+              // onScroll={(event) => scrollTrain(event.target)}
             />
           </div>
         </div>
