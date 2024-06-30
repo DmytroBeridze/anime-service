@@ -2,6 +2,7 @@ import "./animeSlider.scss";
 import Slider from "react-slick";
 import sliderArrows from "../sliderArrows/SliderArrows";
 import { NavLink } from "react-router-dom";
+import { memo } from "react";
 
 const AnimeSlider = ({ anime }) => {
   // ------------slider arrow--------
@@ -115,4 +116,4 @@ const Wiev = ({ data }) => {
   );
 };
 
-export default AnimeSlider;
+export default memo(AnimeSlider);

@@ -43,22 +43,24 @@ const HeaderSearch = ({ open, setAnimeData }) => {
           }
         >
           <div
-            className={
-              open
-                ? "header-nav__search-container active"
-                : "header-nav__search-container "
-            }
+            className={"header-nav__search-container "}
+            // className={
+            //   open
+            //     ? "header-nav__search-container active"
+            //     : "header-nav__search-container "
+            // }
           >
             <Field
               type="text"
               name="name"
               id="name"
               placeholder="Enter Name"
-              className={
-                open
-                  ? "header-nav__search-input active"
-                  : "header-nav__search-input "
-              }
+              className={"header-nav__search-input"}
+              // className={
+              //   open
+              //     ? "header-nav__search-input active"
+              //     : "header-nav__search-input "
+              // }
             />
 
             <button type="submit" className="header-nav__search-btn">

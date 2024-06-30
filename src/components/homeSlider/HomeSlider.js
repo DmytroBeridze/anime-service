@@ -12,10 +12,11 @@ import Error from "../error/Error";
 import sliderArrows from "../sliderArrows/SliderArrows";
 import LoadableImage from "../loadableImage/LoadableImage";
 import { NavLink } from "react-router-dom";
+import finiteStateMashine from "../../utils/finiteStateMashine";
 
 const HomeSlider = () => {
   const [anime, setAnime] = useState([]);
-  const { getAllAnime, error, loading, clearError } = AnimeService();
+  const { getAllAnime, process, error, loading, clearError } = AnimeService();
 
   useEffect(() => {
     clearError();
@@ -110,9 +111,9 @@ const HomeSlider = () => {
   };
 
   // --------spinner
-  const Load = loading ? <Spinner /> : null;
+  // const Load = loading ? <Spinner /> : null;
   // ----------error
-  const Err = error ? <Error /> : null;
+  // const Err = error ? <Error /> : null;
 
   // -----------render slider------
   // const animeRender = (arr) => {
@@ -141,12 +142,13 @@ const HomeSlider = () => {
     );
   };
 
-  const AnimeSlides = animeRender(anime);
+  // const AnimeSlides = animeRender(anime);
   return (
     <div className="slider-container  main-slider">
-      {AnimeSlides}
+      {/* {AnimeSlides}
       {Load}
-      {Err}
+      {Err} */}
+      {finiteStateMashine(process, () => animeRender(anime))}
     </div>
   );
 };

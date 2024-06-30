@@ -8,8 +8,6 @@ import { db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
 import useFirebaseHook from "../../hooks/firebase.hook.js";
-import { OverlayScrollbars } from "overlayscrollbars";
-import Avat from "../avat.js";
 
 const Chat = () => {
   const [value, setValue] = useState("");
@@ -22,9 +20,7 @@ const Chat = () => {
   // ---------custom scroll init
 
   const events = {
-    scroll: (e) => {
-      // console.log(e);
-    },
+    scroll: (e) => {},
   };
   const defer = "defer";
   const options = {

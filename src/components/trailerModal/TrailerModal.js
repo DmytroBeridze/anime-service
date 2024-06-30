@@ -2,6 +2,7 @@ import "./trailerModal.scss";
 import closeIcon from "../../resources/png/close.png";
 import { useEffect, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
+
 const TrailerModal = ({ open, onClose, youtubeVideoId }) => {
   const nodeRef = useRef(null);
 

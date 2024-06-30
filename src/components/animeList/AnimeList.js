@@ -1,4 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import finiteStateMashine from "../../utils/finiteStateMashine";
+
 import "./animeList.scss";
 
 // !------without spinner
@@ -107,8 +109,9 @@ import "./animeList.scss";
 
 // !------with spinner
 const AnimeList = ({
-  Load,
-  Err,
+  // Load,
+  // Err,
+  process,
   NoElement,
   relatedData,
   moviesPage,
@@ -165,12 +168,15 @@ const AnimeList = ({
 
   if (relatedData && relatedData.length >= 1) {
     const wiev = relatedData.map((data) => {
-      const Content = !(Err || Load || NoElement) ? <Elem data={data} /> : null;
+      // const Content = !(Err || Load || NoElement) ? <Elem data={data} /> : null;
       return (
         <div key={data.id}>
-          {Content}
+          {/* {Content}
           {Load}
-          {Err}
+          {Err} */}
+          {finiteStateMashine(process, () => (
+            <Elem data={data} />
+          ))}
         </div>
       );
     });

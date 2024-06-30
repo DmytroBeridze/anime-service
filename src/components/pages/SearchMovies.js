@@ -11,20 +11,24 @@ import { NavLink } from "react-router-dom";
 import TrailerModal from "../trailerModal/TrailerModal";
 import AnimeList from "../animeList/AnimeList";
 import Favorites from "../favorites/Favorites";
+import finiteStateMashine from "../../utils/finiteStateMashine";
 
 const SearchMovies = ({ setFavoritesData }) => {
-  const { getByname, error, loading, clearError } = AnimeService();
+  const { getByname, error, loading, clearError, process, setProcess } =
+    AnimeService();
   const { anime } = useContext(AnimeContext);
   const [data, setData] = useState([]);
   const [value, setValue] = useSessionStorage("animeArr", data);
   const [open, setOpen] = useState(false);
   // const [relatedData, setRelatedData] = useState([]);
-  // console.log(data);
+
   const searchAnime = (name) => {
-    return getByname(name).then((res) => {
-      setData(res);
-      setValue(res);
-    });
+    return getByname(name)
+      .then((res) => {
+        setData(res);
+        setValue(res);
+      })
+      .then(() => setProcess("ready"));
   };
   useEffect(() => {
     setData(value);
@@ -45,29 +49,40 @@ const SearchMovies = ({ setFavoritesData }) => {
   // const transformRelatedData = () => {
   //   setRelatedData(data.slice(1));
   // };
+
+  // const Load = loading ? <Spinner /> : null;
+  // const Err = error ? <Error /> : null;
+
   const relatedData = value.length > 1 ? value.slice(1) : null;
-  const Load = loading ? <Spinner /> : null;
-  const Err = error ? <Error /> : null;
   const NoElement =
     data.length <= 0 && !(error || loading) ? <NoSuchElement /> : null;
 
-  const Content = !(error || loading || NoElement) ? (
-    <FoundAnime
-      data={data}
-      setOpen={setOpen}
-      open={open}
-      setFavoritesData={setFavoritesData}
-    />
-  ) : null;
+  // const Content = !(error || loading || NoElement) ? (
+  //   <FoundAnime
+  //     data={data}
+  //     setOpen={setOpen}
+  //     open={open}
+  //     setFavoritesData={setFavoritesData}
+  //   />
+  // ) : null;
 
   return (
     <>
       <div className="search-movies">
         <div className="search-movies__container container">
-          {Load}
+          {/* {Load}
           {Err}
-          {Content}
-          {NoElement}
+          {Content} */}
+
+          {NoElement ||
+            finiteStateMashine(process, () => (
+              <FoundAnime
+                data={data}
+                setOpen={setOpen}
+                open={open}
+                setFavoritesData={setFavoritesData}
+              />
+            ))}
 
           {/* -----------related anime */}
           <section className="search-movies__related-container">
@@ -76,7 +91,8 @@ const SearchMovies = ({ setFavoritesData }) => {
               <div className="search-movies__related-stroke"></div>
             </div>
 
-            <AnimeList relatedData={relatedData} Load={Load} Err={Err} />
+            <AnimeList relatedData={relatedData} process={process} />
+            {/* <AnimeList relatedData={relatedData} Load={Load} Err={Err} /> */}
           </section>
         </div>
       </div>

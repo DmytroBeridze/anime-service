@@ -7,9 +7,10 @@ import TrailerModal from "../trailerModal/TrailerModal";
 import AnimeService from "../services/AnimeService";
 import Spinner from "../spinner/Spinner";
 import Error from "../error/Error";
+import finiteStateMashine from "../../utils/finiteStateMashine";
 const Episode = () => {
   const [episode, setEpisode] = useState({});
-  const { getEpisode, error, loading, clearError } = AnimeService();
+  const { getEpisode, process, error, loading, clearError } = AnimeService();
   const { episodeId } = useParams();
   const [open, setOpen] = useState(false);
   const {
@@ -27,12 +28,12 @@ const Episode = () => {
     getEpisode(episodeId).then((resp) => setEpisode(resp));
   }, []);
 
-  const Load = loading ? <Spinner /> : null;
-  const Err = error ? <Error /> : null;
+  // const Load = loading ? <Spinner /> : null;
+  // const Err = error ? <Error /> : null;
 
-  const posterEpisode = !(error || loading) ? (
-    <img src={thumbnail?.original} alt={title} />
-  ) : null;
+  // const posterEpisode = !(error || loading) ? (
+  //   <img src={thumbnail?.original} alt={title} />
+  // ) : null;
 
   return (
     <>
@@ -42,9 +43,12 @@ const Episode = () => {
             <h1 className="episode__title">{title}</h1>
             <div className="episode__prewiev">
               <div className="episode__poster">
-                {Load}
-                {Err}
-                {posterEpisode}
+                {/* {Load}
+                {Err} */}
+                {/* {posterEpisode} */}
+                {finiteStateMashine(process, () => (
+                  <img src={thumbnail?.original} alt={title} />
+                ))}
               </div>
               <button
                 className="episode__button button_stroke button"

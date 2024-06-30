@@ -8,9 +8,10 @@ import Spinner from "../spinner/Spinner";
 import Error from "../error/Error";
 import NoSuchElement from "../noSuchElement/NoSuchElement";
 import Favorites from "../favorites/Favorites";
+import finiteStateMashine from "../../utils/finiteStateMashine";
 
 const SingleFoundAnime = ({ setFavoritesData }) => {
-  const { getById, error, loading, clearError } = AnimeService();
+  const { getById, process, error, loading, clearError } = AnimeService();
   const { animeId } = useParams();
   const [data, setData] = useState({});
   const [open, setOpen] = useState(false);
@@ -35,16 +36,16 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
     youtubeVideoId,
   } = data;
 
-  const Load = loading ? <Spinner /> : null;
-  const Err = error ? <Error /> : null;
-  const NoElement =
-    Object.keys(data).length <= 0 && !(error || loading) ? (
-      <NoSuchElement />
-    ) : null;
+  // const Load = loading ? <Spinner /> : null;
+  // const Err = error ? <Error /> : null;
+  // const NoElement =
+  //   Object.keys(data).length <= 0 && !(error || loading) ? (
+  //     <NoSuchElement />
+  //   ) : null;
 
-  const posterAnime = !(error || loading || NoElement) ? (
-    <img src={poster} alt="a" />
-  ) : null;
+  // const posterAnime = !(error || loading || NoElement) ? (
+  //   <img src={poster} alt="a" />
+  // ) : null;
 
   return (
     <>
@@ -57,10 +58,13 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
               <Favorites data={animeId} setFavoritesData={setFavoritesData} />
 
               <div className="single-found__poster">
-                {Load}
+                {/* {Load}
                 {Err}
                 {posterAnime}
-                {NoElement}
+                {NoElement} */}
+                {finiteStateMashine(process, () => (
+                  <img src={poster} alt="a" />
+                ))}
                 {/* <img src={poster} alt="a" /> */}
               </div>
               <button

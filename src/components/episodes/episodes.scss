@@ -74,13 +74,30 @@
     overflow: hidden;
     margin-bottom: 5px;
     border: 1px solid rgba(6, 143, 145, 0);
-    cursor: pointer;
+    position: relative;
 
+    cursor: pointer;
     & img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+    :last-child {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      opacity: 0;
+      visibility: hidden;
+      &.active {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
   // ---------------------

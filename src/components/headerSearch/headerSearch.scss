@@ -1,21 +1,21 @@
-// -------serch component
+@import "../../style/variables.scss";
 .header-nav {
   &__search-form {
     display: flex;
     width: 0px;
-    height: 20px;
+    // height: 20px;
+    height: 65px;
     transition: all 0.3s;
     overflow: hidden;
-    // border-right: 1px solid #ff004d;
     position: relative;
     &.active {
-      // padding-right: 4px;
       width: 300px;
+      // padding-right: 4px;
       // border-right: 1px solid #ff004d;
-      // height: 30px;
-      height: 65px;
+      // height: 65px;
     }
   }
+
   &__error {
     position: absolute;
     top: 45px;
@@ -39,7 +39,7 @@
     font-size: 12px;
     outline: none;
     &:focus {
-      border: 1px solid #ff004d;
+      border: 1px solid $color-red;
     }
   }
   &__search-btn {
@@ -47,8 +47,9 @@
     flex-basis: 26px;
     border: none;
     border-radius: 3px;
-    background-color: #ff004d;
+    background-color: $color-red;
     position: relative;
+    cursor: pointer;
     & img {
       width: 15px;
       height: 15px;

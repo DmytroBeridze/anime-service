@@ -5,6 +5,7 @@ import useLocalStorage from "use-local-storage";
 const Favorites = ({ data, setFavoritesData, favorites }) => {
   const [active, setActive] = useState(false);
   // const [element, setElement] = useLocalStorage(data.id, active);
+
   const setData = (id) => {
     setFavoritesData(id);
     setActive(!active);

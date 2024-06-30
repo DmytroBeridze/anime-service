@@ -3,6 +3,7 @@ import { useState } from "react";
 const HttpHook = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [process, setProcess] = useState("waiting");
 
   // -------------------------all elements
   const allElementsResponse = async (
@@ -12,14 +13,20 @@ const HttpHook = () => {
     body = null
   ) => {
     try {
+      setProcess("loading");
       setLoading(true);
       const request = await fetch(url, { method, headers, body });
       if (request.ok) {
         const response = await request.json();
+
+        //! так як запроси асинхронні, setProcess("ready") додатково
+        //! встановлюється в кожному компоненті при запиті в then
+        setProcess("ready");
         setLoading(false);
         return response;
       } else throw new Error("Failed request");
     } catch (error) {
+      setProcess("error");
       setLoading(false);
       setError(error.message);
       console.log(error.message);
@@ -27,7 +34,14 @@ const HttpHook = () => {
     }
   };
   const clearError = () => setError(false);
-  return { allElementsResponse, error, loading, clearError };
+  return {
+    allElementsResponse,
+    error,
+    loading,
+    clearError,
+    process,
+    setProcess,
+  };
 };
 
 export default HttpHook;
