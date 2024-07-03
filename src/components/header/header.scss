@@ -3,7 +3,8 @@
 .header {
   width: 100%;
   padding: 30px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 30px;
-
+  // display: flex;
+  align-items: center;
   // padding: ($main-padding);
   position: absolute;
   background: linear-gradient($color-background-transparent);
@@ -28,6 +29,23 @@
   // margin: 0 auto;
   // padding: 0 30px;
 }
+
+.header__burger-button {
+  width: 30px;
+  height: 30px;
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  left: 40px;
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+  @media (max-width: 1100px) {
+    display: block;
+  }
+}
+
 .header-nav {
   width: 100%;
   color: $color-text-white-secondary;
@@ -35,69 +53,77 @@
   align-items: center;
   justify-content: space-between;
   margin-right: 20px;
-  &__logo {
-    display: flex;
-    align-items: start;
-    gap: 15px;
-    text-decoration: none;
+  @media (max-width: 850px) {
+    width: 600px;
+    justify-content: center;
   }
-  &__title {
-    font-family: "Just Another Hand";
-    font-weight: 400;
-    font-size: 64px;
-    line-height: 64px;
-    color: $color-text-white;
-    &:last-child {
-      color: #ff004d;
-    }
-  }
-  &__nav-list {
-    display: flex;
-    gap: 53px;
-  }
-  &__nav-link {
-    font-family: "Inter";
-    font-weight: 400;
-    font-size: 23px;
-    line-height: 23px;
-    color: $color-text-white-secondary;
-    position: relative;
+  // &__logo {
+  //   display: flex;
+  //   align-items: start;
+  //   gap: 15px;
+  //   text-decoration: none;
+  // }
+  // &__title {
+  //   font-family: "Just Another Hand";
+  //   font-weight: 400;
+  //   font-size: 64px;
+  //   line-height: 64px;
+  //   color: $color-text-white;
+  //   &:last-child {
+  //     color: #ff004d;
+  //   }
+  // }
 
-    &.active {
-      color: $color-text-white;
-    }
-    & a {
-      text-decoration: none;
-      color: inherit;
-    }
-    &::after {
-      content: "";
-      display: block;
-      height: 2px;
-      width: 0;
-      background-color: #ff004d;
-      margin-top: 2px;
-      transition: 0.2s;
-    }
-    &:hover::after {
-      content: "";
-      display: block;
-      height: 2px;
-      width: 100%;
-      background-color: #ff004d;
-      margin-top: 2px;
-    }
-  }
-  &__nav-link + &__nav-link:before {
-    content: "";
-    position: absolute;
-    height: 18px;
-    width: 1px;
-    background-color: $color-text-white-secondary;
-    display: block;
-    left: -25px;
-    top: 3px;
-  }
+  //--------------------- navigation
+  // &__nav-list {
+  //   display: flex;
+  //   gap: 53px;
+  // }
+  // &__nav-link {
+  //   font-family: "Inter";
+  //   font-weight: 400;
+  //   font-size: 23px;
+  //   line-height: 23px;
+  //   color: $color-text-white-secondary;
+  //   position: relative;
+  //   @media (max-width: 1350px) {
+  //     font-size: 18px;
+  //   }
+  //   &.active {
+  //     color: $color-text-white;
+  //   }
+  //   & a {
+  //     text-decoration: none;
+  //     color: inherit;
+  //   }
+  //   &::after {
+  //     content: "";
+  //     display: block;
+  //     height: 2px;
+  //     width: 0;
+  //     background-color: #ff004d;
+  //     margin-top: 2px;
+  //     transition: 0.2s;
+  //   }
+  //   &:hover::after {
+  //     content: "";
+  //     display: block;
+  //     height: 2px;
+  //     width: 100%;
+  //     background-color: #ff004d;
+  //     margin-top: 2px;
+  //   }
+  // }
+  // &__nav-link + &__nav-link:before {
+  //   content: "";
+  //   position: absolute;
+  //   height: 18px;
+  //   width: 1px;
+  //   background-color: $color-text-white-secondary;
+  //   display: block;
+  //   left: -25px;
+  //   top: 3px;
+  // }
 
   &__search {
     display: flex;
@@ -105,6 +131,9 @@
     position: relative;
     padding-left: 15px;
     cursor: pointer;
+    @media (max-width: 1100px) {
+      display: none;
+    }
 
     &::before {
       content: "";

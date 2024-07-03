@@ -5,6 +5,36 @@
   min-height: 1080px;
   padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
   background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
+  &::before {
+    content: "";
+    display: block;
+    width: 750px;
+    height: 750px;
+    position: fixed;
+    bottom: -150px;
+    right: -350px;
+    background-image: url("../../resources/img/mooviesPageDecor9.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.3;
+  }
+  &::after {
+    content: "";
+    display: block;
+    width: 1080px;
+    height: 1080px;
+    position: fixed;
+    bottom: -260px;
+    left: -470px;
+    background-image: url("../../resources/img/mooviesPageDecor11.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.3;
+    transform: scaleX(-1);
+  }
+
   &__container {
     margin: auto;
     display: flex;
@@ -16,6 +46,8 @@
     display: grid;
     grid-template-columns: minmax(60px, 120px) 1fr;
     gap: 20px;
+    position: relative;
+    z-index: 10;
   }
   &__avatars-wrapper {
     max-height: 690px;

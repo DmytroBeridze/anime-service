@@ -54,19 +54,17 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
           <div className="single-found__content">
             <div className="single-found__prewiev">
               {/* ---------add to favorites */}
-
-              <Favorites data={animeId} setFavoritesData={setFavoritesData} />
-
-              <div className="single-found__poster">
-                {/* {Load}
-                {Err}
-                {posterAnime}
-                {NoElement} */}
-                {finiteStateMashine(process, () => (
-                  <img src={poster} alt="a" />
-                ))}
-                {/* <img src={poster} alt="a" /> */}
-              </div>
+              {finiteStateMashine(process, () => (
+                <>
+                  <Favorites
+                    data={animeId}
+                    setFavoritesData={setFavoritesData}
+                  />
+                  <div className="single-found__poster">
+                    <img src={poster} alt="a" />
+                  </div>
+                </>
+              ))}
               <button
                 className="single-found__button button_stroke button"
                 onClick={() => setOpen(true)}
@@ -74,6 +72,7 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
                 <TrailerIconSVG />
                 <p>Watch Trailer</p>
               </button>
+              {/* <img src={poster} alt="a" /> */}
             </div>
             <div className="single-found__information">
               <h1 className="single-found__title">{title}</h1>

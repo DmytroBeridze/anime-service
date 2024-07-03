@@ -4,6 +4,21 @@
   min-height: 1080px;
   padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
   background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
+  position: relative;
+  &::before {
+    content: "";
+    display: block;
+    width: 1000px;
+    height: 1000px;
+    position: fixed;
+    bottom: -250px;
+    right: -300px;
+    background-image: url("../../resources/img/mooviesPageDecor3.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.3;
+  }
   &__container {
     margin: auto;
   }
@@ -38,6 +53,7 @@
     gap: 20px;
     height: 40px;
     margin: 30px 0 50px;
+    position: relative;
   }
   &__input {
     height: 100%;

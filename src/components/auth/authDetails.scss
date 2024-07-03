@@ -12,6 +12,9 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
+    @media (max-width: 1350px) {
+      font-size: 12px;
+    }
   }
   &__user-icon {
     width: 20px;

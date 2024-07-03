@@ -4,6 +4,21 @@
   min-height: 1080px;
   padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
   background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
+  &::before {
+    content: "";
+    display: block;
+    width: 1000px;
+    height: 1000px;
+    position: fixed;
+    bottom: -300px;
+    right: -290px;
+    background-image: url("../../resources/img/mooviesPageDecor7.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.3;
+  }
+
   &__container {
     padding: 0 30px;
     max-width: 1546px;

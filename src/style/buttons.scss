@@ -12,6 +12,7 @@
   line-height: 19px;
   cursor: pointer;
   transition: all 0.2s;
+  position: relative;
   &:hover {
     background: #ab0234;
     border: 1px solid #ab0234;
@@ -24,6 +25,7 @@
   margin-right: 16px;
   color: $color-text-white-secondary;
   transition: all 0.2s;
+  position: relative;
   &:hover {
     background: rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.6);

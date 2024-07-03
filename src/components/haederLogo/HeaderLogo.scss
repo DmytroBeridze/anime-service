@@ -1,0 +1,49 @@
+@import "../../style/variables.scss";
+.header-nav {
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    position: relative;
+    top: -5px;
+    &.auth-logo {
+      position: absolute;
+      top: 30px;
+    }
+    @media (max-width: 1350px) {
+      gap: 10px;
+    }
+  }
+  &__icon {
+    width: 63px;
+    position: relative;
+    top: -2px;
+    @media (max-width: 1350px) {
+      width: 43px;
+    }
+
+    & img {
+      width: 100%;
+    }
+  }
+  &__title-wrapper {
+    @media (max-width: 700px) {
+      display: none;
+    }
+  }
+  &__title {
+    font-family: "Just Another Hand";
+    font-weight: 400;
+    line-height: 64px;
+    text-align: end;
+    font-size: 64px;
+    color: $color-text-white;
+    @media (max-width: 1350px) {
+      font-size: 44px;
+    }
+    &:last-child {
+      color: #ff004d;
+    }
+  }
+}

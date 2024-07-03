@@ -1,75 +1,53 @@
 import "./header.scss";
-import whiteFilmLogo from "../../resources/png/White-film-logo.png";
-import userIcon from "../../resources/png/user.png";
+// import whiteFilmLogo from "../../resources/png/White-film-logo.png";
+// import userIcon from "../../resources/png/user.png";
+import closeBurger from "../../resources/png/close-burger.png";
+import menuBurger from "../../resources/png/menu-burger.png";
 import search from "../../resources/png/search-icon.png";
 import HeaderSearch from "../headerSearch/HeaderSearch";
 import { NavLink, useHref } from "react-router-dom";
 import { useEffect, useState } from "react";
-import useCookieHook from "../../hooks/cookie.hook";
+// import useCookieHook from "../../hooks/cookie.hook";
 import AuthDetails from "../auth/AuthDetails";
+import HeaderLogo from "../haederLogo/HeaderLogo";
+import Navigation from "../navigation/Navigation";
+import BurgerMenue from "../burgerMenue/BurgerMenue";
+import BurgerMenueBackdrop from "../burgerMenueBackdrop/BurgerMenueBackdrop.js";
 
 const Header = ({ setAnimeData }) => {
   const [open, setOpen] = useState(false);
+  const [isMenuClicked, setIsMenueClicked] = useState(false);
+  const [menueClass, setMenueClass] = useState("burgerMenue");
+
   const href = useHref();
+  const updateMenue = () => {
+    setIsMenueClicked((isMenuClicked) => !isMenuClicked);
+    // -!isMenuClicked--тому що в стейті попереднє значення.
+    // якщо залишити isMenuClicked, то буде считуватися попереднє і невірно працювати переключення
+    if (!isMenuClicked) {
+      setMenueClass("burgerMenue show");
+    } else setMenueClass("burgerMenue");
+  };
 
   return (
     href !== "/signin" &&
     href !== "/signup" && (
       <div className="header">
-        <div className="header-container container">
-          <nav className="header-nav">
-            <a href="#" className="header-nav__logo">
-              <div className="header-nav__icon">
-                <img src={whiteFilmLogo} alt="logo" />
-              </div>
-              <div>
-                <span className="header-nav__title">Anime</span>
-                <span className="header-nav__title ">.</span>
-              </div>
-            </a>
-            <ul className="header-nav__nav-list">
-              <li className="header-nav__nav-link active ">
-                <NavLink
-                  to="/"
-                  style={({ isActive }) => ({
-                    color: isActive ? "#ff004d" : "inherit",
-                  })}
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li className="header-nav__nav-link">
-                <NavLink
-                  to="movies"
-                  style={({ isActive }) => ({
-                    color: isActive ? "#ff004d" : "inherit",
-                  })}
-                >
-                  Movies
-                </NavLink>
-              </li>
-              <li className="header-nav__nav-link">
-                <NavLink
-                  to="favorites"
-                  style={({ isActive }) => ({
-                    color: isActive ? "#ff004d" : "inherit",
-                  })}
-                >
-                  Favorites
-                </NavLink>
-              </li>
+        {/* burger */}
+        <BurgerMenue menueClass={menueClass} updateMenue={updateMenue} />
+        {isMenuClicked && <BurgerMenueBackdrop updateMenue={updateMenue} />}
 
-              <li className="header-nav__nav-link">
-                <NavLink
-                  to={"chat"}
-                  style={({ isActive }) => ({
-                    color: isActive ? "#ff004d" : "inherit",
-                  })}
-                >
-                  Chat
-                </NavLink>
-              </li>
-            </ul>
+        <div className="header-container container">
+          <div
+            className="header__burger-button"
+            onClick={updateMenue}
+          >
+            <img src={!isMenuClicked ? menuBurger : closeBurger} alt="close" />
+            {/* <img src={!isMenuClicked ? menuBurger : closeBtn} alt="close" /> */}
+          </div>
+          <nav className="header-nav">
+            <HeaderLogo />
+            <Navigation />
           </nav>
           {/* ---search input-- */}
           <HeaderSearch open={open} setAnimeData={setAnimeData} />
@@ -85,13 +63,6 @@ const Header = ({ setAnimeData }) => {
             />
           </div>
           <AuthDetails />
-          {/* <div className="header-nav__user"> */}
-          {/* <div className="header-nav__user-mail">{login}</div> */}
-          {/* <div className="header-nav__user-mail">{userLogin.email}</div> */}
-          {/* <div className="header-nav__user-icon">
-          <img src={userIcon} alt="user" />
-        </div>
-      </div> */}
         </div>
       </div>
     )

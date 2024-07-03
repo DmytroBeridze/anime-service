@@ -16,6 +16,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
 import Chat from "../pages/Chat.js";
 import Episode from "../episode/Episode.js";
+// import BurgerMenue from "../burgerMenue/BurgerMenue.js";
 
 function App() {
   const { getCookie, setCookie } = useCookieHook();
@@ -35,10 +36,6 @@ function App() {
       setFavorites(res);
     } else setFavorites((favorites) => [...favorites, data]);
   };
-  // ---------login
-  // const userLoginData = (user) => {
-  //   setUserLogin(user);
-  // };
 
   useEffect(() => {
     getCookie("nameAnime")
@@ -51,21 +48,6 @@ function App() {
     [favorites]
   );
 
-  // const hederComponent = getCookie("userLogin") ? (
-  //   <Header
-  //     userLogin={userLogin}
-  //     setAnimeData={setAnimeData}
-  //     userLoginData={userLoginData}
-  //   />
-  // ) : null;
-
-  // const header = user ? (
-  //   <Header
-  //     userLogin={userLogin}
-  //     setAnimeData={setAnimeData}
-  //     userLoginData={userLoginData}
-  //   />
-  // ) : null;
   return (
     // для передачі даних в дочірній елемент без пропсів, напряму
     <AnimeContext.Provider value={{ anime, favorites }}>

@@ -1,32 +1,55 @@
+import { useState } from "react";
+import TrailerModal from "../trailerModal/TrailerModal";
 import "./homeMainDescription.scss";
 
-const HomeMainDescription = () => {
+const HomeMainDescription = ({ backroundInfo }) => {
+  const [open, setOpen] = useState(false);
+  const {
+    title,
+    description,
+    startDate,
+    ageRatingGuide,
+    ratingRank,
+    showType,
+    youtubeVideoId,
+  } = backroundInfo;
+
+  const desc =
+    description && description.length > 450
+      ? description.slice(0, 450)
+      : description;
   return (
     <div className="home-description">
-      <h1 className="home-description__title">Spider man No Way Home</h1>
+      <h1 className="home-description__title">{title}</h1>
       <div className="home-description__info">
         <ul className="home-description__info-list">
           <li className="home-description__rating">
             <span className="">imdb</span>
-            <span className="">8.2</span>
+            <span className="">{ratingRank}</span>
           </li>
-          <li className="home-description__year">2021</li>
-          <li className="home-description__time">1hour 55minutes</li>
-          <li className="home-description__genre">Sci-fi</li>
+          <li className="home-description__year">{startDate}</li>
+          <li className="home-description__time">{ageRatingGuide}</li>
+          <li className="home-description__genre">{showType}</li>
         </ul>
         <div className="home-description__text">
           <span>
-            Scelerisque sed ultricies tristique. Mi in vivamus aliquam varius eu
-            felis. Id ultricies diam turpis mi tincidunt. Ut morbi sed urna
-            tempor imperdiet eu scelerisque egestas. Interdum mi orci
-            suspendisse in s...
-            <span className="home-description__see-more">See more...</span>
+            {desc}
+            {/* <span className="home-description__see-more">See more...</span> */}
           </span>
         </div>
 
-        <button className="button button_stroke">Watch Trailer</button>
-        <button className="button">Watch Now</button>
+        <button className="button button_stroke" onClick={() => setOpen(true)}>
+          Watch Trailer
+        </button>
+        <button className="button" onClick={() => setOpen(true)}>
+          Watch Now
+        </button>
       </div>
+      <TrailerModal
+        open={open}
+        onClose={() => setOpen(false)}
+        youtubeVideoId={youtubeVideoId}
+      />
     </div>
   );
 };

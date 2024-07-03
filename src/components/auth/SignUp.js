@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import useFirebaseHook from "../../hooks/firebase.hook";
 import Uploader from "../uploader/Uploader";
+import HeaderLogo from "../haederLogo/HeaderLogo";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -21,7 +22,8 @@ const SignUp = () => {
 
   return (
     <div className="signup">
-      <div className="signup__container"></div>
+      {/* <div className="signup__container"></div> */}
+      <HeaderLogo cl={"auth-logo"} />
       <h2>Signup</h2>
 
       <Formik

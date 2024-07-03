@@ -4,6 +4,7 @@ import play from "../../resources/png/play.png";
 import AnimeService from "../services/AnimeService";
 import { Link, useNavigate } from "react-router-dom";
 import { object, string } from "yup";
+import { useEffect } from "react";
 
 const HeaderSearch = ({ open, setAnimeData }) => {
   // const { getByname, error, loading, clearError } = AnimeService();
@@ -16,6 +17,8 @@ const HeaderSearch = ({ open, setAnimeData }) => {
     history("/movies/searchMovie");
     // getByname(name).then((data) => setAnimeData(data));
   };
+
+  // useEffect(() => console.log(window.innerWidth), []);
   return (
     <>
       <Formik
@@ -71,7 +74,7 @@ const HeaderSearch = ({ open, setAnimeData }) => {
           <ErrorMessage
             name="name"
             component="div"
-            style={{ color: "red" }}
+            // style={{ color: "red" }}
             className="header-nav__error"
             // className={open ? "header-nav__error active" : "header-nav__error "}
           />

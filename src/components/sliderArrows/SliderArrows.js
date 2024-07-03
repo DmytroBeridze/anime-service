@@ -10,13 +10,13 @@ const sliderArrows = () => {
         src={PrevArrowBtn}
         alt=""
         onClick={onClick}
-        // style={{
-        //   position: "absolute",
-        //   top: "0px",
-        //   left: "155px",
-        //   zIndex: "999",
-        //   cursor: "pointer",
-        // }}
+        style={{
+          // position: "absolute",
+          // top: "0px",
+          // left: "155px",
+          zIndex: "9",
+          // cursor: "pointer",
+        }}
       />
     );
   };
@@ -28,13 +28,13 @@ const sliderArrows = () => {
         src={NextArrowBtn}
         alt=""
         onClick={onClick}
-        // style={{
-        //   position: "absolute",
-        //   top: "0px",
-        //   left: "211px",
-        //   zIndex: "999",
-        //   cursor: "pointer",
-        // }}
+        style={{
+          // position: "absolute",
+          // top: "0px",
+          // left: "211px",
+          zIndex: "9",
+          // cursor: "pointer",
+        }}
       />
       //   <div
       //     className={className}

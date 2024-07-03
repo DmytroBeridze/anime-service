@@ -42,14 +42,17 @@ const Episode = () => {
           <div className="episode__content">
             <h1 className="episode__title">{title}</h1>
             <div className="episode__prewiev">
-              <div className="episode__poster">
-                {/* {Load}
-                {Err} */}
-                {/* {posterEpisode} */}
+              {finiteStateMashine(process, () => (
+                <div className="episode__poster">
+                  <img src={thumbnail?.original} alt={title} />
+                </div>
+              ))}
+              {/* <div className="episode__poster">
+                
                 {finiteStateMashine(process, () => (
                   <img src={thumbnail?.original} alt={title} />
                 ))}
-              </div>
+              </div> */}
               <button
                 className="episode__button button_stroke button"
                 onClick={() => setOpen(true)}

@@ -1,15 +1,16 @@
 import "./moviesPage.scss";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AnimeList from "../animeList/AnimeList";
 import Spinner from "../spinner/Spinner";
-import Error from "../error/Error";
 import AnimeService from "../services/AnimeService";
 import AnimeSlider from "../slider/AnimeSlider";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import BtnScrollUp from "../btnScrollUp/BtnScrollUp";
-import NoSuchElement from "../noSuchElement/NoSuchElement";
 import finiteStateMashine from "../../utils/finiteStateMashine";
+// import NoSuchElement from "../noSuchElement/NoSuchElement";
+// import Error from "../error/Error";
+// import moviesDecor from "../../resources/img/mooviesPageDecor.png";
 
 const MoviesPage = ({ setAnimeData }) => {
   const {

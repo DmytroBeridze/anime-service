@@ -204,13 +204,13 @@ import finiteStateMashine from "../../utils/finiteStateMashine";
 import "overlayscrollbars/overlayscrollbars.css";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
-import Spinner from "../spinner/Spinner";
-import Error from "../error/Error";
+// import Spinner from "../spinner/Spinner";
+// import Error from "../error/Error";
 
 const Episodes = () => {
   const [data, setData] = useState([]);
   const { episodesId } = useParams();
-  const { getEpisodesById, error, loading, process, setProcess } =
+  const { getEpisodesById, process, setProcess, error, loading } =
     AnimeService();
   const targetRef = useRef([]);
   const descriptionRef = useRef([]);
@@ -317,8 +317,8 @@ const Wiev = ({
       </div>
     </NavLink>
   ) : (
-    <div className="episodes__img">
-      <img src={noPicture} alt="thumb" />
+    <div className="episodes__img ">
+      <img src={noPicture} alt="thumb" className="episodes__img_no-picture" />
       <img
         src={playBtn}
         alt="play"
@@ -344,6 +344,7 @@ const Wiev = ({
           defer
           element="span"
           // options={{ scrollbars: { autoHide: "scroll" } }}
+
           className="scroll-wrapper scroll-wrapper__episodes"
           ref={(element) => (targetRef.current[i] = element)}
         >
@@ -353,12 +354,14 @@ const Wiev = ({
             onClick={() => closeDescription()}
           >
             <span>Description: </span>
-            {description}
+            {description || "---"}
           </div>
         </OverlayScrollbarsComponent>
-        <span className="episodes__more" onClick={() => openDescription(i)}>
-          more...
-        </span>
+        {description && (
+          <span className="episodes__more" onClick={() => openDescription(i)}>
+            more...
+          </span>
+        )}
       </div>
 
       <div className="episodes__data">

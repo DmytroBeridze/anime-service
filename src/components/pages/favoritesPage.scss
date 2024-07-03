@@ -4,6 +4,35 @@
   min-height: 1080px;
   padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
   background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
+  &::before {
+    content: "";
+    display: block;
+    width: 800px;
+    height: 800px;
+    position: fixed;
+    bottom: -300px;
+    right: -150px;
+    background-image: url("../../resources/img/mooviesPageDecor13.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.3;
+  }
+  // &::before {
+  //   content: "";
+  //   display: block;
+  //   width: 1000px;
+  //   height: 1000px;
+  //   position: fixed;
+  //   bottom: -300px;
+  //   right: -230px;
+  //   background-image: url("../../resources/img/mooviesPageDecor6.png");
+  //   background-position: center;
+  //   background-repeat: no-repeat;
+  //   background-size: contain;
+  //   opacity: 0.3;
+  // }
+
   &__container {
     margin: auto;
   }

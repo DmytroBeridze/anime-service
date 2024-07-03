@@ -21,9 +21,9 @@ const SearchMovies = ({ setFavoritesData }) => {
   const [value, setValue] = useSessionStorage("animeArr", data);
   const [open, setOpen] = useState(false);
   // const [relatedData, setRelatedData] = useState([]);
-
+  console.log(value);
   const searchAnime = (name) => {
-    return getByname(name)
+    getByname(name)
       .then((res) => {
         setData(res);
         setValue(res);
@@ -34,6 +34,7 @@ const SearchMovies = ({ setFavoritesData }) => {
     setData(value);
     clearError();
     window.scrollTo(0, 0);
+    setProcess("ready");
   }, []);
 
   useEffect(() => {

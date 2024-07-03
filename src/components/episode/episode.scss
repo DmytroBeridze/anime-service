@@ -4,6 +4,49 @@
   min-height: 1080px;
   padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
   background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
+  // &::before {
+  //   content: "";
+  //   display: block;
+  //   width: 900px;
+  //   height: 900px;
+  //   position: fixed;
+  //   bottom: -320px;
+  //   right: -270px;
+  //   background-image: url("../../resources/img/mooviesPageDecor15.png");
+  //   background-position: center;
+  //   background-repeat: no-repeat;
+  //   background-size: contain;
+  //   opacity: 0.3;
+  // }
+  &::before {
+    content: "";
+    display: block;
+    width: 950px;
+    height: 950px;
+    position: fixed;
+    bottom: -420px;
+    right: -420px;
+    background-image: url("../../resources/img/mooviesPageDecor14.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.3;
+  }
+  // &::before {
+  //   content: "";
+  //   display: block;
+  //   width: 750px;
+  //   height: 750px;
+  //   position: fixed;
+  //   bottom: -250px;
+  //   right: -250px;
+  //   background-image: url("../../resources/img/mooviesPageDecor10.png");
+  //   background-position: center;
+  //   background-repeat: no-repeat;
+  //   background-size: contain;
+  //   opacity: 0.3;
+  // }
+
   &__container {
     padding: 0 30px;
     max-width: 1546px;
