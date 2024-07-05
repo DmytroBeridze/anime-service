@@ -1,10 +1,32 @@
 @import "../../style/variables.scss";
 
+// .before-active::before {
+//   border: 1px solid red;
+// }
+
 .chat {
   width: 100%;
   min-height: 1080px;
   padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
   background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
+  &__decor {
+    content: "";
+    display: block;
+    width: 750px;
+    height: 750px;
+    position: fixed;
+    bottom: -150px;
+    right: -350px;
+    // right: -350px;
+    background-image: url("../../resources/img/mooviesPageDecor9.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.3;
+    &.active {
+      right: -333px;
+    }
+  }
   &::before {
     content: "";
     display: block;
@@ -19,6 +41,7 @@
     background-size: contain;
     opacity: 0.3;
   }
+
   &::after {
     content: "";
     display: block;

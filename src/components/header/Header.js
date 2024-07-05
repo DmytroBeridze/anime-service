@@ -13,20 +13,31 @@ import HeaderLogo from "../haederLogo/HeaderLogo";
 import Navigation from "../navigation/Navigation";
 import BurgerMenue from "../burgerMenue/BurgerMenue";
 import BurgerMenueBackdrop from "../burgerMenueBackdrop/BurgerMenueBackdrop.js";
+import { scrollbarShow, scrollbarHide } from "../scrollBarToggle.js";
 
-const Header = ({ setAnimeData }) => {
+const Header = ({ setAnimeData, addingPadding }) => {
   const [open, setOpen] = useState(false);
   const [isMenuClicked, setIsMenueClicked] = useState(false);
-  const [menueClass, setMenueClass] = useState("burgerMenue");
-
+  const [menueClass, setMenueClass] = useState("burgerMenue__wrapper");
   const href = useHref();
+
   const updateMenue = () => {
     setIsMenueClicked((isMenuClicked) => !isMenuClicked);
     // -!isMenuClicked--тому що в стейті попереднє значення.
     // якщо залишити isMenuClicked, то буде считуватися попереднє і невірно працювати переключення
     if (!isMenuClicked) {
-      setMenueClass("burgerMenue show");
-    } else setMenueClass("burgerMenue");
+      setMenueClass("burgerMenue__wrapper show");
+      // setMenueClass("burgerMenue show");
+      // scrollbarShow();
+      // addingPadding(!isMenuClicked);
+      document.body.style.overflow = "hidden";
+    } else {
+      setMenueClass("burgerMenue__wrapper");
+      // setMenueClass("burgerMenue");
+      // scrollbarHide();
+      // addingPadding(!isMenuClicked);
+      document.body.style.overflow = "";
+    }
   };
 
   return (
@@ -38,10 +49,7 @@ const Header = ({ setAnimeData }) => {
         {isMenuClicked && <BurgerMenueBackdrop updateMenue={updateMenue} />}
 
         <div className="header-container container">
-          <div
-            className="header__burger-button"
-            onClick={updateMenue}
-          >
+          <div className="header__burger-button" onClick={updateMenue}>
             <img src={!isMenuClicked ? menuBurger : closeBurger} alt="close" />
             {/* <img src={!isMenuClicked ? menuBurger : closeBtn} alt="close" /> */}
           </div>

@@ -1,6 +1,6 @@
 import "./chat.scss";
 
-import { memo, useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useOverlayScrollbars } from "overlayscrollbars-react";
 
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -8,6 +8,7 @@ import { db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
 import useFirebaseHook from "../../hooks/firebase.hook.js";
+import { AnimeContext } from "../context.js";
 
 const Chat = () => {
   const [value, setValue] = useState("");
@@ -17,8 +18,10 @@ const Chat = () => {
   const usersScrollRef = useRef();
   const { loadingAllAvatars, avatars, messages } = useFirebaseHook();
 
-  // ---------custom scroll init
+  // -------показує відкрите чи закрите бургер меню
+  const { addPadding } = useContext(AnimeContext);
 
+  // ---------custom scroll init
   const events = {
     scroll: (e) => {},
   };
@@ -132,9 +135,10 @@ const Chat = () => {
       }),
     [avatars]
   );
-
+  // const togglePadding = addPadding ? "chat__decor active" : "chat__decor";
   return (
     <div className="chat">
+      {/* <div className="chat__decor"></div> */}
       <div className="chat__container">
         <div className="favorites__title-wrapper">
           <h3 className="favorites__header">anime chat</h3>

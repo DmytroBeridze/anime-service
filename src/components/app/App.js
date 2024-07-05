@@ -22,9 +22,13 @@ function App() {
   const { getCookie, setCookie } = useCookieHook();
   const [anime, setAnime] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  // const [userLogin, setUserLogin] = useState(null);
+  const [addPadding, setAddPadding] = useState(false);
   const [user, loading, error] = useAuthState(auth);
 
+  // ---------adding right padding after activate burger menue
+  const addingPadding = (data) => {
+    setAddPadding(data);
+  };
   // ---------name of one anime for searchMovie
   const setAnimeData = (data) => {
     setAnime(data);
@@ -50,11 +54,11 @@ function App() {
 
   return (
     // для передачі даних в дочірній елемент без пропсів, напряму
-    <AnimeContext.Provider value={{ anime, favorites }}>
+    <AnimeContext.Provider value={{ anime, favorites, addPadding }}>
       <BrowserRouter>
         <div className="app">
           {/* {header} */}
-          <Header setAnimeData={setAnimeData} />
+          <Header setAnimeData={setAnimeData} addingPadding={addingPadding} />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route

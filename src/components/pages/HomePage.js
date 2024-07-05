@@ -17,14 +17,9 @@ const HomePage = () => {
   const [randomElement, setRandomElement] = useState({});
   const [backroundInfo, setBackgroundInfo] = useState({});
   const { getById, loading } = AnimeService();
-  // useEffect(() => {
-  //   console.log(user);
-  //   if (!user) {
-  //     navigate("/signin");
-  //   } else navigate("/");
-  // }, []);
+
   const getBackggroundById = (id) => {
-    getById(id).then((data) => setBackgroundInfo(data));
+    // getById(id).then((data) => setBackgroundInfo(data));
   };
   useEffect(() => {
     if (!getCookie("userLogin")) {
@@ -56,7 +51,7 @@ const HomePage = () => {
       }}
     >
       {Description}
-      <HomeSlider />
+      {/* <HomeSlider /> */}
     </div>
   );
 };
