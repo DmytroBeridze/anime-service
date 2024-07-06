@@ -37,7 +37,7 @@ const BurgerMenue = ({ menueClass, updateMenue }) => {
   return (
     <div className={menueClass}>
       <div className="burgerMenue__scroll" ref={scrollRef}>
-        <div className="burgerMenue">
+        <nav className="burgerMenue">
           <ul className="burgerMenue__nav-list" onClick={updateMenue}>
             <li className="burgerMenue__nav-link active ">
               <span className={togglelinkBar("/")}></span>
@@ -90,7 +90,7 @@ const BurgerMenue = ({ menueClass, updateMenue }) => {
               </NavLink>
             </li>
           </ul>
-        </div>
+        </nav>
       </div>
     </div>
   );

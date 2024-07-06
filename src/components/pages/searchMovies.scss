@@ -1,8 +1,8 @@
 @import "../../style/variables.scss";
 .search-movies {
   width: 100%;
-  min-height: 1080px;
-  // height: 100vh;
+  // min-height: 1080px;
+  min-height: 100vh;
   padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
   background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
   &::before {
@@ -32,6 +32,7 @@
   &__info {
     flex-basis: 50%;
     margin-top: 60px;
+    z-index: 10;
   }
   &__title {
     font-family: "Bebas Neue";

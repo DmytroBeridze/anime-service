@@ -37,7 +37,7 @@ const HomeSlider = () => {
     centerPadding: "100px",
     slidesToShow: 8,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
     nextArrow: <NextArrow />,
@@ -104,6 +104,30 @@ const HomeSlider = () => {
         settings: {
           centerPadding: "40px",
           slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          centerPadding: "80px",
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 750,
+        settings: {
+          centerPadding: "80px",
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          centerPadding: "0px",
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },

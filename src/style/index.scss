@@ -3,10 +3,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap");
 @import "./buttons.scss";
 @import "./forms.scss";
+
 body {
   font-family: Inter;
   margin: 0;
-  min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
@@ -37,10 +37,8 @@ select {
 
 .app {
   max-width: 1920px;
-  // min-height: 1080px;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 auto;
-  position: relative;
 }
 .container {
   max-width: 1546px;

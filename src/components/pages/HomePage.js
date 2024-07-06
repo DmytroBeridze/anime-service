@@ -19,7 +19,7 @@ const HomePage = () => {
   const { getById, loading } = AnimeService();
 
   const getBackggroundById = (id) => {
-    // getById(id).then((data) => setBackgroundInfo(data));
+    getById(id).then((data) => setBackgroundInfo(data));
   };
   useEffect(() => {
     if (!getCookie("userLogin")) {
@@ -51,7 +51,7 @@ const HomePage = () => {
       }}
     >
       {Description}
-      {/* <HomeSlider /> */}
+      <HomeSlider />
     </div>
   );
 };

@@ -38,12 +38,17 @@ const HomeMainDescription = ({ backroundInfo }) => {
           </span>
         </div>
 
-        <button className="button button_stroke" onClick={() => setOpen(true)}>
-          Watch Trailer
-        </button>
-        <button className="button" onClick={() => setOpen(true)}>
-          Watch Now
-        </button>
+        <div className="home-description__buttons-wrapper">
+          <button
+            className="button button_stroke home-description__button_stroke"
+            onClick={() => setOpen(true)}
+          >
+            Watch Trailer
+          </button>
+          <button className="button" onClick={() => setOpen(true)}>
+            Watch Now
+          </button>
+        </div>
       </div>
       <TrailerModal
         open={open}

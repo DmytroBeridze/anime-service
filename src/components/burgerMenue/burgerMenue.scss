@@ -2,7 +2,8 @@
 
 .burgerMenue {
   height: 100%;
-  padding: 50px;
+  padding: clamp(0.625rem, -0.913rem + 7.69vw, 4.375rem);
+  // padding: 50px;
   position: relative;
   // z-index: 999;
   // background: linear-gradient($color-background);
@@ -12,7 +13,6 @@
   // top: 0;
   // left: -1000px;
   // transition: left 0.3s;
-  padding: 50px;
   // overflow-x: auto;
   // &::before {
   //   content: "";
@@ -38,30 +38,37 @@
     height: 100vh;
     top: 0;
     left: -1000px;
-    transition: left 0.3s;
+    visibility: hidden;
+    transition: all 0.3s;
     background: linear-gradient($color-background);
     // padding: 50px;
     // min-height: 100vh;
     &.show {
       left: 0;
+      visibility: visible;
     }
+
     &::before {
       content: "";
       display: block;
-      width: 700px;
-      height: 700px;
+      width: 650px;
+      height: 650px;
       position: absolute;
       bottom: -150px;
-      left: -300px;
+      left: clamp(-25rem, -27.564rem + 12.82vw, -18.75rem);
+      // left: -300px;
       background-image: url("../../resources/img/mooviesPageDecor16.png");
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
       opacity: 0.3;
+      // @media (max-width: 600px) {
+      //   width: 550px;
+      //   height: 550px;
+      // }
     }
   }
   &__scroll {
-    // width: 100%;
     height: 100vh;
   }
 
@@ -70,9 +77,10 @@
     display: flex;
     flex-direction: column;
     gap: 53px;
-    padding: 50px 0;
+    padding: 0 0 50px;
 
-    @media (max-width: 1100px) {
+    @media (max-width: 600px) {
+      gap: 34px;
     }
   }
   &__nav-link {
@@ -84,15 +92,12 @@
     line-height: 23px;
     color: $color-text-white-secondary;
     margin-left: 20px;
-    position: relative;
-    left: 20px;
-    // display: flex;
-    // &:active a{
-    //     border: 1px solid red
-    // }
 
-    // &:active::before {
-    // }
+    @media (max-width: 600px) {
+      font-size: 24px;
+      max-width: 120px;
+      margin-left: 6px;
+    }
 
     & a {
       text-decoration: none;
@@ -123,13 +128,18 @@
   }
   &__verticalBar {
     position: relative;
-    top: 4px;
     display: inline-block;
+    top: 4px;
     width: 2px;
     height: 32px;
     background: $color-text-white-secondary;
     margin-right: 5px;
     transition: all 0.2s;
+    @media (max-width: 600px) {
+      top: 3px;
+      width: 1px;
+      height: 24px;
+    }
 
     &.hide {
       opacity: 0;

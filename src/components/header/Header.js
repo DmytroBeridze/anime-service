@@ -23,20 +23,13 @@ const Header = ({ setAnimeData, addingPadding }) => {
 
   const updateMenue = () => {
     setIsMenueClicked((isMenuClicked) => !isMenuClicked);
-    // -!isMenuClicked--тому що в стейті попереднє значення.
-    // якщо залишити isMenuClicked, то буде считуватися попереднє і невірно працювати переключення
     if (!isMenuClicked) {
       setMenueClass("burgerMenue__wrapper show");
-      // setMenueClass("burgerMenue show");
-      // scrollbarShow();
-      // addingPadding(!isMenuClicked);
-      document.body.style.overflow = "hidden";
+
+      scrollbarShow();
     } else {
       setMenueClass("burgerMenue__wrapper");
-      // setMenueClass("burgerMenue");
-      // scrollbarHide();
-      // addingPadding(!isMenuClicked);
-      document.body.style.overflow = "";
+      scrollbarHide();
     }
   };
 

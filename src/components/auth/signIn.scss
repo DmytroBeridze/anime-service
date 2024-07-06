@@ -2,7 +2,7 @@
 
 .signin {
   width: 100%;
-  min-height: 1080px;
+  min-height: 100vh;
   padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
   // background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
   background-image: linear-gradient(-90deg, #233458b7 1%, #08152f 98.15%),
@@ -13,7 +13,8 @@
   background-position: 80% 10%;
   // background-position: center;
   background-repeat: no-repeat;
-  background-size: 2400px 1200px;
+  background-size: cover;
+  // background-size: 2400px 1200px;
 
   & h2 {
     color: $color-red;
