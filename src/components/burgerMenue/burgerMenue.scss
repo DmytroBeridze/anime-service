@@ -3,34 +3,8 @@
 .burgerMenue {
   height: 100%;
   padding: clamp(0.625rem, -0.913rem + 7.69vw, 4.375rem);
-  // padding: 50px;
   position: relative;
-  // z-index: 999;
-  // background: linear-gradient($color-background);
-  // width: 50%;
-  // max-height: 100vh;
-  // min-height: 100vh;
-  // top: 0;
-  // left: -1000px;
-  // transition: left 0.3s;
-  // overflow-x: auto;
-  // &::before {
-  //   content: "";
-  //   display: block;
-  //   width: 700px;
-  //   height: 700px;
-  //   position: absolute;
-  //   bottom: -150px;
-  //   left: -300px;
-  //   background-image: url("../../resources/img/mooviesPageDecor16.png");
-  //   background-position: center;
-  //   background-repeat: no-repeat;
-  //   background-size: contain;
-  //   opacity: 0.3;
-  // }
-  // &.show {
-  //   left: 0;
-  // }
+
   &__wrapper {
     position: absolute;
     z-index: 999;
@@ -41,13 +15,12 @@
     visibility: hidden;
     transition: all 0.3s;
     background: linear-gradient($color-background);
-    // padding: 50px;
-    // min-height: 100vh;
+    overflow: hidden;
+
     &.show {
       left: 0;
       visibility: visible;
     }
-
     &::before {
       content: "";
       display: block;
@@ -56,17 +29,14 @@
       position: absolute;
       bottom: -150px;
       left: clamp(-25rem, -27.564rem + 12.82vw, -18.75rem);
-      // left: -300px;
       background-image: url("../../resources/img/mooviesPageDecor16.png");
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
       opacity: 0.3;
-      // @media (max-width: 600px) {
-      //   width: 550px;
-      //   height: 550px;
-      // }
     }
+  }
+  &__decor-wrapper {
   }
   &__scroll {
     height: 100vh;

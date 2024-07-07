@@ -36,6 +36,9 @@ const BurgerMenue = ({ menueClass, updateMenue }) => {
 
   return (
     <div className={menueClass}>
+      {/* <div className="burgerMenue__decor-wrapper">
+        <div className="burgerMenue__decor"></div>
+      </div> */}
       <div className="burgerMenue__scroll" ref={scrollRef}>
         <nav className="burgerMenue">
           <ul className="burgerMenue__nav-list" onClick={updateMenue}>

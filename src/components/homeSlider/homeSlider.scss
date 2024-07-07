@@ -1,13 +1,7 @@
 .main-slider {
-  // border: 1px solid red;
   width: 100%;
   height: 300px;
   margin: 80px auto;
-  // height: 234px;
-  position: relative;
-  // bottom: 70px;
-  // left: 0;
-  // margin: 0 auto;
 
   &__element {
     display: flex !important;
@@ -35,7 +29,7 @@
     transition: transform 0.2s;
     cursor: pointer;
     @media (max-width: 550px) {
-      height: 400px;
+      height: 300px;
     }
 
     &:hover {
@@ -49,11 +43,11 @@
     left: 155px;
     z-index: 999;
     cursor: pointer;
-    @media (max-width: 770px) {
-      // left: clamp(0.063rem, -6.354rem + 32.08vw, 9.688rem);
-    }
-    @media (max-width: 550px) {
-      top: -50px;
+
+    @media (max-width: 1000px) {
+      position: absolute;
+      top: 350px;
+      left: calc(50% - 44px);
     }
   }
   & .nextBtn {
@@ -62,17 +56,10 @@
     left: 211px;
     z-index: 999;
     cursor: pointer;
-    @media (max-width: 770px) {
-      // left: clamp(0.063rem, -8.688rem + 43.75vw, 13.188rem);
-    }
-    @media (max-width: 550px) {
-      top: -50px;
-      // left: 0px;
-      // top: 50px;
+    @media (max-width: 1000px) {
+      position: absolute;
+      top: 350px;
+      left: calc(50%);
     }
   }
 }
-
-// .main-slider .slick-arrow {
-//   display: none !important;
-// }

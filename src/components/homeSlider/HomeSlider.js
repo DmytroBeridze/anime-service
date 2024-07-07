@@ -37,7 +37,7 @@ const HomeSlider = () => {
     centerPadding: "100px",
     slidesToShow: 8,
     slidesToScroll: 1,
-    // autoplay: true,
+    autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
     nextArrow: <NextArrow />,
@@ -185,14 +185,6 @@ const Wiev = ({ data }) => {
       </div>
     </NavLink>
   );
-  // return (
-  //   <AnimeSlider
-  //     anime={anime}
-  //     error={error}
-  //     loading={loading}
-  //     clearError={clearError}
-  //   />
-  // );
 };
 
 export default HomeSlider;
