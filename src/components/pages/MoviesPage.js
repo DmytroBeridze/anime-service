@@ -231,7 +231,9 @@ const MoviesPage = ({ setAnimeData }) => {
           Next
         </button>
       </div>
-      <BtnScrollUp />
+      <div className="movies__scrollUp">
+        <BtnScrollUp />
+      </div>
     </div>
   );
 };

@@ -62,8 +62,14 @@
     position: absolute;
     top: calc(50% - 20px);
     left: -40px;
+    @media (max-width: 480px) {
+      left: -20px;
+    }
   }
   & .nextBtn {
     left: 100%;
+    @media (max-width: 480px) {
+      left: 94%;
+    }
   }
 }

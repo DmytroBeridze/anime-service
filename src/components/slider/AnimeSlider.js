@@ -87,6 +87,22 @@ const AnimeSlider = ({ anime }) => {
           slidesToScroll: 1,
         },
       },
+      {
+        breakpoint: 800,
+        settings: {
+          centerPadding: "100px",
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          centerPadding: "100px",
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
     ],
   };
 

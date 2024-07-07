@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import "./singleMovie.scss";
 const SingleMovie = ({ Component, setFavoritesData, favorites }) => {
   return (

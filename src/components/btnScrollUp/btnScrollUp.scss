@@ -5,9 +5,9 @@
   border: none;
   border-radius: 50%;
   transition: background 0.2s;
-  position: fixed;
-  right: 50px;
-  bottom: 75px;
+  // position: fixed;
+  // right: 50px;
+  // bottom: 80px;
   z-index: 999;
   visibility: hidden;
   cursor: pointer;
@@ -25,12 +25,12 @@
     }
   }
   & img {
-    rotate: 180deg;
+    // rotate: 180deg;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 4px;
     margin: auto;
   }
 }

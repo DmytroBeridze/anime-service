@@ -5,14 +5,18 @@
   padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
   background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
   position: relative;
+  overflow: hidden;
+
   &::before {
     content: "";
     display: block;
     width: 1000px;
     height: 1000px;
     position: fixed;
-    bottom: -250px;
-    right: -300px;
+    bottom: clamp(-25rem, -26.875rem + 9.38vw, -15.625rem);
+    // bottom: -250px;
+    right: clamp(-31.25rem, -33.75rem + 12.5vw, -18.75rem);
+    // right: -300px;
     background-image: url("../../resources/img/mooviesPageDecor3.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -56,8 +60,8 @@
     position: relative;
   }
   &__input {
-    height: 100%;
     width: 200px;
+    height: 100%;
     border: none;
     border-radius: 2px;
     padding: 10px;
@@ -67,7 +71,20 @@
     font-size: 16px;
     line-height: 19px;
     outline: none;
-
+    @media (max-width: 580px) {
+      text-align: center;
+      width: 100%;
+      font-size: 14px;
+      line-height: 16px;
+      padding: 10px 5px;
+    }
+    & option {
+      @media (max-width: 580px) {
+        font-size: 12px;
+        line-height: 16px;
+        text-align: start;
+      }
+    }
     & option:nth-child(2n) {
       background: rgb(248, 246, 246);
     }
@@ -80,6 +97,9 @@
     top: 40px;
     left: 0px;
     color: #ff004d;
+    @media (max-width: 580px) {
+      font-size: 14px;
+    }
   }
   &__filter-button {
     height: 100%;
@@ -92,6 +112,11 @@
     line-height: 19px;
     border: none;
     border-radius: 5px;
+    @media (max-width: 580px) {
+      width: 50%;
+      font-size: 14px;
+      line-height: 16px;
+    }
     cursor: pointer;
     &:hover {
       background: #ab0234;
@@ -104,10 +129,20 @@
   &__button {
     margin: 30px auto;
     display: block;
-    padding: 15px 140px;
+    padding: 15px clamp(2.5rem, -0.948rem + 17.24vw, 8.75rem);
+    // padding: 15px 140px;
     &:disabled {
       background: #780225;
       border: 1px solid #780225;
+    }
+  }
+  &__scrollUp {
+    position: fixed;
+    right: 50px;
+    bottom: 75px;
+    z-index: 999;
+    @media (max-width: 400px) {
+      right: 30px;
     }
   }
 }
