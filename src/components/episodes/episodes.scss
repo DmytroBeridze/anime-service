@@ -11,8 +11,10 @@
     width: 1050px;
     height: 1050px;
     position: fixed;
-    bottom: -320px;
-    right: -430px;
+    right: clamp(-33.125rem, -34.375rem + 6.25vw, -26.875rem);
+    // right: -430px;
+    bottom: clamp(-26.25rem, -27.5rem + 6.25vw, -20rem);
+    // bottom: -320px;
     background-image: url("../../resources/img/mooviesPageDecor8.png");
     background-position: center;
     background-repeat: no-repeat;
