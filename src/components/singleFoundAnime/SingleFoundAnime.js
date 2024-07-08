@@ -88,30 +88,29 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
               <div className="single-found__description">
                 <h3>Storyline</h3>
                 <p>{description}</p>
-
-                <table className="single-found__meta">
-                  <tbody>
-                    <tr>
-                      <td>Rating</td>
-                      <td>{ratingRank}</td>
-                    </tr>
-                    <tr>
-                      <td>Release year</td>
-                      <td>{startDate}</td>
-                    </tr>
-                    <tr>
-                      <td>Age rating</td>
-                      <td>{ageRatingGuide}</td>
-                    </tr>
-                    <tr>
-                      <td>Type</td>
-                      <td>{showType}</td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
             </div>
           </div>
+          <table className="single-found__meta">
+            <tbody>
+              <tr>
+                <td>Rating</td>
+                <td>{ratingRank}</td>
+              </tr>
+              <tr>
+                <td>Release year</td>
+                <td>{startDate}</td>
+              </tr>
+              <tr>
+                <td>Age rating</td>
+                <td>{ageRatingGuide}</td>
+              </tr>
+              <tr>
+                <td>Type</td>
+                <td>{showType}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <TrailerModal
