@@ -4,9 +4,7 @@ import { TrailerIconSVG } from "../trailerIconSVG/TrailerIconSvg";
 import { NavLink, useParams } from "react-router-dom";
 import AnimeService from "../services/AnimeService";
 import TrailerModal from "../trailerModal/TrailerModal";
-import Spinner from "../spinner/Spinner";
-import Error from "../error/Error";
-import NoSuchElement from "../noSuchElement/NoSuchElement";
+
 import Favorites from "../favorites/Favorites";
 import finiteStateMashine from "../../utils/finiteStateMashine";
 
@@ -56,11 +54,13 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
               {/* ---------add to favorites */}
               {finiteStateMashine(process, () => (
                 <>
-                  <Favorites
-                    data={animeId}
-                    setFavoritesData={setFavoritesData}
-                  />
                   <div className="single-found__poster">
+                    <div className="single-found__like-wrapper">
+                      <Favorites
+                        data={animeId}
+                        setFavoritesData={setFavoritesData}
+                      />
+                    </div>
                     <img src={poster} alt="a" />
                   </div>
                 </>
@@ -85,32 +85,32 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
               {/* <button className=" single-found__title-btn button">
                 Episodes
               </button> */}
-              <div className="single-found__description">
-                <h3>Storyline</h3>
-                <p>{description}</p>
-              </div>
             </div>
+            <div className="single-found__description">
+              <h3>Storyline</h3>
+              <p>{description}</p>
+            </div>
+            <table className="single-found__meta">
+              <tbody>
+                <tr>
+                  <td>Rating</td>
+                  <td>{ratingRank}</td>
+                </tr>
+                <tr>
+                  <td>Release year</td>
+                  <td>{startDate}</td>
+                </tr>
+                <tr>
+                  <td>Age rating</td>
+                  <td>{ageRatingGuide}</td>
+                </tr>
+                <tr>
+                  <td>Type</td>
+                  <td>{showType}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <table className="single-found__meta">
-            <tbody>
-              <tr>
-                <td>Rating</td>
-                <td>{ratingRank}</td>
-              </tr>
-              <tr>
-                <td>Release year</td>
-                <td>{startDate}</td>
-              </tr>
-              <tr>
-                <td>Age rating</td>
-                <td>{ageRatingGuide}</td>
-              </tr>
-              <tr>
-                <td>Type</td>
-                <td>{showType}</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
       <TrailerModal
