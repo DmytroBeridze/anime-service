@@ -71,26 +71,28 @@ const Episode = () => {
                 <h3>Storyline</h3>
                 <p>{description}</p>
 
-                <table className="episode__meta">
-                  <tbody>
-                    <tr>
-                      <td>Type</td>
-                      <td>{type}</td>
-                    </tr>
-                    <tr>
-                      <td>Release year</td>
-                      <td>{airdate}</td>
-                    </tr>
-                    <tr>
-                      <td>Season number</td>
-                      <td>{seasonNumber}</td>
-                    </tr>
-                    <tr>
-                      <td>Length</td>
-                      <td>{length}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div className="episode__meta-wrapper">
+                  <table className="episode__meta">
+                    <tbody>
+                      <tr>
+                        <td>Type</td>
+                        <td>{type}</td>
+                      </tr>
+                      <tr>
+                        <td>Release year</td>
+                        <td>{airdate}</td>
+                      </tr>
+                      <tr>
+                        <td>Season number</td>
+                        <td>{seasonNumber}</td>
+                      </tr>
+                      <tr>
+                        <td>Length</td>
+                        <td>{length}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
