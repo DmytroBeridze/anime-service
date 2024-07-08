@@ -220,7 +220,9 @@ const FoundAnime = ({ data, setOpen, open, setFavoritesData }) => {
         {/* ---------poster */}
         <div className="search-movies__poster">
           {/* ---------add to favorites */}
-          <Favorites data={data[0].id} setFavoritesData={setFavoritesData} />
+          <div className="search-movies__likeWrapper">
+            <Favorites data={data[0].id} setFavoritesData={setFavoritesData} />
+          </div>
           <img src={poster} alt="semple img" />
           <img src={stroke} alt="stroke" />
         </div>

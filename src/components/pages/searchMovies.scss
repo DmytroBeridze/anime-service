@@ -73,11 +73,18 @@
         width: 550px;
       }
     }
-    & .favorites-btn {
-      top: 70px;
-      right: 70px;
-    }
+    // & .favorites-btn {
+    //   top: 70px;
+    //   right: 70px;
+    // }
   }
+  &__likeWrapper {
+    position: absolute;
+    top: 70px;
+    right: 70px;
+    z-index: 999;
+  }
+
   &__related-container {
     margin-top: 80px;
   }
