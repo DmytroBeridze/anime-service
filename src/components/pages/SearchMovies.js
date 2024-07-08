@@ -43,38 +43,14 @@ const SearchMovies = ({ setFavoritesData }) => {
     }
   }, [anime]);
 
-  // useEffect(() => {
-  //   transformRelatedData();
-  // }, [value]);
-
-  // const transformRelatedData = () => {
-  //   setRelatedData(data.slice(1));
-  // };
-
-  // const Load = loading ? <Spinner /> : null;
-  // const Err = error ? <Error /> : null;
-
   const relatedData = value.length > 1 ? value.slice(1) : null;
   const NoElement =
     data.length <= 0 && !(error || loading) ? <NoSuchElement /> : null;
-
-  // const Content = !(error || loading || NoElement) ? (
-  //   <FoundAnime
-  //     data={data}
-  //     setOpen={setOpen}
-  //     open={open}
-  //     setFavoritesData={setFavoritesData}
-  //   />
-  // ) : null;
 
   return (
     <>
       <div className="search-movies">
         <div className="search-movies__container container">
-          {/* {Load}
-          {Err}
-          {Content} */}
-
           {NoElement ||
             finiteStateMashine(process, () => (
               <FoundAnime
@@ -93,7 +69,6 @@ const SearchMovies = ({ setFavoritesData }) => {
             </div>
 
             <AnimeList relatedData={relatedData} process={process} />
-            {/* <AnimeList relatedData={relatedData} Load={Load} Err={Err} /> */}
           </section>
         </div>
       </div>
@@ -110,70 +85,6 @@ const SearchMovies = ({ setFavoritesData }) => {
   );
 };
 
-// !------without slider
-// const AnimeList = ({ data, Load, Err, NoElement, relatedData }) => {
-//   const Elem = ({ data }) => {
-//     const { poster, title, startDate, ageRatingGuide, id } = data;
-//     return (
-//       <li className="search-movies__galery-element">
-//         <div className="search-movies__galery-img_wrapper">
-//           <img src={data.poster} alt="" />
-//         </div>
-
-//         <div className="search-movies__galery-description">
-//           <div className="search-movies__galery-name">
-//             {" "}
-//             {data.title.length > 35
-//               ? data.title.slice(0, 35) + "..."
-//               : data.title}
-//           </div>
-//           <span className="search-movies__galery-year">{startDate}</span>
-//           <span className="search-movies__galery-time">{ageRatingGuide}</span>
-//         </div>
-//       </li>
-//     );
-//   };
-
-//   const wiev = relatedData.map((data) => <Elem data={data} key={data.id} />);
-
-//   return <ul className="search-movies__galery">{wiev}</ul>;
-// };
-// !------with slider
-// const AnimeList = ({ Load, Err, NoElement, relatedData }) => {
-//   // console.log(relatedData);
-//   const Elem = ({ data }) => {
-//     const { poster, title, startDate, ageRatingGuide, id } = data;
-//     return (
-//       <li className="search-movies__galery-element">
-//         <NavLink to={`/movies/${id}`}>
-//           <div className="search-movies__galery-img_wrapper">
-//             <img src={poster} alt="" />
-//           </div>
-//           <div className="search-movies__galery-description">
-//             <div className="search-movies__galery-name">
-//               {title.length > 35 ? title.slice(0, 35) + "..." : title}
-//             </div>
-//             <span className="search-movies__galery-year">{startDate}</span>
-//             <span className="search-movies__galery-time">{ageRatingGuide}</span>
-//           </div>
-//         </NavLink>
-//       </li>
-//     );
-//   };
-
-//   const wiev = relatedData.map((data) => {
-//     const content = !(Err || Load || NoElement) ? <Elem data={data} /> : null;
-//     return (
-//       <>
-//         {content}
-//         {Load}
-//       </>
-//     );
-//   });
-
-//   return <ul className="search-movies__galery">{wiev}</ul>;
-// };
-
 const FoundAnime = ({ data, setOpen, open, setFavoritesData }) => {
   const {
     id,
@@ -188,12 +99,11 @@ const FoundAnime = ({ data, setOpen, open, setFavoritesData }) => {
   } = data[0];
   return (
     <>
+      <h1 className="search-movies__title">{title}</h1>
       <section className="search-movies__main">
         <div className="search-movies__info">
-          <h1 className="search-movies__title">{title}</h1>
-
           {/*----------  info list */}
-          <ul className="home-description__info-list">
+          <ul className="home-description__info-list search-movies__info-list">
             <li className="home-description__rating">
               <span className="">imdb</span>
               <span className="">{ratingRank}</span>
@@ -205,16 +115,18 @@ const FoundAnime = ({ data, setOpen, open, setFavoritesData }) => {
 
           {/* ---------movies__description */}
           <div className="search-movies__description">{description}</div>
-          <button
-            className=" button button_stroke"
-            onClick={() => setOpen(true)}
-          >
-            Watch Trailer
-          </button>
+          <div className="search-movies__buttons-wrapper">
+            <button
+              className=" button button_stroke"
+              onClick={() => setOpen(true)}
+            >
+              Watch Trailer
+            </button>
 
-          <NavLink to={`/movies/searchMovie/${id}`} className="button">
-            Episodes
-          </NavLink>
+            <NavLink to={`/movies/searchMovie/${id}`} className="button">
+              Episodes
+            </NavLink>
+          </div>
         </div>
 
         {/* ---------poster */}

@@ -11,8 +11,10 @@
     width: 1050px;
     height: 1050px;
     position: fixed;
-    bottom: -350px;
-    right: -380px;
+    bottom: clamp(-31.25rem, -33.125rem + 9.38vw, -21.875rem);
+    // bottom: -350px;
+    right: clamp(-32.5rem, -34.25rem + 8.75vw, -23.75rem);
+    // right: -380px;
     background-image: url("../../resources/img/mooviesPageDecor12.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -28,17 +30,44 @@
   &__main {
     display: flex;
     justify-content: space-between;
+    gap: 100px;
+    @media (max-width: 930px) {
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 30px;
+    }
   }
   &__info {
     flex-basis: 50%;
-    margin-top: 60px;
+    margin-top: 40px;
     z-index: 10;
+    @media (max-width: 550px) {
+      margin-top: 20px;
+    }
+  }
+  &__info-list {
+    // font-size: 14px;
+    @media (max-width: 1100px) {
+      flex-direction: column;
+      & li:not(:first-child) {
+        left: 10px;
+      }
+    }
   }
   &__title {
     font-family: "Bebas Neue";
     font-weight: 600;
     font-size: 72px;
     line-height: 72px;
+    @media (max-width: 930px) {
+      font-weight: 400;
+      font-size: 64px;
+      line-height: 64px;
+    }
+    @media (max-width: 550px) {
+      font-size: 40px;
+      line-height: 40px;
+    }
   }
   &__description {
     font-family: "Inter";
@@ -47,21 +76,62 @@
     line-height: 20px;
     margin-bottom: 40px;
   }
+  &__buttons-wrapper {
+    display: flex;
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+      gap: 20px;
+      & > button {
+        margin: 0;
+      }
+      & > .button {
+        text-align: center;
+      }
+    }
+  }
   & a {
     text-decoration: none;
   }
   &__poster {
     width: clamp(12.5rem, 10.053rem + 12.23vw, 21.875rem);
+    min-width: 250px;
     height: clamp(18.75rem, 15.161rem + 17.94vw, 32.5rem);
     object-fit: cover;
     position: relative;
     background: linear-gradient(149.91deg, #1b274166 13.36%, #0c111d 98.15%);
+    @media (max-width: 930px) {
+      width: 500px;
+      height: 700px;
+      left: 25px;
+    }
+    @media (max-width: 700px) {
+      width: 400px;
+      height: 600px;
+      left: 25px;
+    }
+    @media (max-width: 550px) {
+      width: 300px;
+      height: 450px;
+      left: 10px;
+      margin-top: 20px;
+    }
+    @media (max-width: 340px) {
+      width: 200px;
+      height: 350px;
+      left: 10px;
+    }
+
     & img {
       width: 100%;
       height: 100%;
       position: absolute;
       top: 50px;
       left: -50px;
+      @media (max-width: 550px) {
+        left: -10px;
+        top: 10px;
+      }
       &:first-child {
         box-shadow: 2px 2px 30px -12px rgb(6, 6, 9);
       }
@@ -71,6 +141,12 @@
         top: 95px;
         height: 500px;
         width: 550px;
+        @media (max-width: 1530px) {
+          height: clamp(18.75rem, 15.444rem + 16.53vw, 31.25rem);
+        }
+        @media (max-width: 930px) {
+          display: none;
+        }
       }
     }
     // & .favorites-btn {
@@ -83,6 +159,10 @@
     top: 70px;
     right: 70px;
     z-index: 999;
+    @media (max-width: 550px) {
+      top: 30px;
+      right: 30px;
+    }
   }
 
   &__related-container {
@@ -103,5 +183,7 @@
     width: 100%;
     height: 0px;
     border: 1px solid rgba(80, 74, 121, 0.5);
+    @media (max-width: 460px) {
+    }
   }
 }

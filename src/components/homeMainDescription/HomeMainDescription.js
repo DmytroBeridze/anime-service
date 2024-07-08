@@ -22,8 +22,8 @@ const HomeMainDescription = ({ backroundInfo }) => {
     <div className="home-description">
       <h1 className="home-description__title">{title}</h1>
       <div className="home-description__info">
-        <ul className="home-description__info-list">
-          <li className="home-description__rating">
+        <ul className="home-description__info-list main_list">
+          <li className="home-description__rating main_rating">
             <span className="">imdb</span>
             <span className="">{ratingRank}</span>
           </li>
