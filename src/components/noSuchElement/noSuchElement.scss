@@ -1,13 +1,20 @@
 .noSuchElement {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   color: #ff004d;
   font-size: 20px;
+  text-align: center;
   display: flex;
   margin: 20px auto;
   align-items: center;
   justify-content: center;
   gap: 8px;
   transition: 0.2s;
+  @media (max-width: 430px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .te {
   width: 10px;

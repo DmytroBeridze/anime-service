@@ -9,6 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
 import useFirebaseHook from "../../hooks/firebase.hook.js";
 import { AnimeContext } from "../context.js";
+import { OverlayScrollbars } from "overlayscrollbars";
 
 const Chat = () => {
   const [value, setValue] = useState("");
@@ -36,13 +37,13 @@ const Chat = () => {
     events,
     defer,
   });
-
   const [init, inst] = useOverlayScrollbars({
     options,
     events,
     defer,
   });
 
+  // ---custom scroll
   // ---custom scroll
   useEffect(() => {
     init(usersScrollRef.current);
@@ -53,6 +54,7 @@ const Chat = () => {
     loadingAllAvatars();
   }, []);
 
+  // ---------прокрутка до останнього повідомлення
   // ---------прокрутка до останнього повідомлення
   const scrollToLast = () => {
     if (messageRef.current) {
@@ -148,13 +150,14 @@ const Chat = () => {
         <div className="chat__messages-wrapper">
           {/* ----------------------Avatars scroll ----------------------------------- */}
           <div
-            className=" chat__avatars-wrapper scroll-wrapper"
+            className="chat__avatars-wrapper scroll-wrapper "
             ref={scrollRef}
             // key={}
           >
             <div className="chat__awatarts-container">{avatarsElement}</div>
           </div>
           <div>
+            {/* ----------------------Chat scroll wrapper----------------------------------- */}
             {/* ----------------------Chat scroll wrapper----------------------------------- */}
 
             <div

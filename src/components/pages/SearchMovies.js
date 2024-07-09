@@ -20,8 +20,6 @@ const SearchMovies = ({ setFavoritesData }) => {
   const [data, setData] = useState([]);
   const [value, setValue] = useSessionStorage("animeArr", data);
   const [open, setOpen] = useState(false);
-  // const [relatedData, setRelatedData] = useState([]);
-  console.log(value);
   const searchAnime = (name) => {
     getByname(name)
       .then((res) => {

@@ -5,7 +5,8 @@
   // min-height: 170vh;
   // min-height: 1080px;
   // background-image: url("../../resources/img/HomePageBackground.jpg");
-  background-position: center;
+  background-position: 60% 10%;
+  // background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   // background-size: 1926px 1100px;
@@ -22,4 +23,11 @@
   @media (max-width: 844px) {
     padding-top: 180px;
   }
+
+  // @media (max-width: 550px) {
+  //   background-position: -800px;
+  // }
+  // @media (max-width: 450px) {
+  //   background-position: -1000px;
+  // }
 }

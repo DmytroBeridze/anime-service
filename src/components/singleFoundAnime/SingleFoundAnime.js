@@ -9,7 +9,7 @@ import Favorites from "../favorites/Favorites";
 import finiteStateMashine from "../../utils/finiteStateMashine";
 
 const SingleFoundAnime = ({ setFavoritesData }) => {
-  const { getById, process, error, loading, clearError } = AnimeService();
+  const { getById, process } = AnimeService();
   const { animeId } = useParams();
   const [data, setData] = useState({});
   const [open, setOpen] = useState(false);
@@ -82,9 +82,6 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
               >
                 Episodes
               </NavLink>
-              {/* <button className=" single-found__title-btn button">
-                Episodes
-              </button> */}
             </div>
             <div className="single-found__description">
               <h3>Storyline</h3>

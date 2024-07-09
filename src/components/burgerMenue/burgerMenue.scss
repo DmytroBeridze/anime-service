@@ -46,11 +46,12 @@
     height: 400px;
     display: flex;
     flex-direction: column;
-    gap: 53px;
-    padding: 0 0 50px;
+    gap: 44px;
+    // padding: 0 0 50px;
 
     @media (max-width: 600px) {
-      gap: 34px;
+      gap: 24px;
+      margin-top: 20px;
     }
   }
   &__nav-link {

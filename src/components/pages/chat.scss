@@ -9,32 +9,17 @@
   min-height: 100vh;
   padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
   background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
-  &__decor {
-    content: "";
-    display: block;
-    width: 750px;
-    height: 750px;
-    position: fixed;
-    bottom: -150px;
-    right: -350px;
-    // right: -350px;
-    background-image: url("../../resources/img/mooviesPageDecor9.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    opacity: 0.3;
-    &.active {
-      right: -333px;
-    }
-  }
+
   &::before {
     content: "";
     display: block;
     width: 750px;
     height: 750px;
     position: fixed;
-    bottom: -150px;
-    right: -350px;
+    bottom: clamp(-15.625rem, -16.875rem + 6.25vw, -9.375rem);
+    // bottom: -150px;
+    right: clamp(-23.75rem, -24.125rem + 1.88vw, -21.875rem);
+    // right: -350px;
     background-image: url("../../resources/img/mooviesPageDecor9.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -48,14 +33,19 @@
     width: 1080px;
     height: 1080px;
     position: fixed;
-    bottom: -260px;
-    left: -470px;
+    bottom: clamp(-22.5rem, -23.75rem + 6.25vw, -16.25rem);
+    // bottom: -260px;
+    left: clamp(-35rem, -36.125rem + 5.63vw, -29.375rem);
+    // left: -470px;
     background-image: url("../../resources/img/mooviesPageDecor11.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
     opacity: 0.3;
     transform: scaleX(-1);
+    @media (max-width: 450px) {
+      display: none;
+    }
   }
 
   &__container {
@@ -71,9 +61,13 @@
     gap: 20px;
     position: relative;
     z-index: 10;
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+    }
   }
   &__avatars-wrapper {
-    max-height: 690px;
+    // max-height: 690px;
   }
 
   &__awatarts-container {
@@ -81,6 +75,11 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    @media (max-width: 900px) {
+      flex-direction: row;
+      align-items: flex-start;
+      margin-bottom: 30px;
+    }
   }
 
   &__avatar {
@@ -92,6 +91,9 @@
       background-color: rgba(80, 74, 121, 0.547);
       display: block;
       margin-top: 5px;
+      @media (max-width: 900px) {
+        display: none;
+      }
     }
   }
   &__avatar-img {
@@ -167,6 +169,9 @@
     border-radius: 30px;
     padding: 20px;
     position: relative;
+    @media (max-width: 400px) {
+      font-size: 14px;
+    }
     &:before,
     &:after {
       content: "";
@@ -218,7 +223,7 @@
     color: $color-text-black;
   }
   &__user-photo {
-    width: 40px;
+    min-width: 40px;
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
@@ -258,10 +263,14 @@
     line-height: 24px;
     padding: 10px;
     margin-top: 20px;
+    @media (max-width: 750px) {
+      height: 55px;
+    }
   }
   &__send {
     width: 150px;
     align-self: flex-end;
+    z-index: 999;
     &:disabled {
       // opacity: 0.5;
       background: #780225;

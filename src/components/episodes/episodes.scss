@@ -69,6 +69,7 @@
     @media (max-width: 600px) {
       justify-content: center;
       flex-direction: column;
+      gap: 25px;
     }
 
     // -----зменшую height в останнього .scroll-wrapper__episodes.active
