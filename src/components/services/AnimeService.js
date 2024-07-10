@@ -23,7 +23,6 @@ const AnimeService = () => {
 
   // -----------get by name
   const getByname = (name) => {
-    console.log(name);
     const request = allElementsResponse(
       `${_host}/anime?filter[text]=${name}`
     ).then((elem) => elem.data.map((elem) => transformAnime(elem)));
