@@ -1,11 +1,8 @@
 import HomePageBackground from "../../resources/img/HomePageBackground.jpg";
-import HomePageBackground2 from "../../resources/img/HomePageBackground2.jpg";
 import HomePageBackground3 from "../../resources/img/HomePageBackground3.jpg";
 import HomePageBackground4 from "../../resources/img/HomePageBackground4.jpg";
 import HomePageBackground5 from "../../resources/img/HomePageBackground5.jpg";
-import HomePageBackground6 from "../../resources/img/HomePageBackground6.jpg";
 import HomePageBackground7 from "../../resources/img/HomePageBackground7.png";
-import HomePageBackground8 from "../../resources/img/HomePageBackground8.jpg";
 import HomePageBackground9 from "../../resources/img/HomePageBackground9.png";
 
 export const homePageBackgroundsArray = [
@@ -36,16 +33,4 @@ export const homePageBackgroundsArray = [
     id: "6518",
     poster: HomePageBackground9,
   },
-  // {
-  //   id: "7442",
-  //   poster: HomePageBackground6,
-  // },
-  // {
-  //   id: "6508",
-  //   poster: HomePageBackground8,
-  // },
-  // {
-  //   id: "12297",
-  //   poster: HomePageBackground2,
-  // },
 ];

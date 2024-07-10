@@ -22,7 +22,6 @@ const SignUp = () => {
 
   return (
     <div className="signup">
-      {/* <div className="signup__container"></div> */}
       <HeaderLogo cl={"auth-logo"} />
       <h2>Signup</h2>
 

@@ -36,8 +36,7 @@
       opacity: 0.3;
     }
   }
-  &__decor-wrapper {
-  }
+
   &__scroll {
     height: 100vh;
   }
@@ -47,7 +46,6 @@
     display: flex;
     flex-direction: column;
     gap: 44px;
-    // padding: 0 0 50px;
 
     @media (max-width: 600px) {
       gap: 24px;
@@ -69,7 +67,6 @@
       max-width: 120px;
       margin-left: 6px;
     }
-
     & a {
       text-decoration: none;
       color: inherit;
@@ -111,19 +108,8 @@
       width: 1px;
       height: 24px;
     }
-
     &.hide {
       opacity: 0;
     }
   }
-  // &__nav-link:before {
-  //   content: "";
-  //   position: absolute;
-  //   height: 18px;
-  //   width: 1px;
-  //   background-color: $color-text-white-secondary;
-  //   display: block;
-  //   left: -25px;
-  //   top: 3px;
-  // }
 }

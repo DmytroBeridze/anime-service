@@ -8,9 +8,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import BtnScrollUp from "../btnScrollUp/BtnScrollUp";
 import finiteStateMashine from "../../utils/finiteStateMashine";
-// import NoSuchElement from "../noSuchElement/NoSuchElement";
-// import Error from "../error/Error";
-// import moviesDecor from "../../resources/img/mooviesPageDecor.png";
 
 const MoviesPage = ({ setAnimeData }) => {
   const {
@@ -77,29 +74,18 @@ const MoviesPage = ({ setAnimeData }) => {
     year: Yup.number().moreThan(1925, "since 1926").required("Required"),
   });
   const Load = loading ? <Spinner /> : null;
-  // const Err = error ? <Error /> : null;
-  // --- slider spinner
   const sliderLoad = loading && sliderLoadToggle ? <Spinner /> : null;
   useEffect(() => {
     setsliderLoadToggle(true);
   }, []);
 
-  // const element = useMemo(
-  //   () => (!(loading || error) ? <AnimeSlider anime={ratingData} /> : null),
-  //   [ratingData, sliderLoad]
-  // );
-
   return (
     <div className="movies">
       <div className="movies__container">
-        {/* <div className="movies__search"></div> */}
         <div className="movies__title-wrapper">
           <h3 className="movies__header">trending</h3>
           <div className="movies__stroke"></div>
         </div>
-        {/* {sliderLoad}
-        {Err}
-        {element} */}
 
         {useMemo(
           () =>
@@ -167,61 +153,15 @@ const MoviesPage = ({ setAnimeData }) => {
             </form>
           )}
         </Formik>
-        {/* {Load}
-        {Err} */}
-        {/* {NoElement} */}
-        {/* {sliderLoad} */}
         {Load}
         {
           <AnimeList
             relatedData={allAnimeData}
-            // Load={Load}
-            // Err={Err}
             moviesPage={"moviesPage"}
             setAnimeData={setAnimeData}
             process={process}
           />
         }
-
-        {/* {useMemo(
-          () =>
-            sliderLoad || (
-              <AnimeList
-                relatedData={allAnimeData}
-                // Load={Load}
-                // Err={Err}
-                moviesPage={"moviesPage"}
-                setAnimeData={setAnimeData}
-                process={process}
-              />
-            ),
-          [loadAnime]
-        )} */}
-
-        {/* {useMemo(
-          () =>
-            finiteStateMashine(process, () => (
-              <AnimeList
-                relatedData={allAnimeData}
-                // Load={Load}
-                // Err={Err}
-                moviesPage={"moviesPage"}
-                setAnimeData={setAnimeData}
-                process={process}
-              />
-            )),
-          [loadAnime]
-        )} */}
-        {/* {finiteStateMashine(process, () => (
-          <AnimeList
-            relatedData={allAnimeData}
-            Load={Load}
-            Err={Err}
-            moviesPage={"moviesPage"}
-            setAnimeData={setAnimeData}
-            process={process}
-          />
-        ))} */}
 
         <button
           className="button movies__button"

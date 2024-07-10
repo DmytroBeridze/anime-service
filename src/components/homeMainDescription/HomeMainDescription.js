@@ -32,10 +32,7 @@ const HomeMainDescription = ({ backroundInfo }) => {
           <li className="home-description__genre">{showType}</li>
         </ul>
         <div className="home-description__text">
-          <span>
-            {desc}
-            {/* <span className="home-description__see-more">See more...</span> */}
-          </span>
+          <span>{desc}</span>
         </div>
 
         <div className="home-description__buttons-wrapper">

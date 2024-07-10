@@ -1,12 +1,10 @@
 import "./btnScrollUp.scss";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import arrowDown from "../../resources/png/arrow-up.png";
 
 const BtnScrollUp = () => {
   const buttonRef = useRef(null);
-  //   const [show, setShow] = useState(false);
   const pageUp = () => {
-    // window.scrollTo(0, 520);
     window.scrollTo({
       top: 0,
       left: 0,

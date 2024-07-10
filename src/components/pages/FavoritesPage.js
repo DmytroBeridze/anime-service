@@ -6,9 +6,9 @@ import AnimeList from "../animeList/AnimeList";
 import useCookieHook from "../../hooks/cookie.hook";
 
 const FavoritesPage = ({ setAnimeData }) => {
-  const { getCookie, setCookie, removeCookie } = useCookieHook();
+  const { getCookie } = useCookieHook();
   const data = JSON.parse(getCookie("nameAnime"));
-  const { getById, process, error, loading, clearError } = AnimeService();
+  const { getById, process } = AnimeService();
   const [favorites, setFavorites] = useState([]);
 
   const getFavorites = () => {

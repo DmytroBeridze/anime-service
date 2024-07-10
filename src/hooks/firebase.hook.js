@@ -96,7 +96,6 @@ const useFirebaseHook = () => {
           displayName: values.name,
         });
       })
-      // .then(() => navigate("/signin"))
       .catch((error) =>
         error.message.includes("auth/email-already-in-use")
           ? setErrorComparison("such a user exist")
@@ -111,7 +110,6 @@ const useFirebaseHook = () => {
         const user = userCredential.user;
         setCookie("userLogin", user.email);
       })
-      // .then(() => navigate("/"))
       .catch((error) => setErrorComparison("user does not exist"));
   };
 

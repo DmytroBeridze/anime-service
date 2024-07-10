@@ -1,19 +1,15 @@
 import "./homePage.scss";
-import HomePageBackground from "../../resources/img/HomePageBackground.jpg";
 import HomeMainDescription from "../homeMainDescription/HomeMainDescription";
 import HomeSlider from "../homeSlider/HomeSlider";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useCookieHook from "../../hooks/cookie.hook";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase.js";
 import { homePageBackgroundsArray } from "../homePageBackgrounds/homePageBackgrounds.js";
 import AnimeService from "../services/AnimeService.js";
 
 const HomePage = () => {
   const { getCookie } = useCookieHook();
   const navigate = useNavigate();
-  // const [user, loading, error] = useAuthState(auth);
   const [randomElement, setRandomElement] = useState({});
   const [backroundInfo, setBackgroundInfo] = useState({});
   const { getById, loading } = AnimeService();

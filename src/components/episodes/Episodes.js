@@ -1,14 +1,12 @@
 import "./episodes.scss";
 import "../pages/chat.scss";
 // ------------custom scroll styles
-import "overlayscrollbars/styles/overlayscrollbars.css";
 import { NavLink, useParams } from "react-router-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import AnimeService from "../services/AnimeService";
 import noPicture from "../../resources/png/no-pictures.png";
 import playBtn from "../../resources/png/play.png";
 import finiteStateMashine from "../../utils/finiteStateMashine";
-
 // --custom scroll
 import "overlayscrollbars/overlayscrollbars.css";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
@@ -16,8 +14,7 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 const Episodes = () => {
   const [data, setData] = useState([]);
   const { episodesId } = useParams();
-  const { getEpisodesById, process, setProcess, error, loading } =
-    AnimeService();
+  const { getEpisodesById, process, setProcess } = AnimeService();
   const targetRef = useRef([]);
   const descriptionRef = useRef([]);
   const playBtnRef = useRef([]);

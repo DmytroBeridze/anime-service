@@ -34,17 +34,6 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
     youtubeVideoId,
   } = data;
 
-  // const Load = loading ? <Spinner /> : null;
-  // const Err = error ? <Error /> : null;
-  // const NoElement =
-  //   Object.keys(data).length <= 0 && !(error || loading) ? (
-  //     <NoSuchElement />
-  //   ) : null;
-
-  // const posterAnime = !(error || loading || NoElement) ? (
-  //   <img src={poster} alt="a" />
-  // ) : null;
-
   return (
     <>
       <div className="single-found">
@@ -72,7 +61,6 @@ const SingleFoundAnime = ({ setFavoritesData }) => {
                 <TrailerIconSVG />
                 <p>Watch Trailer</p>
               </button>
-              {/* <img src={poster} alt="a" /> */}
             </div>
             <div className="single-found__information">
               <h1 className="single-found__title">{title}</h1>

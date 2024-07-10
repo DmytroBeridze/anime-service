@@ -37,6 +37,7 @@ const AnimeService = () => {
     );
     return request;
   };
+
   // ------------get episodes by id
   const getEpisodesById = (id) => {
     // console.log(id);
@@ -116,7 +117,6 @@ const AnimeService = () => {
       id,
       title: canonicalTitle || "---",
       description,
-      // description: description || "---",
       thumbnail,
       length: length || "---",
       airdate: airdate || "---",

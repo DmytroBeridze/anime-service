@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+
 const useCookieHook = () => {
   const getCookie = (name) => {
     return Cookies.get(name);

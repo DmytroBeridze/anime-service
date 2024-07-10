@@ -10,7 +10,7 @@ const BurgerMenue = ({ menueClass, updateMenue }) => {
 
   // ---------custom scroll init
   const events = {
-    scroll: (e) => {},
+    // scroll: (e) => {},
   };
   const defer = "defer";
   const options = {
@@ -36,9 +36,6 @@ const BurgerMenue = ({ menueClass, updateMenue }) => {
 
   return (
     <div className={menueClass}>
-      {/* <div className="burgerMenue__decor-wrapper">
-        <div className="burgerMenue__decor"></div>
-      </div> */}
       <div className="burgerMenue__scroll" ref={scrollRef}>
         <nav className="burgerMenue">
           <ul className="burgerMenue__nav-list" onClick={updateMenue}>
@@ -54,10 +51,7 @@ const BurgerMenue = ({ menueClass, updateMenue }) => {
               </NavLink>
             </li>
             <li className="burgerMenue__nav-link">
-              <span
-                className={togglelinkBar("/movies")}
-                // style={togglelinkBar("/movies")}
-              ></span>
+              <span className={togglelinkBar("/movies")}></span>
 
               <NavLink
                 to="movies"

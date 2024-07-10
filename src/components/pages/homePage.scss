@@ -1,33 +1,12 @@
 .homePage {
   width: 100%;
-  // max-width: 1920px;
   min-height: 100vh;
-  // min-height: 170vh;
-  // min-height: 1080px;
-  // background-image: url("../../resources/img/HomePageBackground.jpg");
   background-position: 60% 10%;
-  // background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  // background-size: 1926px 1100px;
-  // position: relative;
-  // padding: 15px;
-  // @media (max-height: 906px) {
-  //   min-height: 120vh;
-  // }
-  // @media (max-height: 800px) {
-  //   min-height: 140vh;
-  // }
-
   padding: 200px 0 15px;
+
   @media (max-width: 844px) {
     padding-top: 180px;
   }
-
-  // @media (max-width: 550px) {
-  //   background-position: -800px;
-  // }
-  // @media (max-width: 450px) {
-  //   background-position: -1000px;
-  // }
 }

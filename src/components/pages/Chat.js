@@ -1,15 +1,12 @@
 import "./chat.scss";
 
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useOverlayScrollbars } from "overlayscrollbars-react";
-
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
 import useFirebaseHook from "../../hooks/firebase.hook.js";
-import { AnimeContext } from "../context.js";
-import { OverlayScrollbars } from "overlayscrollbars";
 
 const Chat = () => {
   const [value, setValue] = useState("");
@@ -19,16 +16,12 @@ const Chat = () => {
   const usersScrollRef = useRef();
   const { loadingAllAvatars, avatars, messages } = useFirebaseHook();
 
-  // -------показує відкрите чи закрите бургер меню
-  const { addPadding } = useContext(AnimeContext);
-
   // ---------custom scroll init
   const events = {
-    scroll: (e) => {},
+    // scroll: (e) => {},
   };
   const defer = "defer";
   const options = {
-    // scrollbars: { autoHide: "scroll" },
     className: "os-theme-dark",
   };
 
@@ -44,7 +37,6 @@ const Chat = () => {
   });
 
   // ---custom scroll
-  // ---custom scroll
   useEffect(() => {
     init(usersScrollRef.current);
   }, [init]);
@@ -54,8 +46,6 @@ const Chat = () => {
     loadingAllAvatars();
   }, []);
 
-  // ---------прокрутка до останнього повідомлення
-  // ---------прокрутка до останнього повідомлення
   const scrollToLast = () => {
     if (messageRef.current) {
       messageRef.current.scrollIntoView({
@@ -137,18 +127,15 @@ const Chat = () => {
       }),
     [avatars]
   );
-  // const togglePadding = addPadding ? "chat__decor active" : "chat__decor";
   return (
     <div className="chat">
-      {/* <div className="chat__decor"></div> */}
       <div className="chat__container">
         <div className="favorites__title-wrapper">
           <h3 className="favorites__header">anime chat</h3>
           <div className="favorites__stroke"></div>
         </div>
-
         <div className="chat__messages-wrapper">
-          {/* ----------------------Avatars scroll ----------------------------------- */}
+          {/* -----------Avatars scroll wrapper --------*/}
           <div
             className="chat__avatars-wrapper scroll-wrapper "
             ref={scrollRef}
@@ -157,9 +144,7 @@ const Chat = () => {
             <div className="chat__awatarts-container">{avatarsElement}</div>
           </div>
           <div>
-            {/* ----------------------Chat scroll wrapper----------------------------------- */}
-            {/* ----------------------Chat scroll wrapper----------------------------------- */}
-
+            {/* -----------Chat scroll wrapper--------- */}
             <div
               className="chat__scroll-wrapper scroll-wrapper"
               ref={usersScrollRef}
@@ -174,7 +159,6 @@ const Chat = () => {
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder="message"
-              // onScroll={(event) => scrollTrain(event.target)}
             />
           </div>
         </div>

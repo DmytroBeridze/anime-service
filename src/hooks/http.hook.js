@@ -18,9 +18,6 @@ const HttpHook = () => {
       const request = await fetch(url, { method, headers, body });
       if (request.ok) {
         const response = await request.json();
-
-        //! так як запроси асинхронні, setProcess("ready") додатково
-        //! встановлюється в кожному компоненті при запиті в then
         setProcess("ready");
         setLoading(false);
         return response;

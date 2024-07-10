@@ -1,13 +1,10 @@
 import "./header.scss";
-// import whiteFilmLogo from "../../resources/png/White-film-logo.png";
-// import userIcon from "../../resources/png/user.png";
 import closeBurger from "../../resources/png/close-burger.png";
 import menuBurger from "../../resources/png/menu-burger.png";
 import search from "../../resources/png/search-icon.png";
 import HeaderSearch from "../headerSearch/HeaderSearch";
-import { NavLink, useHref } from "react-router-dom";
-import { useEffect, useState } from "react";
-// import useCookieHook from "../../hooks/cookie.hook";
+import { useHref } from "react-router-dom";
+import { useState } from "react";
 import AuthDetails from "../auth/AuthDetails";
 import HeaderLogo from "../haederLogo/HeaderLogo";
 import Navigation from "../navigation/Navigation";
@@ -15,7 +12,7 @@ import BurgerMenue from "../burgerMenue/BurgerMenue";
 import BurgerMenueBackdrop from "../burgerMenueBackdrop/BurgerMenueBackdrop.js";
 import { scrollbarShow, scrollbarHide } from "../scrollBarToggle.js";
 
-const Header = ({ setAnimeData, addingPadding }) => {
+const Header = ({ setAnimeData }) => {
   const [open, setOpen] = useState(false);
   const [isMenuClicked, setIsMenueClicked] = useState(false);
   const [menueClass, setMenueClass] = useState("burgerMenue__wrapper");
@@ -44,7 +41,6 @@ const Header = ({ setAnimeData, addingPadding }) => {
         <div className="header-container container">
           <div className="header__burger-button" onClick={updateMenue}>
             <img src={!isMenuClicked ? menuBurger : closeBurger} alt="close" />
-            {/* <img src={!isMenuClicked ? menuBurger : closeBtn} alt="close" /> */}
           </div>
           <nav className="header-nav">
             <HeaderLogo />

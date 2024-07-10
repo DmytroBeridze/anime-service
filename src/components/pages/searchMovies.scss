@@ -1,7 +1,6 @@
 @import "../../style/variables.scss";
 .search-movies {
   width: 100%;
-  // min-height: 1080px;
   min-height: 100vh;
   padding: 190px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 50px;
   background: linear-gradient(149.91deg, #233458 13.36%, #111827 98.15%);
@@ -12,9 +11,7 @@
     height: 1050px;
     position: fixed;
     bottom: clamp(-31.25rem, -33.125rem + 9.38vw, -21.875rem);
-    // bottom: -350px;
     right: clamp(-32.5rem, -34.25rem + 8.75vw, -23.75rem);
-    // right: -380px;
     background-image: url("../../resources/img/mooviesPageDecor12.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -24,7 +21,6 @@
 
   &__container {
     padding: 0 30px;
-    // max-width: 1546px;
     margin: auto;
   }
   &__main {
@@ -46,7 +42,6 @@
     }
   }
   &__info-list {
-    // font-size: 14px;
     @media (max-width: 1100px) {
       flex-direction: column;
       & li:not(:first-child) {
@@ -149,10 +144,6 @@
         }
       }
     }
-    // & .favorites-btn {
-    //   top: 70px;
-    //   right: 70px;
-    // }
   }
   &__likeWrapper {
     position: absolute;

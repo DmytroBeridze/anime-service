@@ -1,6 +1,6 @@
 import "./trailerModal.scss";
 import closeIcon from "../../resources/png/close.png";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 
 const TrailerModal = ({ open, onClose, youtubeVideoId }) => {
@@ -33,7 +33,6 @@ const TrailerModal = ({ open, onClose, youtubeVideoId }) => {
             <iframe
               src={`https://www.youtube.com/embed/${youtubeVideoId}`}
               title="Video"
-              // frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen

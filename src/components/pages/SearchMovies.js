@@ -4,8 +4,6 @@ import { useContext, useEffect, useState } from "react";
 import stroke from "../../resources/png/stroke.png";
 import AnimeService from "../services/AnimeService";
 import useSessionStorage from "../../hooks/sessionStorage.hook";
-import Error from "../error/Error";
-import Spinner from "../spinner/Spinner";
 import NoSuchElement from "../noSuchElement/NoSuchElement";
 import { NavLink } from "react-router-dom";
 import TrailerModal from "../trailerModal/TrailerModal";
@@ -70,15 +68,6 @@ const SearchMovies = ({ setFavoritesData }) => {
           </section>
         </div>
       </div>
-
-      {/* <TrailerModal
-        open={open}
-        onClose={() => {
-          setOpen(false);
-          document.body.style.overflow = "";
-        }}
-        youtubeVideoId={value[0].youtubeVideoId}
-      /> */}
     </>
   );
 };
@@ -100,7 +89,7 @@ const FoundAnime = ({ data, setOpen, open, setFavoritesData }) => {
       <h1 className="search-movies__title">{title}</h1>
       <section className="search-movies__main">
         <div className="search-movies__info">
-          {/*----------  info list */}
+          {/*---------- info list */}
           <ul className="home-description__info-list search-movies__info-list">
             <li className="home-description__rating">
               <span className="">imdb</span>
@@ -127,7 +116,7 @@ const FoundAnime = ({ data, setOpen, open, setFavoritesData }) => {
           </div>
         </div>
 
-        {/* ---------poster */}
+        {/* -----------poster */}
         <div className="search-movies__poster">
           {/* ---------add to favorites */}
           <div className="search-movies__likeWrapper">

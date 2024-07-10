@@ -5,33 +5,15 @@
   max-width: 1920px;
   padding: 30px clamp(1.875rem, -0.088rem + 9.81vw, 11.688rem) 30px;
   align-items: center;
-  // position: fixed;
   position: absolute;
-  // top: 200px;
-  // left: 0;
-  // right: 0;
-  // margin: auto;
   background: linear-gradient($color-background-transparent);
   z-index: 999;
 }
-// .header-nav-container {
-//   display: flex;
-//   position: absolute;
-//   align-items: center;
-//   justify-content: space-between;
-//   width: 100%;
-//   padding: 30px 187px 30px;
-//   // gap: 20px;
-//   background: linear-gradient($color-background-transparent);
-// }
 .header-container {
   max-width: 1546px;
-  // border: 1px solid red;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // margin: 0 auto;
-  // padding: 0 30px;
   @media (max-width: 550px) {
     justify-content: flex-end;
   }
@@ -67,73 +49,6 @@
   @media (max-width: 550px) {
     display: none;
   }
-  // &__logo {
-  //   display: flex;
-  //   align-items: start;
-  //   gap: 15px;
-  //   text-decoration: none;
-  // }
-  // &__title {
-  //   font-family: "Just Another Hand";
-  //   font-weight: 400;
-  //   font-size: 64px;
-  //   line-height: 64px;
-  //   color: $color-text-white;
-  //   &:last-child {
-  //     color: #ff004d;
-  //   }
-  // }
-
-  //--------------------- navigation
-  // &__nav-list {
-  //   display: flex;
-  //   gap: 53px;
-  // }
-  // &__nav-link {
-  //   font-family: "Inter";
-  //   font-weight: 400;
-  //   font-size: 23px;
-  //   line-height: 23px;
-  //   color: $color-text-white-secondary;
-  //   position: relative;
-  //   @media (max-width: 1350px) {
-  //     font-size: 18px;
-  //   }
-  //   &.active {
-  //     color: $color-text-white;
-  //   }
-  //   & a {
-  //     text-decoration: none;
-  //     color: inherit;
-  //   }
-  //   &::after {
-  //     content: "";
-  //     display: block;
-  //     height: 2px;
-  //     width: 0;
-  //     background-color: #ff004d;
-  //     margin-top: 2px;
-  //     transition: 0.2s;
-  //   }
-  //   &:hover::after {
-  //     content: "";
-  //     display: block;
-  //     height: 2px;
-  //     width: 100%;
-  //     background-color: #ff004d;
-  //     margin-top: 2px;
-  //   }
-  // }
-  // &__nav-link + &__nav-link:before {
-  //   content: "";
-  //   position: absolute;
-  //   height: 18px;
-  //   width: 1px;
-  //   background-color: $color-text-white-secondary;
-  //   display: block;
-  //   left: -25px;
-  //   top: 3px;
-  // }
 
   &__search {
     display: flex;
@@ -153,7 +68,6 @@
       background-color: #ff004d;
       display: block;
       left: 4px;
-      // top: 3px;
     }
   }
 }

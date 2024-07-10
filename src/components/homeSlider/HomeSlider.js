@@ -5,18 +5,13 @@ import "slick-carousel/slick/slick-theme.css";
 import AnimeService from "../services/AnimeService";
 import { useEffect } from "react";
 import { useState } from "react";
-import Spinner from "../spinner/Spinner";
-import Error from "../error/Error";
-// import spinner from "../../resources/gif/Ellipsis-loader.gif";
-// import errorIcon from "../../resources/png/Fail2.png";
 import sliderArrows from "../sliderArrows/SliderArrows";
-import LoadableImage from "../loadableImage/LoadableImage";
 import { NavLink } from "react-router-dom";
 import finiteStateMashine from "../../utils/finiteStateMashine";
 
 const HomeSlider = () => {
   const [anime, setAnime] = useState([]);
-  const { getAllAnime, process, error, loading, clearError } = AnimeService();
+  const { getAllAnime, process, clearError } = AnimeService();
 
   useEffect(() => {
     clearError();
@@ -134,28 +129,6 @@ const HomeSlider = () => {
     ],
   };
 
-  // --------spinner
-  // const Load = loading ? <Spinner /> : null;
-  // ----------error
-  // const Err = error ? <Error /> : null;
-
-  // -----------render slider------
-  // const animeRender = (arr) => {
-  //   const wiev = arr.map((data) => {
-  //     const content = !(Err || Load) ? (
-  //       <Wiev data={data} key={data.id} />
-  //     ) : null;
-  //     return (
-  //       <>
-  //         {content}
-  //         {Load}
-  //       </>
-  //     );
-  //   });
-
-  //   return <Slider {...settings}> {wiev} </Slider>;
-  // };
-
   const animeRender = (arr) => {
     return (
       <Slider {...settings}>
@@ -166,17 +139,13 @@ const HomeSlider = () => {
     );
   };
 
-  // const AnimeSlides = animeRender(anime);
   return (
     <div className="slider-container  main-slider">
-      {/* {AnimeSlides}
-      {Load}
-      {Err} */}
       {finiteStateMashine(process, () => animeRender(anime))}
     </div>
   );
 };
-// -----------component
+
 const Wiev = ({ data }) => {
   return (
     <NavLink to={`/movies/${data.id}`} className="main-slider__element">

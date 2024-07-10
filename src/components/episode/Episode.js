@@ -5,12 +5,10 @@ import React, { useEffect, useState } from "react";
 import { TrailerIconSVG } from "../trailerIconSVG/TrailerIconSvg";
 import TrailerModal from "../trailerModal/TrailerModal";
 import AnimeService from "../services/AnimeService";
-import Spinner from "../spinner/Spinner";
-import Error from "../error/Error";
 import finiteStateMashine from "../../utils/finiteStateMashine";
 const Episode = () => {
   const [episode, setEpisode] = useState({});
-  const { getEpisode, process, error, loading, clearError } = AnimeService();
+  const { getEpisode, process } = AnimeService();
   const { episodeId } = useParams();
   const [open, setOpen] = useState(false);
   const {
@@ -28,13 +26,6 @@ const Episode = () => {
     getEpisode(episodeId).then((resp) => setEpisode(resp));
   }, []);
 
-  // const Load = loading ? <Spinner /> : null;
-  // const Err = error ? <Error /> : null;
-
-  // const posterEpisode = !(error || loading) ? (
-  //   <img src={thumbnail?.original} alt={title} />
-  // ) : null;
-
   return (
     <>
       <div className="episode">
@@ -47,12 +38,6 @@ const Episode = () => {
                   <img src={thumbnail?.original} alt={title} />
                 </div>
               ))}
-              {/* <div className="episode__poster">
-                
-                {finiteStateMashine(process, () => (
-                  <img src={thumbnail?.original} alt={title} />
-                ))}
-              </div> */}
               <button
                 className="episode__button button_stroke button"
                 onClick={() => setOpen(true)}
@@ -62,11 +47,6 @@ const Episode = () => {
               </button>
             </div>
             <div className="episode__information">
-              {/* <h1 className="episode__title">{title}</h1> */}
-
-              {/* <button className=" episode__title-btn button">
-              Episodes
-            </button> */}
               <div className="episode__description">
                 <h3>Storyline</h3>
                 <p>{description}</p>

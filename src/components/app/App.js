@@ -16,7 +16,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.js";
 import Chat from "../pages/Chat.js";
 import Episode from "../episode/Episode.js";
-// import BurgerMenue from "../burgerMenue/BurgerMenue.js";
 
 function App() {
   const { getCookie, setCookie } = useCookieHook();
@@ -53,7 +52,6 @@ function App() {
   );
 
   return (
-    // для передачі даних в дочірній елемент без пропсів, напряму
     <AnimeContext.Provider value={{ anime, favorites, addPadding }}>
       <BrowserRouter>
         <div className="app">

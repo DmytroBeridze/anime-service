@@ -1,6 +1,5 @@
 import "./uploader.scss";
 import React, { useState } from "react";
-import close from "../../resources/png/close.png";
 import trash from "../../resources/png/trash.png";
 
 const Uploader = ({ props }) => {
@@ -10,17 +9,13 @@ const Uploader = ({ props }) => {
   return (
     <div className="uoloader-container">
       <input
-        // style={{ display: "none" }}
         id="avatar-photo"
         type="file"
         onBlur={props.handleBlur}
         name="photo"
         placeholder="add photo"
         onChange={(event) => {
-          // formik не підтримує завантаження файлів за замовчанням, тому робимо так:
           props.setFieldValue("photo", event.currentTarget.files[0]);
-
-          // створення createObjectURL і відображення превью файла що вибрагл
           event.currentTarget.files[0] &&
             setFileName(event.currentTarget.files[0].name);
           if (event.currentTarget.files[0]) {

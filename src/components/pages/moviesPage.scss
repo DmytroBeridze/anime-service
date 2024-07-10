@@ -14,9 +14,7 @@
     height: 1000px;
     position: fixed;
     bottom: clamp(-25rem, -26.875rem + 9.38vw, -15.625rem);
-    // bottom: -250px;
     right: clamp(-31.25rem, -33.75rem + 12.5vw, -18.75rem);
-    // right: -300px;
     background-image: url("../../resources/img/mooviesPageDecor3.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -130,7 +128,6 @@
     margin: 30px auto;
     display: block;
     padding: 15px clamp(2.5rem, -0.948rem + 17.24vw, 8.75rem);
-    // padding: 15px 140px;
     &:disabled {
       background: #780225;
       border: 1px solid #780225;

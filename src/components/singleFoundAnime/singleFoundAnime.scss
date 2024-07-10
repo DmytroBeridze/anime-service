@@ -22,7 +22,6 @@
     padding: 0 30px;
     max-width: 1546px;
     margin: auto;
-    // border: 1px solid red;
   }
   &__content {
     display: grid;
@@ -123,7 +122,6 @@
     width: 85%;
     max-width: 272px;
     text-decoration: none;
-    // height: 50px;
     @media (max-width: 650px) {
       width: 96%;
     }

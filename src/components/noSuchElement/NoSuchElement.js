@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
 import "./noSuchElement.scss";
 
 const NoSuchElement = () => {
-  const [exclam, setExclam] = useState(true);
-
   return (
     <div className="noSuchElement">
       <div>

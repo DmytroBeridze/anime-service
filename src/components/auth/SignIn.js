@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import useFirebaseHook from "../../hooks/firebase.hook";
-import whiteFilmLogo from "../../resources/png/White-film-logo.png";
 import HeaderLogo from "../haederLogo/HeaderLogo";
 
 const SignIn = () => {
@@ -20,7 +19,6 @@ const SignIn = () => {
 
   return (
     <div className="signin">
-      {/* <div className="signin__container"></div> */}
       <HeaderLogo cl={"auth-logo"} />
       <h2>Signin</h2>
 

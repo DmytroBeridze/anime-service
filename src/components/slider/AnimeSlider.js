@@ -5,21 +5,17 @@ import { NavLink } from "react-router-dom";
 import { memo } from "react";
 
 const AnimeSlider = ({ anime }) => {
-  // ------------slider arrow--------
+  // ------------slider arrows--------
   const { NextArrow, PrewArrow } = sliderArrows();
-
   // ----------setings slider------
   const settings = {
-    // centerMode: true,
     infinite: true,
-    // centerPadding: "100px",
     slidesToShow: 7,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
     nextArrow: <NextArrow />,
-    // nextArrow: <NextArrow />,
     prevArrow: <PrewArrow />,
     initialSlide: 0,
     responsive: [

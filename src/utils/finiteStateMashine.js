@@ -11,8 +11,6 @@ const finiteStateMashine = (process, Component, data) => {
       return <Error />;
     case "ready":
       return <Component />;
-    // default:
-    //   throw new Error("Wrong state");
   }
 };
 
