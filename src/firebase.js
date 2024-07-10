@@ -3,10 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage, ref } from "firebase/storage";
+import env from "react-dotenv";
 // import firebase from "firebase/compat/app";
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAeQ_htkKKCqR093dXn9DGIm-mgfVcMvzI",
+  apiKey: env.TOKEN,
+
   authDomain: "sample-auth-89622.firebaseapp.com",
   projectId: "sample-auth-89622",
   storageBucket: "sample-auth-89622.appspot.com",
