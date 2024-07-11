@@ -2,13 +2,16 @@ import "./trailerModal.scss";
 import closeIcon from "../../resources/png/close.png";
 import { useEffect, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
+import { scrollbarHide, scrollbarShow } from "../scrollBarToggle";
 
 const TrailerModal = ({ open, onClose, youtubeVideoId }) => {
   const nodeRef = useRef(null);
 
-  open
-    ? (document.body.style.overflow = "hidden")
-    : (document.body.style.overflow = "auto");
+  open ? scrollbarShow() : scrollbarHide();
+
+  // open
+  //   ? (document.body.style.overflow = "hidden")
+  //   : (document.body.style.overflow = "auto");
 
   return (
     <CSSTransition
