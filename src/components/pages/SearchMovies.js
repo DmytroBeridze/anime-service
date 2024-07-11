@@ -73,6 +73,11 @@ const SearchMovies = ({ setFavoritesData }) => {
 };
 
 const FoundAnime = ({ data, setOpen, open, setFavoritesData }) => {
+  // const handleModal = () => {
+  //   setOpen(true);
+  //   scrollbarHide();
+  //   console.log("!!!");
+  // };
   const {
     id,
     description,
