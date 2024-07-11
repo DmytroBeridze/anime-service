@@ -3,10 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage, ref } from "firebase/storage";
+import { useEffect } from "react";
 import env from "react-dotenv";
 // import firebase from "firebase/compat/app";
 // Your web app's Firebase configuration
-
+useEffect(() => {
+  console.log("!!!");
+}, []);
 const firebaseConfig = {
   apiKey: env.ANIME_API_KEY,
   authDomain: "sample-auth-89622.firebaseapp.com",
