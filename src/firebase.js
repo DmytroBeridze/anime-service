@@ -6,18 +6,21 @@ import { getStorage, ref } from "firebase/storage";
 import env from "react-dotenv";
 // import firebase from "firebase/compat/app";
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: env.ANIME_API_KEY,
 
+const firebaseConfig = {
+  // apiKey: "AIzaSyAeQ_htkKKCqR093dXn9DGIm-mgfVcMvzI",
+  apiKey: env.API_URL,
+  // apiKey: env.ANIME_API_KEY,
   authDomain: "sample-auth-89622.firebaseapp.com",
   projectId: "sample-auth-89622",
   storageBucket: "sample-auth-89622.appspot.com",
   messagingSenderId: "552278750842",
   appId: "1:552278750842:web:6da9f61c1b0a2a067eedc3",
 };
+console.log(env.API_URL);
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage();
-// export const firestore = firestore();

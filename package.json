@@ -28,6 +28,11 @@
     "web-vitals": "^2.1.4",
     "yup": "^1.4.0"
   },
+  "react-dotenv": {
+    "whitelist": [
+      "API_URL"
+    ]
+  },
   "scripts": {
     "start": "react-dotenv && react-scripts start",
     "build": "react-dotenv && react-scripts build",
