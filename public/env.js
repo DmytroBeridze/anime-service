@@ -1,7 +1,6 @@
 window.env = {
   "ACLOCAL_PATH": "C:\\Program Files\\Git\\mingw64\\share\\aclocal;C:\\Program Files\\Git\\usr\\share\\aclocal",
   "ALLUSERSPROFILE": "C:\\ProgramData",
-  "ANIME_API_KEY": "AIzaSyBUIQGS4ev-zAEsqWyLMpRMr0B4cLRyScQ",
   "APPDATA": "C:\\Users\\Dmytro\\AppData\\Roaming",
   "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_7956_KOKCKIVRVNDTPJPK",
   "COLOR": "1",
