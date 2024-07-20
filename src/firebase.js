@@ -9,6 +9,7 @@ import env from "react-dotenv";
 // Your web app's Firebase configuration
 
 const firebaseConfig = {
+  // apiKey: env.ANIME_API_KEY,
   apiKey: env.ANIME_API_KEY,
   authDomain: "sample-auth-89622.firebaseapp.com",
   projectId: "sample-auth-89622",
